@@ -1,0 +1,210 @@
+.menuback {
+    background-color: #696969;
+    
+}
+
+.header-top-menuback {
+    position: relative;
+    height: 100vh;
+}
+
+.mainmenu-persp
+{
+	transform: perspective(500px);
+	-webkit-transform: perspective(500px);
+	-moz-transform: perspective(500px);
+    -o-transform: perspective(500px);
+    -ms-transform: perspective(500px);
+     
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+     
+}
+
+/* .mainmenu > ul */
+.navbar-nav
+{
+    list-style-type: none;
+    transform-origin: 50% 0;
+}
+
+.swaying-in{
+    animation: swaying-in 1.2s linear;
+    
+}
+
+.swaying-out{
+    animation: swaying-out 0.3s linear;
+}
+
+.visible{
+    visibility: visible;
+}
+
+.notvisible{
+    visibility: hidden;
+}
+	
+.nav-item {
+	border-top: 3px solid #696969;
+	text-align: center;
+}	
+
+.nav-link{
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.bgr-col-dark {
+    background-color: #696969;
+}
+
+.bgr-col-org-bright {
+    background-color: #fff1dd;
+}
+
+.bgr-col-org-bright:hover {
+    background-color: #fbeedd;
+}
+
+.color-dark {
+    color: #696969;
+}
+
+.color-dark:hover {
+    color: #525252;
+}
+
+.color-darker {
+    color: #525252;
+}
+
+.color-orange-bright {
+    color: #fbeedd;
+}
+
+.color-orange-bright:hover {
+    color: #fff1dd;
+}
+
+.color-orange-brighter {
+    color: #fff1dd;
+}
+
+.shadow-dark:hover {
+    -webkit-box-shadow: inset 0px 0px 2px 0px #696969;
+    -moz-box-shadow: inset 0px 0px 2px 0px #696969;
+    -ms-box-shadow: inset 0px 0px 2px 0px #696969;
+    -o-box-shadow: inset 0px 0px 2px 0px #696969;
+    box-shadow: inset 0px 0px 2px 0px #696969;
+}
+
+.transform-scale-sm:hover
+{
+    transform: scale(0.97, 0.97);
+    -webkit-transform: scale(0.97, 0.97);
+    -moz-transform: scale(0.97, 0.97);
+    -o-transform: scale(0.97, 0.97);
+    -ms-transform: scale(0.97, 0.97);
+
+}	
+
+.transform-scale-sm
+{
+    transition: transform .15s ease-in-out;
+    -webkit-transition: transform .15s ease-in-out;
+    -moz-transition: transform .15s ease-in-out;
+    -o-transition: transform .15s ease-in-out;
+    -ms-transition: transform .15s ease-in-out;
+
+}	
+
+.closes {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.icon-cancel-circled{
+    display: block;
+    text-shadow: 1px 1px 1px #7f7f7f4d;
+}
+
+.hamburger  {
+    font-size: 2rem;
+    font-weight: lighter;
+    cursor: pointer;
+    z-index: 90;
+}
+
+.pagefront-hamburger {
+    position: fixed;
+    top: 0px;
+    left: 0.5rem;
+}
+
+.icon-menu-3 {
+    background-image: linear-gradient(transparent -20%, transparent 15%, whitesmoke 50%, transparent 90%, transparent 100%);
+}
+
+.icon-cancel-circled-1{
+    font-weight: 400;
+    background-image: radial-gradient(circle, whitesmoke 0%, transparent 80%);
+}
+
+.frontMain {
+    transform-origin: 10% 200%;
+    -webkit-transform-origin: 10% 200%;
+    -moz-transform-origin: 10% 200%;
+    -o-transform-origin: 10% 200%;
+    -ms-transform-origin: 10% 200%;
+
+    -webkit-transition: all .60s;
+    -moz-transition: all .60s;
+    -ms-transition: all .60s;
+    -o-transition: all .60s;
+    transition: all .60s;
+
+    -ms-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    -webkit-box-shadow: -5px -5px 20px 0px rgba(0,0,0,0.7);
+    -moz-box-shadow: -5px -5px 20px 0px rgba(0,0,0,0.7);
+    -ms-box-shadow: -5px -5px 20px 0px rgba(0,0,0,0.7);
+    -o-box-shadow: -5px -5px 20px 0px rgba(0,0,0,0.7);
+    box-shadow: -5px -5px 20px 0px rgba(0,0,0,0.7);
+
+    background-color: transparent;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.body-frontMain {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pagefront {
+    z-index: 50;
+    overflow: scroll;
+    overflow-x: hidden;
+    min-height: 0;
+    min-width: 0;
+    background-color: whitesmoke;
+}
+
+.frontMain-pagefront {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+}
