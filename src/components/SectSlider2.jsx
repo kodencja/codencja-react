@@ -143,6 +143,10 @@ class SectSlider extends Component {
     // console.log(slider);
     // slider.carousel({ interval: 5000 });
 
+    // select all divs that don't have class test
+    // $( 'div' ).not( ".test" );
+    // $( 'div:not(.test)' );  // <-- alternative
+
     const sliderR = $(this.secSliderRef.current);
     console.log(sliderR);
     sliderR.carousel({ interval: 5000 });

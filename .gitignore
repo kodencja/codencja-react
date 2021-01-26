@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# copies
+/src/components/SectSlider.jsx
+/src/components/SectSlider2.jsx
+/src/components/SectSliderCo.jsx
+/src/components/SliderHeaders.jsx
+/src/components/SliderHeaders2.jsx
+/src/components/SliderHeaders3.jsx

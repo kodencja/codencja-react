@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import "bootstrap-slider/dist/css/bootstrap-slider.css"
+import 'react-multi-carousel/lib/styles.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import Carousel from "react-bootstrap/Carousel";
+import Carousel from "react-multi-carousel";
 import photo1 from "../img/coding-924920_1280.jpg";
 import photo2 from "../img/iphone_and_ipad-wallpaper-1280x853.jpg";
 import sign50 from "../img/sign50.png";
@@ -15,7 +15,7 @@ import photo10 from "../img/monitors.jpg";
 import photo11 from "../img/technology-785742_1280.jpg";
 import photo12 from "../img/macbook-336704_1280.jpg";
 
-class CarouselSlider extends Component {
+class CarouselBtstrpSlider extends Component {
   state = {
     carouselItemIndicators: [
       "item1 active",
@@ -110,13 +110,13 @@ class CarouselSlider extends Component {
   captionsRef = [];
 
   componentDidMount() {
-    // console.log("componentDidMount");
+    console.log("componentDidMount");
     // console.log(this.secSliderRef);
-    // console.log(this.captionsRef);
+    console.log(this.captionsRef);
     // console.log(this.crslItemRef);
     // console.log($(this.crslItemRef));
     // console.log(this.captionsRef.current);
-    // console.log(this.secSliderRef.current.element);
+    console.log(this.secSliderRef.current.element);
     // console.log($(this.secSliderRef.current.element[0]));
     // this.setState({ sliderJQ: this.secSliderRef });
     // console.log($(this.secSliderRef.current));
@@ -124,8 +124,6 @@ class CarouselSlider extends Component {
     this.setState({ captionsRef: [...this.captionsRef] }, () =>
       console.log(this.state.captionsRef)
     );
-
-    console.log($(".carousel-inner"));
 
     // $(this.secSliderRef.current.element).on("slid.bs.carousel", () => {
   }
@@ -165,7 +163,7 @@ class CarouselSlider extends Component {
     ind === 0
       ? (index = this.state.carouselItemsPhotos.length - 1)
       : (index = ind - 1);
-    // console.log(index);
+    console.log(index);
     const captionsCopy = [...this.state.captionsRef];
     // const captionNext = captionsCopy[ind];
     // console.log(captionsCopy);
@@ -188,6 +186,26 @@ class CarouselSlider extends Component {
   };
 
   render() {
+    const responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5,
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+      },
+    };
+
     const carslHeaders = (index) => {
       const carslCaptions = this.state.carouselHead[index].map(
         (header, index2) => {
@@ -236,53 +254,80 @@ class CarouselSlider extends Component {
         // const newRef = React.createRef();
         // this.captionsRef.push(newRef);
         return (
-          <Carousel.Item key={index} ref={this.crslItemRef}>
+          <div className="carousel-item" key={index} ref={this.crslItemRef}>
             {/* <center> */}
             <img
               src={photo}
               alt={"Slide " + index}
               className="carous-img carous-item-img"
             />
-            {/* </center> */}
             {/* <Carousel.Caption key={index} ref={newRef}> */}
-            <Carousel.Caption
+            <div
+              className="carousel-caption"
               key={index}
               ref={(ref) => (this.captionsRef[index] = ref)}
             >
               {carslHeaders(index)}
-            </Carousel.Caption>
-          </Carousel.Item>
+            </div>
+            {/* </center> */}
+          </div>
         );
       }
     );
 
     return (
-      <center>
-        <section
-          id="slider"
-          className="section slider article-slider"
-          data-no="0"
-          data-ctrlnav="ScrollNav"
+      <section
+        id="slider"
+        className="section slider article-slider"
+        data-no="0"
+        data-ctrlnav="ScrollNav"
+      >
+        <Carousel
+          responsive={responsive}
+          style={{ position: "relative" }}
+          fade={true}
+          ref={this.secSliderRef}
+          beforeChange={(ind) => {
+            this.handleNextSlide(ind);
+          }}
+          afterChange={(ind) => {
+            this.handlePrevSlide(ind);
+          }}
+          // onSlid={(el) => console.log(el)}
+          // onSelect={(activeIndex) => console.log(activeIndex)}
         >
-          <Carousel
-            style={{ position: "relative" }}
-            fade={true}
-            ref={this.secSliderRef}
-            onSlide={(ind) => {
-              this.handleNextSlide(ind);
-            }}
-            onSlid={(ind) => {
-              this.handlePrevSlide(ind);
-            }}
-            // onSlid={(el) => console.log(el)}
-            // onSelect={(activeIndex) => console.log(activeIndex)}
-          >
-            {carouselItemList}
-          </Carousel>
-        </section>
-      </center>
+          {/* {carouselItemList} */}
+          <div>Item 1</div>
+          <div>item 2</div>
+          <div>Item 3</div>
+        </Carousel>
+      </section>
     );
   }
 }
 
-export default CarouselSlider;
+export default CarouselBtstrpSlider;
+
+{
+  /* <div className="carousel-item">
+<img
+  src={photo1}
+  alt={"Slide 1"}
+  className="carous-img carous-item-img"
+/> */
+}
+{
+  /* <Carousel.Caption key={index} ref={newRef}> */
+}
+{
+  /* <div className="carousel-caption">
+  <div
+    className={
+      this.state.captionsClass + " sign carl-caption-sign "
+    }
+  >
+    <img src={sign50} alt="50 ideas/h" className="sign-img"></img>
+  </div>
+</div>
+</div> */
+}

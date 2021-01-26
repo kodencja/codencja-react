@@ -350,6 +350,10 @@ background-color: #231f27;
   max-height: 100vh !important;
 }
 
+.carousel-indicators{
+  margin-bottom: 3px;
+}
+
 .carousel-indicators .carousel-li{
   width: 10px;
   height: 10px;
@@ -360,6 +364,26 @@ background-color: #231f27;
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  transition: opacity 1s ease !important;
+}
+
+.carousel-item {
+  transition: opacity 1s ease-in-out !important;
+  /* text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto; */
+}
+
+#slider{
+  /* text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important; */
+  /* margin-right: auto !important; */
+  /* margin-left: auto !important; */
+  /* display: block; */
+    /* text-align: -webkit-center; */
 }
 
 .carl-caption-capt {
@@ -406,6 +430,25 @@ background-color: #231f27;
   width: 100%;
   height: auto;
 }
+
+/* @keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+  animation-fill-mode: forwards;
+} */
 
 /*-------------------------*/
 

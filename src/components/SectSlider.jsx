@@ -47,33 +47,6 @@ class SectSlider extends Component {
       photo11,
       photo12,
     ],
-    carouselHead2: {
-      ph1: ["Web-Developing & Designing", "Front & Back End Support"],
-      ph2: ["Up to", "ideas / h", "in built-up area"],
-      ph3: ["To make sens", "to make order"],
-      ph4: ["from tangle", "of non-decimal numbers"],
-      ph5: ["Krzysztof Lalik", "Front-end developing", "Back-end supporting"],
-      ph6: [
-        "Programming & designing websites",
-        "Eye-catching & functional",
-        "Fully Responsive",
-      ],
-      ph7: [
-        "For individuals & companies",
-        "Portfolios, blogs, online-shops",
-        "adjusted to Customer expectations",
-      ],
-      ph8: [
-        "Desktop, Tablet, Mobile",
-        "MVC Pattern",
-        "standard & original templates",
-      ],
-      ph9: ["Meeting high standards", "Update with new trends and technology"],
-      ph10: ["creative design animations", "with one to one swipe movement!"],
-      ph11: ["Flexible working time"],
-      ph12: ["until the project is done"],
-    },
-
     carouselHead: [
       ["Web-Developing & Designing", "Front & Back End Support"],
       ["Up to", sign50, "ideas / h", "in built-up area"],
@@ -100,14 +73,23 @@ class SectSlider extends Component {
       ["Flexible working time"],
       ["until the project is done"],
     ],
-    CrslClassActive: "active",
-    CrslItemClass: "carousel-item ",
+    activeClass: "active",
+    carouselItemClass: "carousel-item ",
+    animatedClass: "animated",
+    visibilityClass: "notvisible",
+    captionsClass1: "capt carl-caption-capt animated head1",
+    captionsClass2: "capt carl-caption-capt animated",
+    captionsClassSign: "carl-caption-capt sign animated carl-caption-sign",
+    animShTab2: ["fadeInDown", "fadeInUp"],
+    animShTab3: ["fadeInDown", "fadeInLeft", "fadeInRight"],
+    animShTab4: ["fadeInDown", "bounceInLeft", "fadeInLeft", "fadeInRight"],
     sliderJQ: "",
     prevBtn: "",
     nextBtn: "",
     carouselListChildren: [],
     headerCaptsTab: [],
     captsTab: [],
+    empty: {},
   };
 
   secSliderRef = React.createRef();
@@ -124,167 +106,153 @@ class SectSlider extends Component {
     const nextBtn = $(this.nextB.current);
     // const carouselListChildren = this.carouselLiRef.current.childNodes;
     const carouselListChildren = $(this.carouselLiRef.current).children();
+    const carouselItemActiveChildren = $(".carousel-item.active")
+      .children()
+      .children();
+    const carouselItems = $(".carousel-item");
+
+    // console.log(carouselItemActiveChildren);
+    // console.log(carouselItems);
+
     // const carouselList = $(this.carouselLiRef);
-    const sliderHeadersQ = $(this.crslItemRef.current.sliderHeadersRef.current);
-    const sliderHeadersChildren = $(
-      this.crslItemRef.current.sliderHeadersRef.current
-    ).children();
+    // const sliderHeadersQ = $(this.crslItemRef.current.sliderHeadersRef.current);
+    // const sliderHeadersChildren = $(
+    //   this.crslItemRef.current.sliderHeadersRef.current
+    // ).children();
     const crslItemReference = $(this.crslItemRef.current);
+    // const sliderJQ = $(this.secSliderRef.current);
     // let captsTab = [];
     // this.captsTab.push(
     //   this.crslItemRef.current.sliderHeadersRef.current.headersCaptsRef.current
     // );
     // console.log(this.captsTab);
     console.log(crslItemReference);
-    // console.log(this.crslItemRef.current.captsTab);
+    // console.log(sliderJQ);
+    console.log(this.crslItemRef.current);
+    // console.log(this.crslItemRef.current.classList);
+    // if ($(this.crslItemRef.current).hasClass("active")) {
+    //   console.log("Active class!");
+    // } else {
+    //   console.log("Not active class");
+    // }
     // console.log(this.crslItemRef.current.sliderHeadersRef.current);
     // console.log(this.crslItemRef.current.sliderHeadersRef.current.headersCaptsRef);
-    console.log(
-      this.crslItemRef.current.sliderHeadersRef.current.headersCaptsRef.current
-    );
-    console.log(sliderHeadersQ);
-    console.log(sliderHeadersChildren);
-
-    this.setState({ sliderJQ, prevBtn, nextBtn, carouselListChildren }, () => {
-      this.nopauseSlider(this.state.sliderJQ);
-      this.moveToLiCrsl(this.state.carouselListChildren, this.state.sliderJQ);
-    });
-    // this.setState({ sliderJQ, prevBtn, nextBtn }, () =>
-    //   this.state.sliderJQ.carousel({ interval: 5000 })
+    // console.log(
+    //   this.crslItemRef.current.sliderHeadersRef.current.headersCaptsRef.current
     // );
 
-    console.log(carouselListChildren);
+    // console.log(this.crslItemRef.current.carouselItemRef.current);
+
+    this.setState(
+      {
+        sliderJQ,
+        prevBtn,
+        nextBtn,
+        carouselListChildren,
+        headerCaptsTab: [...this.captionsTab],
+      },
+      () => {
+        this.nopauseSlider(this.state.sliderJQ);
+        this.moveToLiCrsl(this.state.carouselListChildren, this.state.sliderJQ);
+        this.captionsAnimChange(
+          $(this.state.headerCaptsTab),
+          carouselItemActiveChildren,
+          this.state.sliderJQ,
+          carouselItems
+        );
+      }
+    );
+
+    // console.log(carouselListChildren);
     // console.log(carouselListCurr.children());
     // console.log(carouselList);
 
-    const headersCaptsNode = $(".carousel-caption > div");
-    // console.log(headersCaptsNode);
+    // const headersCaptsNode = $(".carousel-caption > div");
 
-    // console.log(this.captionsTab);
-    // let captsVar = [...this.state.headerCaptsTab];
+    // this.setState({ headerCaptsTab: [...this.captionsTab] }, () => {
+    //   this.captionsAnimChange($(this.state.headerCaptsTab));
+    // });
+
     // console.log(this.state.headerCaptsTab);
-
-    this.setState({ headerCaptsTab: [...this.captionsTab] }, () => {
-      this.captionsChange($(this.state.headerCaptsTab));
-    });
-
-    console.log(this.state.headerCaptsTab);
-
-    // let captsVar;
-    // if (this.state.headerCaptsTab.length > 0) {
-    //   captsVar = [...this.state.headerCaptsTab];
-    // } else {
-    //   captsVar = this.state.headerCaptsTab;
-    // }
-    // let captionChildren = $(
-    //   this.crslItemRef.current.sliderHeadersRef.current.headersCaptsRef.current
-    // ).children();
-
-    // this.setState({ headerCaptsTab: [captsVar, captionChildren] }, () =>
-    //   console.log(this.state.headerCaptsTab)
-    // );
-
-    // console.log(this.captionsTab);
-
-    // console.log(carouselIndicatorsList);
-    // console.log(prevB);
-    // console.log(nextB);
-
-    // Enable Carousel Controls
-    // prevB.on("click", function () {
-    //   sliderR.carousel("prev");
-    // });
-    // nextB.on("click", function () {
-    //   sliderR.carousel("next");
-    // });
   }
 
-  // componentDidUpdate() {
-  //   this.setState({ captsTab: [...this.state.headerCaptsTab] }, () => {
-  //     console.log(this.state.captsTab);
-  //   });
-  // }
+  checkCrslItemClasses = () => {
+    if (this.crslItemRef.current !== null)
+      console.log(this.crslItemRef.current.carouselItemRef.current.classList);
+  };
+
+  // handleVisibilityClass = (div) => {
+  handleVisibilityClass = (nr) => {
+    // if (flag === true) {
+    // this.crslItemRef.current.getVisibilityClass();
+    // }
+    // if ($(this.carouselItemRef.current).hasClass("active")) {
+    // console.log("handleVisibilityClass!");
+    // console.log(this.carouselItemRef.current);
+    // if (this.crslItemRef.current !== null) {
+    //   console.log(this.crslItemRef.current.carouselItemRef.current);
+    //   return $(this.crslItemRef.current.carouselItemRef.current).hasClass(
+    // if (this.crslItemRef.current !== null) {
+    // console.log("handleVisibilityClass");
+    //
+    // let classVisibility;
+    // if ($(div).not(".active")) classVisibility = this.state.visibilityClass;
+    // return classVisibility;
+    // return $(div).not(".active") ? this.state.visibilityClass : ''
+    // return $(div).hasClass("active") ? "" : this.state.visibilityClass;
+    // let classes;
+    // if (nr === 1) classes = this.state.captionsClass1;
+    // else if (nr === 3) classes = this.state.captionsClassSign;
+    // else classes = this.state.captionsClass2;
+
+    // console.log(classes);
+
+    // return classes;
+
+    return nr === 1
+      ? this.state.captionsClass1
+      : nr === 3
+      ? this.state.captionsClassSign
+      : this.state.captionsClass2;
+
+    //"notvisible";
+    // }
+    // }
+  };
 
   // A
   handleGetCaptsTab = (div) => {
-    // this.captsTab.push(div);
-    // this.setState((prevState) => {
-    //   return { headerCaptsTab: prevState.headerCaptsTab.push(div) };
-    // });
-    console.log(div);
-    // console.log(this.state.headerCaptsTab.length);
-
-    // let captsVar = [...this.state.headerCaptsTab];
-    // let captsVar;
-    // if (this.state.headerCaptsTab.length > 0) {
-    //   captsVar = [...this.state.headerCaptsTab];
-    // } else {
-    //   captsVar = this.state.headerCaptsTab;
-    // }
-    // console.log(captsVar);
     this.captionsTab.push(div);
-    // console.log(this.captionsTab);
-    // let captionChildren = $(
-    //   this.sliderHeadersRef.current.headersCaptsRef.current
-    // ).children();
-    // this.setState({ headerCaptsTab: [captsVar, div] }, () => {
-    //   console.log(this.state.headerCaptsTab);
-    // });
-
-    // this.setState(
-    //   (prevState) => {
-    //     console.log(prevState.headerCaptsTab);
-    // console.log(this.state.headerCaptsTab);
-    // console.log(captsVar);
-    //   return { headerCaptsTab: [...prevState.headerCaptsTab, div] };
-    // },
-    // () => {
-    // console.log(this.state.headerCaptsTab);
-    //     this.captionsChange(this.state.headerCaptsTab);
-    //   }
-    // );
   };
 
-  // B
-  handleGetCaptions = (div) => {
-    if (this.crslItemRef.current !== null) {
-      // console.log(this.crslItemRef.current);
-      // console.log(
-      //   this.crslItemRef.current.sliderHeadersRef.current.headersCapts.current
-      // );
-      // console.log(div);
-      // console.log(div.length);
-      // const captsHeadersCurrent = this.crslItemRef.current.sliderHeadersRef
-      //   .current.headersCaptsRef.current.childNodes;
-      // console.log(captsHeadersCurrent);
-      // let captsVar;
-      // if (div.length > 0) {
-      //   captsVar = [...div];
-      // } else {
-      //   captsVar = div;
-      // }
-      // this.setState({ captsTab: [captsVar, ...captsHeadersCurrent] }, () => {
-      //   console.log(this.state.captsTab);
-      // });
-      // this.setState(
-      //   (prevState) => {
-      //     return { captsTab: [...prevState.captsTab, captsVar] };
-      //   },
-      //   () => console.log(this.state.captsTab)
-      // );
-      //    this.setState(
-      //   (prevState) => {
-      //     return {
-      //       captsTab: [...prevState.captsTab, ...captsHeadersCurrent]
-      //     };
-      //   },
-      //   () => console.log(this.state.captsTab)
-      // );
+  hideAllCaptionsFirst = (captsHeadDivs, crslItems, crslItemActiveChildren) => {
+    // ukryj wszystkie captions na wstępie
+    for (let i = 0; i < crslItems.length; i++) {
+      if ($(crslItems[i]).hasClass("active")) {
+        // $(crslItems[i]).children().children()
+      }
+      // crslItemActiveChildren.removeClass(this.state.visibilityClass);
+      // crslItemActiveChildren.removeClass(this.state.visibilityClass);
+      // addCl(els[i], 'animated notvisible');
+      // controller.changeStyle.rmClass(captChil, 'notvisible');
     }
   };
 
-  captionsChange = (captsDivs) => {
-    console.log(captsDivs);
+  captionsAnimChange = (
+    captsHeadDivs,
+    crslItemActiveChildren,
+    slider,
+    crslItems
+  ) => {
+    console.log(captsHeadDivs);
+    console.log(crslItemActiveChildren);
+    console.log(slider);
+    console.log(crslItems);
+    this.hideAllCaptionsFirst(captsHeadDivs, crslItems, crslItemActiveChildren);
+    slider.on("slid.bs.carousel", () => {
+      // console.log("slid.bs.carousel");
+      this.captionsAnimation($(".carousel-item.active"), crslItems);
+    });
     // this.captChange(
     //   captions,
     //   $(".carousel-item.active").children().children(),
@@ -292,6 +260,76 @@ class SectSlider extends Component {
     //   $(".carousel-item")
     // );
     // this.setArrowPos(vH, vW);
+
+    //   captChange = (captEls, captChil, el, carItems)=>{
+    //     this.hideCapts(captEls, captChil);
+    //     el.on('slid.bs.carousel', function(){
+    //         self.captAnim($('.carousel-item.active'), carItems);
+    //     });
+    // };
+  };
+
+  captionsAnimation = (crslItemActive, crslItems) => {
+    let x = 1;
+    const carouselItems = $(".carousel-item");
+    for (let i = 0; i < carouselItems.length; i++) {
+      // console.log("captionsAnimation1");
+      // if ($(crslItems[i]).hasClass(".active")) continue;
+      // if ($(crslItems[i]).hasClass("active")) {
+      if ($(carouselItems[i]).hasClass("active")) {
+        // console.log("captionsAnimation2");
+        console.log(carouselItems[i]);
+        // this.handleVisibilityClass($(crslItems[i]), true);
+        // if (flag === true) {
+        // this.crslItemRef.current.sliderHeadersRef.current.callVisibilityClass();
+        // }
+      }
+
+      // złapanie wszystkich pozostałych elementów klasy .carousel-item, usunięcie z nich klas animShow, i wykluczenie z nich tego, który akurat posiada w danym momencie klase .active
+      else {
+        let captions = $(crslItems[i]).children().children();
+        // let captChLen = captChil.length;
+        // for (let j = 0; j < captChLen; j++) {
+        //   if (captChLen > 3) {
+        //     if ($(captChil[j]).hasClass(animShTab4[j]))
+        //       controller.changeStyle.rmClass(captChil[j], animShTab4[j]);
+        //   } else if (captChLen === 3) {
+        //     if ($(captChil[j]).hasClass(animShTab3[j]))
+        //       controller.changeStyle.rmClass(captChil[j], animShTab3[j]);
+        //   } else if (captChLen < 3) {
+        //     if ($(captChil[j]).hasClass(animShTab2[j]))
+        //       controller.changeStyle.rmClass(captChil[j], animShTab2[j]);
+        //   }
+        //   controller.changeStyle.addCl(captChil[j], "notvisible");
+        // }
+      }
+    }
+
+    // łapiemy nagłówki wewnątrz dzieci diva carousel-caption.active
+    // let cActive = ca.children().children();
+
+    // cActLen = cActive.length;
+    // for (let i = 0; i < cActLen; i++) {
+    //   setTimeout(function () {
+    //     controller.changeStyle.rmClass(cActive[i], "notvisible");
+    //     if (cActLen > 3) {
+    //       controller.changeStyle.addCl(cActive[i], animShTab4[i]);
+    //     } else if (cActLen === 3) {
+    //       controller.changeStyle.addCl(cActive[i], animShTab3[i]);
+    //     } else if (cActLen < 3) {
+    //       controller.changeStyle.addCl(cActive[i], animShTab2[i]);
+    //     }
+
+    //     if (firstSlide === true) {
+    //       controller.changeStyle.addCl(
+    //         ca.prev().children().children(),
+    //         "notvisible"
+    //       );
+    //       firstSlide = false;
+    //     }
+    //   }, x * 500);
+    //   x++;
+    // }
   };
 
   nopauseSlider = (el) => {
@@ -316,10 +354,7 @@ class SectSlider extends Component {
     }
   };
 
-  handleNavBtnClick = (e) => {
-    // console.log(e.target);
-    // console.log(e.target.name);
-    // console.log(e.target.className);
+  handleNavBtnCarouselClick = (e) => {
     if (
       e.target.className === "carousel-control-prev" ||
       e.target.className === "carousel-control-prev-icon"
@@ -331,44 +366,18 @@ class SectSlider extends Component {
   };
 
   handleAddClassCrsl = (ind) => {
-    // console.log(ind);
-    // console.log(this.state.CrslClassActive);
-    // console.log(this.state.CrslItemClass);
-    // console.log(this.state.CrslItemClass + this.state.CrslClassActive);
-    let classes = this.state.CrslItemClass;
-    classes += ind === 0 ? this.state.CrslClassActive : "";
+    let classes = this.state.carouselItemClass;
+    classes += ind === 0 ? this.state.activeClass : "";
     return classes;
   };
 
   render() {
-    // const totalLength = this.state.carouselHead.flat(Infinity).length;
-    // let captionsTab = [];
-
     const carouselIndicatorsList = this.state.carouselItemIndicators.map(
-      (carousItem, index) => (
-        // return <CarouselLi key={index} carItem={carousItem} />;
-        // return <li className={"carousel-li " + carousItem} key={index}></li>;
-        <CarouselLi key={index} carItem={carousItem} />
-      )
+      (carousItem, index) => <CarouselLi key={index} carItem={carousItem} />
     );
 
     const carouselItemList = this.state.carouselItemsPhotos.map(
       (photo, index) => {
-        // if (this.crslItemRef.current !== null) {
-        // this.captsTab.push(
-        // console.log(
-        //   this.crslItemRef.current.sliderHeadersRef.current.headersCapts
-        //     .current
-        // );
-        // );
-        // let captionChildren = $(
-        //   this.crslItemRef.current.sliderHeadersRef.current.headersCapts
-        //     .current
-        // ).children();
-        // this.captionsTab.push(captionChildren);
-        // console.log(this.captionsTab);
-        // }
-
         return (
           <CarouseItem
             photo={photo}
@@ -377,13 +386,15 @@ class SectSlider extends Component {
             addClassCrsl={this.handleAddClassCrsl}
             indexN={index}
             ref={this.crslItemRef}
+            classNameList={this.checkCrslItemClasses}
             getCaptsTab={this.handleGetCaptsTab}
-            // getCaptions={() => this.handleGetCaptions(this.crslItemRef)}
-            getCaptions={this.handleGetCaptions}
+            getVisibilityClass={this.handleVisibilityClass}
           />
         );
       }
     );
+
+    // console.log(this.crslItemRef.current);
 
     return (
       <section
@@ -408,7 +419,7 @@ class SectSlider extends Component {
           href="#slider"
           ref={this.prevB}
           name="prev"
-          onClick={this.handleNavBtnClick}
+          onClick={this.handleNavBtnCarouselClick}
         >
           <span
             className="carousel-control-prev-icon"
@@ -421,7 +432,7 @@ class SectSlider extends Component {
           href="#slider"
           ref={this.nextB}
           name="next"
-          onClick={this.handleNavBtnClick}
+          onClick={this.handleNavBtnCarouselClick}
         >
           <span
             className="carousel-control-next-icon"
