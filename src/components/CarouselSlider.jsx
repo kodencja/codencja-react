@@ -14,6 +14,7 @@ import photo9 from "../img/programming-1009134_1280.jpg";
 import photo10 from "../img/monitors.jpg";
 import photo11 from "../img/technology-785742_1280.jpg";
 import photo12 from "../img/macbook-336704_1280.jpg";
+import { getAllByDisplayValue } from "@testing-library/react";
 
 class CarouselSlider extends Component {
   state = {
@@ -84,19 +85,13 @@ class CarouselSlider extends Component {
     animShTab2: ["fadeInDown", "fadeInUp"],
     animShTab3: ["fadeInDown", "fadeInLeft", "fadeInRight"],
     animShTab4: ["fadeInDown", "bounceInLeft", "fadeInLeft", "fadeInRight"],
-    sliderJQ: "",
     crslItem: "",
-    captionCurrentDiv: "",
-    captionCurrentClass: "",
     captionsRef: "",
-    fadeInDown: "fadeInDown",
-    prevBtn: "",
-    nextBtn: "",
-    carouselListChildren: [],
-    headerCaptsTab: [],
-    captsTab: [],
-    empty: {},
-    nextSlide: {},
+    btnPrev: "",
+    btnNext: "",
+    windowWidth: window.innerWidth,
+    windowHeight: window.innerHeight,
+    photoWidth: "",
   };
 
   // slider.on("slid.bs.carousel", () => {
@@ -110,6 +105,8 @@ class CarouselSlider extends Component {
   captionsRef = [];
 
   componentDidMount() {
+    // console.log(btnPrev);
+    // console.log(btnNext);
     // console.log("componentDidMount");
     // console.log(this.secSliderRef);
     // console.log(this.captionsRef);
@@ -121,14 +118,41 @@ class CarouselSlider extends Component {
     // this.setState({ sliderJQ: this.secSliderRef });
     // console.log($(this.secSliderRef.current));
 
-    this.setState({ captionsRef: [...this.captionsRef] }, () =>
-      console.log(this.state.captionsRef)
+    // const windowWidth = window.innerWidth;
+    // const windowHeigth = window.innerHeight;
+    // console.log(windowWidth + ", " + windowHeigth);
+    const btnPrev = this.secSliderRef.current.element.childNodes[2];
+    const btnNext = this.secSliderRef.current.element.childNodes[3];
+
+    this.setState(
+      { captionsRef: [...this.captionsRef], btnPrev, btnNext },
+      () => {
+        // console.log(this.state.captionsRef)
+        // console.log(this.state.btnNext);
+        // console.log(this.state.btnPrev);
+      }
     );
 
-    console.log($(".carousel-inner"));
-
-    // $(this.secSliderRef.current.element).on("slid.bs.carousel", () => {
+    window.addEventListener("resize", this.handleResize);
+    this.keepArrowsInsideImg(this.state.windowHeight, this.state.windowWidth);
   }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState(
+      { windowWidth: window.innerWidth, windowHeight: window.innerHeight },
+      () => {
+        // console.log(this.state.windowWidth + ", " + this.state.windowHeight);
+        this.keepArrowsInsideImg(
+          this.state.windowHeight,
+          this.state.windowWidth
+        );
+      }
+    );
+  };
 
   handleNextSlide = (ind) => {
     // console.log(ind);
@@ -185,6 +209,51 @@ class CarouselSlider extends Component {
       captionsPrevArray[i].classList.remove(animationArray[i]);
       captionsPrevArray[i].classList.add(this.state.nonVisibileClass);
     }
+  };
+
+  setCss = (div, property, val) => {
+    $(div).css(property, val);
+    // console.log(property);
+    // console.log(val);
+    // console.log(div);
+  };
+
+  setArrowMargins = (photoWidth, windWidth) => {
+    if (windWidth > photoWidth) {
+      const mrgnExt = (windWidth - photoWidth) / 2.35;
+      this.setCss(this.state.btnPrev, "margin-left", mrgnExt + "px");
+      this.setCss(this.state.btnNext, "margin-right", mrgnExt + "px");
+    } else {
+      this.setCss(this.state.btnPrev, "margin-left", 0);
+      this.setCss(this.state.btnNext, "margin-right", 0);
+    }
+  };
+
+  // ustawienie położenia strzałek kontrolnych prev i next w trakcie resize
+  // setArrowPosition = async function (vH, vW) {
+  //   try {
+  //     imgWidth = await self.getImgSize(vH, vW);
+  //     await self.setMrgnArr(imgWidth, vW);
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // };
+
+  keepArrowsInsideImg = (windHeight, windWidth) => {
+    const proportionPhoto = 1.5;
+    let photoWidth, photoHeight;
+    if (windHeight >= windWidth) {
+      photoWidth = windWidth;
+    } else {
+      photoHeight = windHeight;
+      photoWidth = photoHeight * proportionPhoto;
+    }
+    this.setState({ photoWidth }, () => {
+      this.setArrowMargins(this.state.photoWidth, windWidth);
+      // console.log(this.state.photoWidth);
+      // console.log(windHeight);
+      // console.log(windWidth);
+    });
   };
 
   render() {
