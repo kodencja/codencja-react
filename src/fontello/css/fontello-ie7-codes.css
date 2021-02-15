@@ -16,9 +16,11 @@
 .icon-cancel-circle-1 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe80e;&nbsp;'); }
 .icon-cancel-2 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe80f;&nbsp;'); }
 .icon-cancel-3 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe810;&nbsp;'); }
+.icon-lightbulb { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe811;&nbsp;'); }
 .icon-menu-2 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf008;&nbsp;'); }
 .icon-cancel-circled-3 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf06e;&nbsp;'); }
 .icon-menu { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0c9;&nbsp;'); }
+.icon-sitemap { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e8;&nbsp;'); }
 .icon-ok-squared { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf14a;&nbsp;'); }
 .icon-toggle-off { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf204;&nbsp;'); }
 .icon-toggle-on { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf205;&nbsp;'); }

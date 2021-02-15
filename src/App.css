@@ -452,10 +452,10 @@ background-color: #231f27;
 
 /*-------------------------*/
 
-.photo2{
-  /* background-image: url('../img/ja_odb4-2.jpg'); */
-  background-position: right;
-}
+/* .photo2{ */
+  /* background-image: url('./img/ja_odb4-2.jpg'); */
+  /* background-position: right; */
+/* } */
 
 .photo3{
   background-color: whitesmoke;
@@ -467,7 +467,7 @@ background-color: #231f27;
 }
 
 
-/* KOLA PROCENTY SKILLS */
+/* CIRCLES PERCENTS - SKILLS */
 .title{
 font-weight: 700;
 background-color: whitesmoke;
@@ -553,6 +553,10 @@ letter-spacing: 2px;
   font-weight: 600;
   border-radius: 50%;
   transform: rotateY(180deg);
+  -moz-box-shadow: 0px 0px 4px 6px rgba(173, 173, 173, 0.83);
+  -o-box-shadow: 0px 0px 4px 6px rgba(173, 173, 173, 0.83);
+  -ms-box-shadow: 0px 0px 4px 6px rgba(173, 173, 173, 0.83);
+  box-shadow: 0px 0px 4px 6px rgba(173, 173, 173, 0.83);
 }
 
 .counting {
@@ -578,6 +582,8 @@ letter-spacing: 2px;
 }
 
 .flip-back-quote{
+  font-size: 2.1rem;
+  font-style: italic;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -585,60 +591,59 @@ letter-spacing: 2px;
   transform: translate(-50%, -50%);
 }
 
-.FBquote {
-  font-size: 2.1rem;
-  font-style: italic;
-}
+/* .flipBackquote {
+  
+} */
 
-.authorFB {
+.authorFontStyle {
   font-style: normal;
 }
 
-.fBQ0 {
+.flipBgColor0 {
   background-color: hsla(93, 69%, 43%, 0.95);
 }
 
-.fBQ1 {
+.flipBgColor1 {
   background-color: hsla(198, 100%, 27%, 0.95);
 }
 
-.fBQ2 {
+.flipBgColor2 {
   background-color: hsla(195, 87%, 69%, 0.95);
 }
 
-.fBQ3 {
+.flipBgColor3 {
   background-color: hsla(200, 100%, 32%, 0.95);
 }
 
-.fBQ4 {
+.flipBgColor4 {
   background-color: hsla(59, 100%, 45%, 0.95);
 }
 
-.fBQ5 {
+.flipBgColor5 {
   background-color: hsla(263, 40%, 35%, 0.95);
 }
 
-.fBQ6 {
+.flipBgColor6 {
   background-color: hsla(11, 94%, 52%, 0.95);
 }
 
-.fBQ7 {
+.flipBgColor7 {
   background-color: hsla(205, 100%, 38%, 0.95);
 }
 
-.fBQ8 {
+.flipBgColor8 {
   background-color: hsla(14, 92%, 53%, 0.95);
 }
 
-.fBQ9 {
+.flipBgColor9 {
   background-color: hsla(39, 93%, 53%, 0.95);
 }
 
-.fBQ10 {
+.flipBgColor10 {
   background-color: hsla(93, 69%, 43%, 0.95);
 }
 
-.fBQ11 {
+.flipBgColor11 {
   background-color: hsla(226, 42%, 58%, 0.95);
 }
 

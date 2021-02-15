@@ -16,9 +16,11 @@
 .icon-cancel-circle-1:before { content: '\e80e'; } /* '' */
 .icon-cancel-2:before { content: '\e80f'; } /* '' */
 .icon-cancel-3:before { content: '\e810'; } /* '' */
+.icon-lightbulb:before { content: '\e811'; } /* '' */
 .icon-menu-2:before { content: '\f008'; } /* '' */
 .icon-cancel-circled-3:before { content: '\f06e'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-sitemap:before { content: '\f0e8'; } /* '' */
 .icon-ok-squared:before { content: '\f14a'; } /* '' */
 .icon-toggle-off:before { content: '\f204'; } /* '' */
 .icon-toggle-on:before { content: '\f205'; } /* '' */

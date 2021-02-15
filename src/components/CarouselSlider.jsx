@@ -77,39 +77,40 @@ class CarouselSlider extends Component {
     animatedClass: "animated",
     nonVisibileClass: "notvisible",
     visibileClass: "visible",
-    captionsClass1: "capt carl-caption-capt animated head1",
-    captionsClass2: "capt carl-caption-capt animated",
+    // captionsClass1: "capt carl-caption-capt animated head1",
+    // captionsClass2: "capt carl-caption-capt animated",
     captionsClass: "carl-caption-capt animated",
-    captionsClassSign: "carl-caption-capt animated sign carl-caption-sign",
-    animShTab1: "fadeInDown",
-    animShTab2: ["fadeInDown", "fadeInUp"],
-    animShTab3: ["fadeInDown", "fadeInLeft", "fadeInRight"],
-    animShTab4: ["fadeInDown", "bounceInLeft", "fadeInLeft", "fadeInRight"],
+    // captionsClassSign: "carl-caption-capt animated sign carl-caption-sign",
+    animShowArr1: "fadeInDown",
+    animShowArr2: ["fadeInDown", "fadeInUp"],
+    animShowArr3: ["fadeInDown", "fadeInLeft", "fadeInRight"],
+    animShowArr4: ["fadeInDown", "bounceInLeft", "fadeInLeft", "fadeInRight"],
     crslItem: "",
     captionsRef: "",
     btnPrev: "",
     btnNext: "",
-    windowWidth: window.innerWidth,
-    windowHeight: window.innerHeight,
     photoWidth: "",
   };
-
-  // slider.on("slid.bs.carousel", () => {
-  // console.log("slid.bs.carousel");
-  // this.captionsAnimation($(".carousel-item.active"), crslItems);
-  // });
 
   secSliderRef = React.createRef();
   crslItemRef = React.createRef();
   // captionsRef = React.createRef([]);
   captionsRef = [];
 
+  // carl-caption-capt
+
   componentDidMount() {
-    // console.log(btnPrev);
+    console.log("Carousel componentDidMount");
+    const { windHeight, windWidth } = this.props;
+    // const captions = React.createRef([$("carl-caption-capt")]);
+    // console.log(this.captions);
+    // console.log(React.createRef([$("capt")]));
+    // console.log(React.createRef($("capt")));
+    // console.log(React.createRef(this.secSliderRef));
     // console.log(btnNext);
     // console.log("componentDidMount");
     // console.log(this.secSliderRef);
-    // console.log(this.captionsRef);
+    console.log(this.captionsRef);
     // console.log(this.crslItemRef);
     // console.log($(this.crslItemRef));
     // console.log(this.captionsRef.current);
@@ -133,30 +134,42 @@ class CarouselSlider extends Component {
       }
     );
 
-    window.addEventListener("resize", this.handleResize);
-    this.keepArrowsInsideImg(this.state.windowHeight, this.state.windowWidth);
+    // window.addEventListener("resize", this.handleResize);
+    // this.keepArrowsInsideImg(windowHeight, windowWidth);
+    this.keepArrowsInsideImg(windHeight, windWidth);
   }
 
-  componentWillUnmount() {
-    window.addEventListener("resize", this.handleResize);
+  componentDidUpdate() {
+    // this.keepArrowsInsideImg(this.props.windHeight, this.props.windWidth);
   }
 
-  handleResize = () => {
-    this.setState(
-      { windowWidth: window.innerWidth, windowHeight: window.innerHeight },
-      () => {
-        // console.log(this.state.windowWidth + ", " + this.state.windowHeight);
-        this.keepArrowsInsideImg(
-          this.state.windowHeight,
-          this.state.windowWidth
-        );
-      }
-    );
-  };
+  // componentWillUnmount() {
+  //   window.addEventListener("resize", this.handleResize);
+  // }
+
+  // handleResize = () => {
+  //   this.setState(
+  //     { windowWidth: window.innerWidth, windowHeight: window.innerHeight },
+  //     () => {
+  //       console.log(this.state.windowWidth + ", " + this.state.windowHeight);
+  //       this.keepArrowsInsideImg(
+  //         this.state.windowHeight,
+  //         this.state.windowWidth
+  //       );
+  //     }
+  //   );
+  // };
 
   handleNextSlide = (ind) => {
     // console.log(ind);
-    const captionsCopy = [...this.state.captionsRef];
+    const {
+      animShowArr2,
+      animShowArr3,
+      animShowArr4,
+      nonVisibileClass,
+      captionsRef,
+    } = this.state;
+    const captionsCopy = [...captionsRef];
     // const captionNext = captionsCopy[ind];
     // console.log(captionsCopy);
     // console.log(captionsCopy[i].childNodes[0].className);
@@ -165,14 +178,12 @@ class CarouselSlider extends Component {
     // console.log(captionsArray[0]);
 
     let animationArray;
-    if (captionsNextArray.length < 3) animationArray = this.state.animShTab2;
-    else if (captionsNextArray.length === 3)
-      animationArray = this.state.animShTab3;
-    else if (captionsNextArray.length > 3)
-      animationArray = this.state.animShTab4;
+    if (captionsNextArray.length < 3) animationArray = animShowArr2;
+    else if (captionsNextArray.length === 3) animationArray = animShowArr3;
+    else if (captionsNextArray.length > 3) animationArray = animShowArr4;
     // captionsCopy[i].childNodes[0].className += " " + this.state.visibileClass + " "+ this.state.fadeInDown;
     for (let i = 0; i < captionsNextArray.length; i++) {
-      captionsNextArray[i].classList.remove(this.state.nonVisibileClass);
+      captionsNextArray[i].classList.remove(nonVisibileClass);
       captionsNextArray[i].classList.add(animationArray[i]);
     }
 
@@ -185,12 +196,18 @@ class CarouselSlider extends Component {
   };
 
   handlePrevSlide = (ind) => {
+    const {
+      animShowArr2,
+      animShowArr3,
+      animShowArr4,
+      nonVisibileClass,
+      carouselItemsPhotos,
+      captionsRef,
+    } = this.state;
     let index;
-    ind === 0
-      ? (index = this.state.carouselItemsPhotos.length - 1)
-      : (index = ind - 1);
+    ind === 0 ? (index = carouselItemsPhotos.length - 1) : (index = ind - 1);
     // console.log(index);
-    const captionsCopy = [...this.state.captionsRef];
+    const captionsCopy = [...captionsRef];
     // const captionNext = captionsCopy[ind];
     // console.log(captionsCopy);
     // console.log(captionsCopy[i].childNodes[0].className);
@@ -199,15 +216,13 @@ class CarouselSlider extends Component {
     // console.log(captionsArray[0]);
 
     let animationArray;
-    if (captionsPrevArray.length < 3) animationArray = this.state.animShTab2;
-    else if (captionsPrevArray.length === 3)
-      animationArray = this.state.animShTab3;
-    else if (captionsPrevArray.length > 3)
-      animationArray = this.state.animShTab4;
+    if (captionsPrevArray.length < 3) animationArray = animShowArr2;
+    else if (captionsPrevArray.length === 3) animationArray = animShowArr3;
+    else if (captionsPrevArray.length > 3) animationArray = animShowArr4;
     // captionsCopy[i].childNodes[0].className += " " + this.state.visibileClass + " "+ this.state.fadeInDown;
     for (let i = 0; i < captionsPrevArray.length; i++) {
       captionsPrevArray[i].classList.remove(animationArray[i]);
-      captionsPrevArray[i].classList.add(this.state.nonVisibileClass);
+      captionsPrevArray[i].classList.add(nonVisibileClass);
     }
   };
 
@@ -219,13 +234,14 @@ class CarouselSlider extends Component {
   };
 
   setArrowMargins = (photoWidth, windWidth) => {
+    const { btnPrev, btnNext } = this.state;
     if (windWidth > photoWidth) {
       const mrgnExt = (windWidth - photoWidth) / 2.35;
-      this.setCss(this.state.btnPrev, "margin-left", mrgnExt + "px");
-      this.setCss(this.state.btnNext, "margin-right", mrgnExt + "px");
+      this.setCss(btnPrev, "margin-left", mrgnExt + "px");
+      this.setCss(btnNext, "margin-right", mrgnExt + "px");
     } else {
-      this.setCss(this.state.btnPrev, "margin-left", 0);
-      this.setCss(this.state.btnNext, "margin-right", 0);
+      this.setCss(btnPrev, "margin-left", 0);
+      this.setCss(btnNext, "margin-right", 0);
     }
   };
 
@@ -257,44 +273,44 @@ class CarouselSlider extends Component {
   };
 
   render() {
+    const { carouselHead, captionsClass, nonVisibileClass } = this.state;
+
     const carslHeaders = (index) => {
-      const carslCaptions = this.state.carouselHead[index].map(
-        (header, index2) => {
-          let carslCaption;
-          if (index2 === 1 && index === 1) {
-            carslCaption = (
-              // <div className={this.state.captionsClassSign} key={index2}>
-              <div
-                className={
-                  this.state.captionsClass +
-                  " sign carl-caption-sign " +
-                  this.state.nonVisibileClass
-                }
-                key={index2}
-              >
-                <img src={header} alt="50 ideas/h" className="sign-img"></img>
-              </div>
-            );
-          } else {
-            carslCaption = (
-              <div
-                className={
-                  index === 0
-                    ? `${this.state.captionsClass} capt head1`
-                    : index !== 0 && index2 === 0
-                    ? `${this.state.captionsClass} capt head1 ${this.state.nonVisibileClass}`
-                    : `${this.state.captionsClass} capt ${this.state.nonVisibileClass}`
-                }
-                key={index2}
-              >
-                {header}
-              </div>
-            );
-          }
-          // console.log(carslCaption);
-          return carslCaption;
+      const carslCaptions = carouselHead[index].map((header, index2) => {
+        // let i = 0;
+        // while (i < 100000000) i++;
+        let carslCaption;
+        if (index2 === 1 && index === 1) {
+          carslCaption = (
+            // <div className={this.state.captionsClassSign} key={index2}>
+            <div
+              className={
+                captionsClass + " sign carl-caption-sign " + nonVisibileClass
+              }
+              key={index2}
+            >
+              <img src={header} alt="50 ideas/h" className="sign-img"></img>
+            </div>
+          );
+        } else {
+          carslCaption = (
+            <div
+              className={
+                index === 0
+                  ? `${captionsClass} capt head1`
+                  : index !== 0 && index2 === 0
+                  ? `${captionsClass} capt head1 ${nonVisibileClass}`
+                  : `${captionsClass} capt ${nonVisibileClass}`
+              }
+              key={index2}
+            >
+              {header}
+            </div>
+          );
         }
-      );
+        // console.log(carslCaption);
+        return carslCaption;
+      });
 
       // console.log(carslCaptions);
       return carslCaptions;

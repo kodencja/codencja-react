@@ -143,6 +143,18 @@
       "css": "cancel-3",
       "code": 59408,
       "src": "mfglabs"
+    },
+    {
+      "uid": "599d6c088f4a1c64611b989459d65f6b",
+      "css": "lightbulb",
+      "code": 59409,
+      "src": "elusive"
+    },
+    {
+      "uid": "6fe95ffc3c807e62647d4f814a96e0d7",
+      "css": "sitemap",
+      "code": 61672,
+      "src": "fontawesome"
     }
   ]
 }
