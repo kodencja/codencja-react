@@ -2,6 +2,14 @@ import React, { Component } from "react";
 // import "../fontello/css/fontello.css";
 
 class Hamburger extends Component {
+  componentDidMount() {
+    console.log("Hamburger mounted");
+  }
+
+  componentDidUpdate() {
+    console.log("Hamburger updated");
+  }
+
   render() {
     return (
       <div
