@@ -2,6 +2,18 @@ import React, { PureComponent } from "react";
 import $ from "jquery";
 import phI from "../img/ja_odb4-2.jpg";
 
+// const setStateAsync = (setterName, newState) => {
+//   // console.log("Promise");
+//   return new Promise((resolve, reject) => {
+//     if (reject.length > 1) reject(new Error("Error!"));
+//     else {
+//       const nameSetter = eval(setterName);
+//       nameSetter(newState);
+//       resolve();
+//     }
+//   });
+// };
+
 class About extends PureComponent {
   state = {
     aboutTitle: "ABOUT ME",

@@ -1,42 +1,41 @@
-import React, { PureComponent } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import $ from "jquery";
 import phI from "../img/ja_odb4-2.jpg";
 
-class About extends PureComponent {
-  state = {
-    aboutTitle: "ABOUT ME",
-    mainTitle: "Main Text",
-    subTitles: [
-      "Front-end Developing",
-      "Back-end Supporting",
-      "Programming & designing websites",
-      "Fully responsive & interactive",
-      "Individuals & Companies",
-      "Sync & Async",
-      "MVC Pattern",
-      "Desktop, Tablet, Mobile",
-    ],
-    currentMainTitle: "",
-    currentSubTtitle: "Front-end Developing",
-    mainTxtShown: false,
-    subTxtShown: false,
-    subTxtIndex: 0,
-    subTxtCurrentInd: 0,
-    timeToDisplayTxt1: 180,
-    timeToDisplayTxt2: 100,
-    pause1: 1500,
-    pause2: 1800,
-    pause3: 1200,
-    spanMainTitleRefTab: [],
-    spanSubTitleRefTab: [],
-    visibility: "hidden",
-    test: "chmura",
-  };
+const aboutTitle = "ABOUT ME";
+const mainTitle= "Main Text";
+const subTitles = [
+  "Front-end Developing",
+  "Back-end Supporting",
+  "Programming & designing websites",
+  "Fully responsive & interactive",
+  "Individuals & Companies",
+  "Sync & Async",
+  "MVC Pattern",
+  "Desktop, Tablet, Mobile",
+];
 
-  mainTxt = React.createRef();
-  subTxt = React.createRef();
-  spanMainTitleRef = [];
-  spanSubTitleRef = [];
+const timeToDisplayTxt1 = 180;
+const timeToDisplayTxt2 = 100;
+const pause1 = 1500;
+const pause2 = 1800;
+const pause3 = 1200;
+
+function About () {
+
+   const currentSubTtitle = useRef("Front-end Developing");
+   const mainTxtShown = useRef(false);
+
+   const subTxtCurrentInd =useRef(0);
+    
+    const spanMainTitleRefTab = useRef([]);
+    const spanSubTitleRefTab = useRef([]);
+    const visibility = useRef("hidden");
+
+  const mainTxt = React.createRef();
+  const subTxt = React.createRef();
+  const spanMainTitleRef = useRef([]);
+  const spanSubTitleRef = useRef([]);
 
   componentDidMount() {
     console.log("about componentDidMount");
@@ -46,7 +45,6 @@ class About extends PureComponent {
     this.setState({
       spanMainTitleRefTab: [...this.spanMainTitleRef],
       spanSubTitleRefTab: [...this.spanSubTitleRef],
-      subTxtIndex: [...this.state.subTitles].length - 1,
     });
   }
 
@@ -66,7 +64,7 @@ class About extends PureComponent {
     });
   };
 
-  callDisplay = (spanTab, i, iSubTab) => {
+  const callDisplay = (spanTab, i, iSubTab) => {
     const {
       mainTxtShown,
       subTitles,
@@ -162,7 +160,7 @@ class About extends PureComponent {
     }
   };
 
-  display = async (spanTab, i, iSubTab) => {
+  const display = async (spanTab, i, iSubTab) => {
     const {
       mainTxtShown,
       pause1,
@@ -206,7 +204,7 @@ class About extends PureComponent {
     }
   };
 
-  displayOneSentence = (spanTab, i, titleRefTab, iSubTab, time) => {
+  const displayOneSentence = (spanTab, i, titleRefTab, iSubTab, time) => {
     setTimeout(() => {
       $(spanTab[i]).css("visibility", "visible");
       //   spansArray[i] = el;
@@ -226,13 +224,12 @@ class About extends PureComponent {
   //     backgroundPosition: "right",
   //   };
   // };
-  sectionStyle = {
+  const sectionStyle = {
     // console.log("section style");
     backgroundImage: "url(" + phI + ")",
     backgroundPosition: "right",
   };
 
-  render() {
     const {
       mainTitle,
       aboutTitle,
@@ -310,7 +307,6 @@ class About extends PureComponent {
         </div>
       </section>
     );
-  }
 }
 
 export default About;

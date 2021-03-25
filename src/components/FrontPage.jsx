@@ -112,8 +112,8 @@ class FrontPage extends PureComponent {
 
   componentWillUnmount() {
     console.log("FrontPage Will unmount");
-    window.addEventListener("resize", this.handleResize);
-    this.pageFrontRef.current.addEventListener("scroll", () => {
+    window.removeEventListener("resize", this.handleResize);
+    this.pageFrontRef.current.removeEventListener("scroll", () => {
       this.handleScroll();
       this.handleAppearing();
       // this.setStateAsync();

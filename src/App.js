@@ -3,9 +3,9 @@ import "./App.css";
 import "./css/anims.css";
 import "./fontello/css/fontello.css";
 import "./icons/font/flaticon.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./componentsHook/Navbar";
 // import Front from './components/Front';
-import FrontPage from "./components/FrontPage";
+import FrontPage from "./componentsHook/FrontPage";
 
 function App() {
   return (

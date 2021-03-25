@@ -6,6 +6,7 @@ import React, {
   useRef,
   memo,
 } from "react";
+import CountUp from "react-countup";
 
 // function getFlipBackQuoteClass(ind) {
 
@@ -24,7 +25,24 @@ import React, {
 //   "Hoare",
 // ];
 
-const Skills = React.forwardRef((props, ref) => {
+const txtSkillsQ = [
+  "The most",
+  "important",
+  "property of",
+  "a program",
+  "is",
+  "whether it",
+  "accomp- lishes",
+  "the intention",
+  "of its",
+  "user.",
+  "- C.A.R.",
+  "Hoare",
+];
+const countEnds = [75, 75, 70, 70, 60, 55, 55, 60, 55, 60, 60, 50];
+const countingTime = 7;
+
+const Skills = React.forwardRef(({ handleStartCount }, ref) => {
   //
   const [countTextArr, setCountTextArr] = useState([
     "HTML",
@@ -40,21 +58,6 @@ const Skills = React.forwardRef((props, ref) => {
     "C++",
     "REACT",
   ]);
-
-  const txtSkillsQ = [
-    "The most",
-    "important",
-    "property of",
-    "a program",
-    "is",
-    "whether it",
-    "accomp- lishes",
-    "the intention",
-    "of its",
-    "user.",
-    "- C.A.R.",
-    "Hoare",
-  ];
 
   const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([...txtSkillsQ]);
   // const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([
@@ -74,12 +77,23 @@ const Skills = React.forwardRef((props, ref) => {
 
   const [counter, setCounter] = useState(0);
   // const [counter2, setCounter2] = useState(0);
+
   const numberRef = useRef(2);
+
+  useEffect(() => {
+    // console.log("Skills render");
+    // console.log(handleStartCount);
+  });
+
+  // useEffect(() => {
+  //   handleStartCount();
+  // }, [handleStartCount]);
 
   const changeCountText = () => {
     // const changeCountText = useMemo(() => {
     // return{
-    // console.log("changeCountText");
+    console.log("changeCountText");
+    console.log(countTextArr);
     return setCountTextArr([
       "REACT",
       "C++",
@@ -166,13 +180,14 @@ const Skills = React.forwardRef((props, ref) => {
   const circleBoxes = useMemo(() => {
     // const circleBoxes = useCallback(() => {
     // console.log(txtSkillsQuotation);
+    // console.log("circles");
     // return txtSkillsQuotation.map((txt, index) => {
     return txtSkillsQuotation.map((txt, index) => {
       let divsArrSkills;
-      console.log("circles");
+
       divsArrSkills = (
         <div
-          className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 appear animated NotInView fadeOutDown"
+          className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 animated NotInView fadeOutDown"
           key={index}
           ref={ref}
         >
@@ -182,7 +197,29 @@ const Skills = React.forwardRef((props, ref) => {
                 className={"row-counting counting count" + index}
                 data-controller="Appear"
               >
-                {countTextArr[index]}
+                {/* {countTextArr[index]} */}
+                <div className="percent counting-percent">
+                  {/* {props.handleStartCount[index] >= 0 ? props.handleStartCount[index] : ""}% */}
+                  {/* <CountUp end={countEnds[index]} duration={5} suffix="%"> */}
+                  <CountUp
+                    end={
+                      handleStartCount[index] === false ? 0 : countEnds[index]
+                    }
+                    duration={countingTime}
+                    suffix="%"
+                    delay={2}
+                  >
+                    {({ countUpRef }) => (
+                      <div style={{ fontWeight: "bold" }}>
+                        <div ref={countUpRef}></div>
+                        {/* <button onClick={start}>Start</button> */}
+                      </div>
+                    )}
+                  </CountUp>
+                </div>
+                <div className="skillName counting-skillName">
+                  {countTextArr[index]}
+                </div>
                 {/* {countText[index]} */}
                 {/* {index + numberRef.current} */}
               </div>
@@ -208,7 +245,8 @@ const Skills = React.forwardRef((props, ref) => {
     });
     // }, [txtSkillsQuotation, ref]);
     // }, [txtSkillsQuotation, countText, ref]);
-  }, [txtSkillsQuotation, countTextArr, ref]);
+    // }, [txtSkillsQuotation, countTextArr, ref]);
+  }, [countTextArr, handleStartCount, ref]);
 
   return (
     <section

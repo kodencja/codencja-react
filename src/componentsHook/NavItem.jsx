@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavItem(props) {
+function NavItem({ navItem }) {
+  console.log("NavItem render");
   return (
     <li className="nav-item bgr-col-dark">
       <a
         href="foo"
         className={
-          "nav-link shadow-dark transform-scale-sm " + props.navItem.nameClass
+          "nav-link shadow-dark transform-scale-sm " + navItem.nameClass
         }
       >
-        {props.navItem.content}
+        {navItem.content}
       </a>
     </li>
 

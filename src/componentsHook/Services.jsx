@@ -1,30 +1,30 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import $ from "jquery";
 
+const txtSerives = [
+  "UI Designing Front-End Developing Back-End Support",
+  "Languagues Frameworks Technologies MVC\u00A0Pattern",
+  "Coding Graphic Custom-made &\u00A0Standard",
+  "Fully Responsive For\u00A0All Displays",
+  "Innovative Ideas Sync\u00A0/ Async",
+  "Projects for Individuals &\u00A0Companies",
+  "High Quality Clear, Fresh &\u00A0Interactive",
+  "Consultations Web Design &\u00A0Content",
+];
+
+const iconNames = [
+  "flaticon-layers",
+  "flaticon-code",
+  "flaticon-mechanism",
+  "flaticon-devices",
+  "icon-lightbulb",
+  "icon-sitemap",
+  "flaticon-diamond",
+  "flaticon-support",
+];
+
 // function Services(props) {
 const Services = React.forwardRef((props, ref) => {
-  const txtSerives = [
-    "UI Designing Front-End Developing Back-End Support",
-    "Languagues Frameworks Technologies MVC\u00A0Pattern",
-    "Coding Graphic Custom-made &\u00A0Standard",
-    "Fully Responsive For\u00A0All Displays",
-    "Innovative Ideas Sync\u00A0/ Async",
-    "Projects for Individuals &\u00A0Companies",
-    "High Quality Clear, Fresh &\u00A0Interactive",
-    "Consultations Web Design &\u00A0Content",
-  ];
-
-  const iconNames = [
-    "flaticon-layers",
-    "flaticon-code",
-    "flaticon-mechanism",
-    "flaticon-devices",
-    "icon-lightbulb",
-    "icon-sitemap",
-    "flaticon-diamond",
-    "flaticon-support",
-  ];
-
   const sectionRef = useRef();
   // const iconRef = useRef([]);
   // let iconRef = useRef([]);
@@ -45,6 +45,8 @@ const Services = React.forwardRef((props, ref) => {
   //   }
   //   return icRefer;
   // }, []);
+
+  console.log("Services Render");
 
   useEffect(() => {
     console.log("Services mounted");
