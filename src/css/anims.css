@@ -286,6 +286,33 @@
     animation-name: fadeOut;
   }
 
+  @-webkit-keyframes fadeOutFast {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeOutFast {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }
+
+.fadeOutFast{
+  -webkit-animation-duration: 0.7s;
+    animation-duration: 0.7s;
+    -webkit-animation-name: fadeOutFast;
+    animation-name: fadeOutFast;
+}
+
   @-webkit-keyframes fadeOutDown {
     from {
       opacity: 1;

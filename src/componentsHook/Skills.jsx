@@ -42,7 +42,7 @@ const txtSkillsQ = [
 const countEnds = [75, 75, 70, 70, 60, 55, 55, 60, 55, 60, 60, 50];
 const countingTime = 7;
 
-const Skills = React.forwardRef(({ handleStartCount }, ref) => {
+const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
   //
   const [countTextArr, setCountTextArr] = useState([
     "HTML",
@@ -253,6 +253,7 @@ const Skills = React.forwardRef(({ handleStartCount }, ref) => {
       className="skills section sec4 bgr-cov-norp text-center pb-4"
       data-no="3"
       data-ctrlnav="ScrollNav"
+      ref={refProp}
     >
       <header className="title sec-title title-col-bright title-bgr-dark">
         SKILLS

@@ -133,7 +133,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
   const [msg, setMsg] = useState("");
 
   const secSliderRef = React.createRef();
-  const crslItemRef = React.createRef();
+  // const crslItemRef = React.createRef();
   // captionsRef = React.createRef([]);
   const captionsRefer = [];
 
@@ -162,6 +162,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
 
   useEffect(() => {
     console.log("useEffect btnPrev btnNext");
+    // secSliderRef.current.element - to 'element' to property dodawane przy React.createRef()
     const btnPrevC = secSliderRef.current.element.childNodes[2];
     const btnNextC = secSliderRef.current.element.childNodes[3];
     setBtnPrev(btnPrevC);
@@ -492,7 +493,8 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
     // const newRef = React.createRef();
     // this.captionsRef.push(newRef);
     return (
-      <Carousel.Item key={index} ref={crslItemRef}>
+      // <Carousel.Item key={index} ref={crslItemRef}>
+      <Carousel.Item key={index}>
         {/* <center> */}
         <img
           src={photo}
@@ -503,7 +505,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
         {/* <Carousel.Caption key={index} ref={newRef}> */}
         <Carousel.Caption
           key={index}
-          ref={(ref) => (captionsRefer[index] = ref)}
+          ref={(refe) => (captionsRefer[index] = refe)}
         >
           {carslHeaders(index)}
         </Carousel.Caption>

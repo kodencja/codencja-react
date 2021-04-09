@@ -61,6 +61,7 @@ class AboutSec extends Component {
         console.log(this.state.spanMainTitleRefTab);
         console.log(this.state.spanSubTitleRefTab);
         // console.log(this.spanMainTitleRefTab);
+        // tutaj wywoływany jest listening dla mainTitle
         this.txtListning(
           this.state.spanMainTitleRefTab,
           0,
@@ -93,6 +94,7 @@ class AboutSec extends Component {
       () => {
         console.log(this.spanSubTitleRefTab);
         console.log(this.state.spanSubTitleRefTab);
+        // tutaj wywoływany jest listening dla subTitle
         this.callTxtListning(
           this.spanSubTitleRefTab,
           this.state.subTxtCurrentInd,

@@ -23,6 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # copies
+/src/copies
+/src/copies/FrontPage.jsx
 /src/components/SectSlider.jsx
 /src/components/SectSlider2.jsx
 /src/components/SectSliderCo.jsx

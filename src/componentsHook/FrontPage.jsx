@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import $ from "jquery";
 // import Article from "../components/Article";
@@ -15,7 +21,8 @@ import Slider from "./Slider";
 import Services from "./Services";
 import Skills from "./Skills.jsx";
 import MenuIcon from "./MenuIcon";
-import { useMemo } from "react";
+import About from "./About";
+import useStateAsync from "./customHooks/useStateAsync";
 
 const animShow4 = ["fadeInLeft", "fadeInDown", "fadeInUp", "fadeInRight"];
 const animShow3 = ["fadeInLeft", "fadeInUp", "fadeInRight"];
@@ -44,37 +51,61 @@ const countingText = [
   "REACT",
 ];
 
-function FrontPage() {
+function FrontPage(props) {
+  // useState, usereducer używam tylko wtedy gdy potrzebuję, aby zmiana danej wartości była widoczna przez JSX w częsci return() lub by coś uruchamiała jak 'dependecies' np. przy useEffect; w przeciwnym razie wystarczy użyć useRef()
   const [counter, setCounter] = useState(0);
   //servicesRef.current = [] DEFINED WITHOUT CONSTRUCTOR
-  const [pageFrontScrollBar, setPageFrontScrollBar] = useState(1);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const [divsToShowWithClassInView, setDivsToShowWithClassInView] = useState(
-    []
-  );
-  const [
-    divsToHideWithClassNotInView,
-    setDivsToHideWithClassNotInView,
-  ] = useState([]);
-  // const [aboutAppear, setAboutAppear] = useState(false);
-  const [resizeFlag, setResizeFlag] = useState(false);
+  // const [pageFrontScrollBar, setPageFrontScrollBar] = useState(1);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  // const [resizeFlag, setResizeFlag] = useState(false);
+
+  const [windowWidth, setWindowWidth] = useStateAsync(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useStateAsync(window.innerHeight);
+  const [resizeFlag, setResizeFlag] = useStateAsync(false);
+
   const [name, setName] = useState("");
   const [renderIndex, setRenderIndex] = useState(0);
   const [countedFlag, setCountedFlag] = useState({ div: "undefined", ind: 0 });
 
+  // pageFrontScrollVar = $(pageFrontRef.current).scrollTop();
+  const mainmenuRef = useRef();
+  const frontRef = useRef();
   const pageFrontScrollVar = useRef(0);
-  const carouselSliderRef = useRef();
+  const pageFrontScrollVarBeforeTilt = useRef(0);
   const pageFrontRef = useRef();
-  // const aboutRef = useRef();
-  const aboutAppear = useRef(false);
+  const aboutRef = useRef();
+  // const aboutAppear = useRef(false);
   const servicesRef = useRef([]);
   const skillsRef = useRef([]);
+
+  const sliderSectRef = useRef();
+  const servicesSectRef = useRef();
+  const skillsSectRef = useRef();
+  const projectsSectRef = useRef();
+  const contactSectRef = useRef();
+  const allSectionsRef = useRef([]);
+  // vars for offsetTop of particular sections
+  const sliderTop = useRef();
+  const aboutTop = useRef();
+  const serviceTop = useRef();
+  const skillsTop = useRef();
+  const projectsTop = useRef();
+  const contactTop = useRef();
+  const allSectionsTopRef = useRef([]);
+
+  const menuIconRef = useRef();
+  const menuUl = useRef();
+  const linkBtnInMenu = useRef([]);
+
+  const menuIsOpened = useRef(false);
+
   const appearDivsRef = useRef([]);
   const [ifStartCount, setIfStartCount] = useState([]);
+  const [aboutTxtStart, setAboutTxtStart] = useState(false);
   // const renderCountRef = React.createRef(1);
 
-  // const carouselSliderRef = React.createRef();
+  // const sliderSectRef = React.createRef();
   // const pageFrontRef = React.createRef();
   // const aboutRef = React.createRef();
   // const servicesRef = React.createRef();
@@ -85,14 +116,68 @@ function FrontPage() {
   useEffect(() => {
     // console.log("FRONTPage rendered!");
     // console.log(ifStartCount);
-  });
+    menuUl.current = $(mainmenuRef.current).find("ul");
+    linkBtnInMenu.current = $(menuUl.current).find("div.nav-link");
+    console.log(linkBtnInMenu.current);
+
+    for (let i = 0; i < linkBtnInMenu.current.length; i++) {
+      linkBtnInMenu.current[i].addEventListener("click", (event) => {
+        scrollLink(event, i);
+      });
+    }
+
+    return () => {
+      for (let i = 0; i < linkBtnInMenu.current.length; i++) {
+        linkBtnInMenu.current[i].removeEventListener("click", (event) => {
+          scrollLink(event, i);
+        });
+      }
+    };
+  }, [menuIconRef]);
+
+  // useEffect(() => {
+  //   console.log(linkBtnInMenu.current);
+  //   console.log(allSectionsRef.current);
+  //   // for (let i = 0; i < allSectionsRef.current.length; i++) {
+  //   for (let i = 0; i < allSectionsRef.current.length; i++) {
+  //     linkBtnInMenu.current[i].addEventListener("click", (event) => {
+  //       scrollLink(event, i);
+  //     });
+  //   }
+
+  //   return () => {
+  //     for (let i = 0; i < allSectionsRef.current.length; i++) {
+  //       linkBtnInMenu.current[i].removeEventListener("click", (event) => {
+  //         scrollLink(event, i);
+  //       });
+  //     }
+  //   };
+  // }, [allSectionsRef.current]);
+
+  // if (allSectionsTopRef.current !== null) {
+  //   for (let i = 0; i < allSectionsTopRef.current.length; i++) {
+  //     linkBtnInMenu.current[i].addEventListener("click", (event) => {
+  //       scrollLink(event, allSectionsTopRef.current[i]);
+  //     });
+  //   }
+  // }
+
+  // return () => {
+  //   if (allSectionsTopRef.current !== null) {
+  //     for (let i = 0; i < allSectionsTopRef.current.length; i++) {
+  //       linkBtnInMenu.current[i].removeEventListener("click", (event) => {
+  //         scrollLink(event, allSectionsTopRef.current[i]);
+  //       });
+  //     }
+  //   }
+  // };
 
   // tutaj trzeba dać tę funkcję 'keepArrowsInsideImg', bo gdy da się ją wewnątrz funkcji 'handleScroll' to poniższa funkjca widzi tylko pierowtne wartości windowWidth i windowHeight a tutaj widzi te uaktualnione w useState !!! WAŻNE !!!
   useEffect(() => {
     console.log(windowWidth);
-    // console.log(carouselSliderRef);
-    // console.log(carouselSliderRef.current);
-    // carouselSliderRef.current.keepArrowsInsideImg(windowHeight, windowWidth);
+    // console.log(sliderSectRef);
+    // console.log(sliderSectRef.current);
+    // sliderSectRef.current.keepArrowsInsideImg(windowHeight, windowWidth);
     // renderCountRef.current = renderCountRef.current + 1;
     // console.log("useEffect-1");
     // console.log(pageFrontScrollBar);
@@ -117,47 +202,75 @@ function FrontPage() {
     console.log("FRONTPAGE useEffect-3");
     // renderCountRef.current = renderCountRef.current + 1;
     // console.log(pageFrontRef.current);
-    // console.log(carouselSliderRef.current);
+    // console.log(sliderSectRef.current);
     // console.log(servicesRef.current);
     // console.log(skillsRef.current);
     // console.log(appearDivsRef.current);
     // console.log(appearDivsRef.current.length);
     if (appearDivsRef.current.length <= 0) {
       appearDivsRef.current = [
-        ...appearDivsRef.current,
+        // ...appearDivsRef.current,
         ...servicesRef.current,
         ...skillsRef.current,
       ];
     }
+
+    if (allSectionsRef.current.length <= 0) {
+      allSectionsRef.current = [
+        sliderSectRef.current,
+        aboutRef.current,
+        servicesSectRef.current,
+        skillsSectRef.current,
+        projectsSectRef.current,
+        contactSectRef.current,
+      ];
+    }
+
     for (let i = 0; i < skillsRef.current.length; i++) {
       setIfStartCount((prevTab) => [...prevTab, false]);
     }
     // console.log(appearDivsRef.current);
+    console.log(allSectionsRef.current);
   }, []);
 
   useEffect(() => {
     // const msgFromCarousel = logMsg("Good");
     // console.log(msgFromCarousel);
     console.log("useEffect-4");
+    // console.log(sliderSectRef.current);
+    // console.log(servicesSectRef.current);
+    console.log(aboutRef.current);
+    console.log($(aboutRef.current).offset().top);
+    console.log(aboutRef.current.offsetTop);
     // console.log(servicesRef.current);
     // console.log(skillsRef.current);
+    menuIconRef.current.addEventListener("click", () => {
+      console.log("menuIcon clicked");
+      movePageFront();
+    });
     window.addEventListener("resize", handleResize);
 
     // console.log(pageFrCurrent);
-    pageFrontRef.current.addEventListener("scroll", () => {
-      // if (resizeFlag === false) {
-      // console.log("scroll listener");
-      handleScroll();
-      // handleAppearing();
-      // }
-    });
+    pageFrontRef.current.addEventListener("scroll", handleScroll);
+    // pageFrontRef.current.addEventListener("scroll", () => {
+    // if (resizeFlag === false) {
+    // console.log("scroll listener");
+    // handleScroll();
+    // handleAppearing();
+    // }
+    // });
     const pageFrCurrent = pageFrontRef.current;
+    const menuIconCurrent = menuIconRef.current;
 
     return () => {
       window.removeEventListener("resize", handleResize);
       pageFrCurrent.removeEventListener("scroll", () => {
         handleScroll();
         // handleAppearing();
+      });
+      menuIconCurrent.removeEventListener("click", () => {
+        console.log("menuIcon clicked");
+        movePageFront();
       });
     };
   }, []);
@@ -193,6 +306,140 @@ function FrontPage() {
     oneDiv.classList.add("countStarted)");
   };
 
+  // scroll to the selected section and re-tilt pageFront
+  const scrollLink = (event, sectionNumber) => {
+    // event.preventDefault();
+    movePageFront();
+
+    if (sectionNumber < allSectionsRef.current.length) {
+      setTimeout(() => {
+        $(pageFrontRef.current).animate(
+          // { scrollTop: pageFrontScrollVar + sT[sectionNumber] },
+          // { scrollTop: pageFrontScrollVar.current + 250 },
+          {
+            scrollTop:
+              pageFrontScrollVarBeforeTilt.current +
+              allSectionsTopRef.current[sectionNumber],
+          },
+          790
+        );
+        // console.log("scrollLink clicked");
+        // console.log(allSectionsTopRef.current[sectionNumber]);
+        // console.log(pageFrontScrollVar.current);
+      }, 10);
+    }
+  };
+
+  //   console.log($(mainTxtRef.current).offset().top); - z wartościami po przecinku i bez 'px'
+  //   console.log(mainTxtRef.current.offsetTop); - bez wartości po przecinku i bez 'px
+
+  // let's remember all sections top values and pageFront scrollTop value at the right moment i.e. before tilting
+  const getSectionsTop = () => {
+    allSectionsTopRef.current = [];
+    pageFrontScrollVarBeforeTilt.current = pageFrontScrollVar.current;
+    sliderTop.current =
+      sliderSectRef.current.offsetTop - pageFrontScrollVar.current;
+    aboutTop.current = aboutRef.current.offsetTop - pageFrontScrollVar.current;
+    serviceTop.current =
+      servicesSectRef.current.offsetTop - pageFrontScrollVar.current;
+
+    skillsTop.current =
+      skillsSectRef.current.offsetTop - pageFrontScrollVar.current;
+
+    projectsTop.current =
+      projectsSectRef.current.offsetTop - pageFrontScrollVar.current;
+
+    contactTop.current =
+      contactSectRef.current.offsetTop - pageFrontScrollVar.current;
+
+    if (allSectionsTopRef.current.length <= 0) {
+      allSectionsTopRef.current = [
+        sliderTop.current,
+        aboutTop.current,
+        serviceTop.current,
+        skillsTop.current,
+        projectsTop.current,
+        contactTop.current,
+      ];
+    }
+    // console.log(allSectionsTopRef.current);
+    // console.log(pageFrontScrollVar.current);
+    // console.log(sliderTop.current);
+    // console.log(aboutTop.current);
+    // console.log(serviceTop.current);
+    // console.log(skillsTop.current);
+    // console.log(projectsTop.current);
+    // console.log(contactTop.current);
+
+    // const linkBtnInMenu = $(menuUl.current).find("div.nav-link");
+    // console.log(linkBtnInMenu.current);
+    // console.log(linkBtnInMenu.current[0]);
+    // console.log(linkBtnInMenu.current[1]);
+
+    // for (let i = 0; i < allSectionsTopRef.current.length; i++) {
+    //   linkBtnInMenu.current[i].addEventListener("click", (event) => {
+    //     scrollLink(event, allSectionsRef.current[i]);
+    //   });
+    // }
+  };
+
+  // function responsible for tilting the pagefront div and uncovering or covering nav menu
+  const movePageFront = () => {
+    console.log("movePageFront Fn");
+    // console.log(menuIsOpened.current);
+    // console.log(mainmenuRef.current);
+    // const menuUl = $(mainmenuRef.current).find("ul");
+    // console.log(menuUl[0]);
+    // const linkBtnInMenu = $(menuUl).find(".nav-link");
+
+    if (menuIsOpened.current === false) {
+      getSectionsTop();
+      frontRef.current.classList.add("tilt");
+      pageFrontRef.current.classList.add("overflow-hidden");
+      // console.log(menuIconRef.current);
+      // console.log(menuIconRef.current.childNodes);
+      menuIconRef.current.childNodes[0].classList.add("d-none");
+      menuIconRef.current.childNodes[1].classList.remove("d-none");
+      setTimeout(() => {
+        frontRef.current.classList.add("darker");
+      }, 320);
+
+      setTimeout(() => {
+        menuUl.current[0].classList.remove("swaying-out", "notvisible");
+        menuUl.current[0].classList.add("visible", "swaying-in");
+      }, 300);
+
+      menuIsOpened.current = true;
+    } else {
+      menuUl.current[0].classList.remove("visible", "swaying-in");
+      menuUl.current[0].classList.add("swaying-out", "notvisible");
+
+      setTimeout(() => {
+        frontRef.current.classList.remove("tilt", "darker");
+        pageFrontRef.current.classList.remove("overflow-hidden");
+        menuIconRef.current.childNodes[0].classList.remove("d-none");
+        menuIconRef.current.childNodes[1].classList.add("d-none");
+      }, 250);
+
+      menuIsOpened.current = false;
+    }
+  };
+
+  useEffect(() => {
+    // const linkBtnInMenu = $(menuUl.current).find("div.nav-link");
+    // console.log(linkBtnInMenu);
+    // console.log(linkBtnInMenu[0]);
+    // console.log(linkBtnInMenu[1]);
+    // for (let i = 0; i < allSectionsTopRef.current.length; i++) {
+    //   linkBtnInMenu[i].addEventListener("click", (event) => {
+    //     scrollLink(event, allSectionsRef.current[i]);
+    //   });
+    // }
+    // })
+    // return () => {
+    // }
+  }, []);
+
   // const startCounting = useCallback(
   //   (oneDiv, index) => {
   //     // const startCounting = (oneDiv, index) => {
@@ -212,80 +459,26 @@ function FrontPage() {
   //   [ifStartCount]
   // );
 
-  const setStateAsync = (setterName, oldState, newState) => {
-    // console.log("Promise setState Async");
-    return new Promise((resolve, reject) => {
-      if (reject.length > 1) reject(new Error("Error! in setStateAsync"));
-      else {
-        const nameSetter = eval(setterName);
-        // const nameVar = eval(varName);
-        // console.log(setterName);
-        // console.log(varName);
-        // console.log(nameVar);
-        // console.log(oldState);
-        // console.log(newState);
-        // console.log(typeof oldState);
-        if (oldState !== "reset") {
-          if (typeof newState === "number") {
-            // console.log("Number");
-            // nameSetter((prevS) => prevS + newState);
-            nameSetter(newState);
-          } else if (typeof oldState === "string") {
-            // console.log("String");
-            nameSetter(newState);
-          } else if (typeof oldState === "boolean") {
-            // console.log("Boolean");
-            nameSetter(newState);
-          } else if (typeof oldState === "object") {
-            if (oldState instanceof Array) {
-              // console.log("Array");
-              // nameSetter((prevS) => [...prevS, newState]);
-              nameSetter([...oldState, newState]);
-            } else if (oldState instanceof Object) {
-              // console.log("Object");
-              // nameSetter((prevS) => ({ ...prevS, age: newState }));
-              nameSetter({ ...oldState, age: newState });
-            }
-          }
-          // } else if (oldState === "reset") {
-        } else {
-          // console.log("reset");
-          if (typeof newState === "number") {
-            // console.log("Number reset");
-            nameSetter(newState);
-          } else if (typeof newState === "object") {
-            if (newState instanceof Array) {
-              // console.log("Array reset");
-              nameSetter([]);
-            } else if (newState instanceof Object) {
-              // console.log("Object reset");
-              nameSetter(newState);
-            }
-          }
-        }
-        resolve();
-      }
-    });
-  };
-
   const handleResize = async () => {
     console.log("handleResize Fn");
     // setWindowWidth(window.innerWidth);
-    await setStateAsync("setWindowWidth", windowWidth, window.innerWidth);
-    // await setStateAsync("setWindowHeight", window.innerHeight);
-    await setStateAsync("setWindowHeight", windowHeight, window.innerHeight);
+    // await setStateAsync("setWindowWidth", windowWidth, window.innerWidth);
+    await setWindowWidth(window.innerWidth, windowWidth);
+    // await setWindowHeight(window.innerHeight);
+    await setWindowHeight(window.innerHeight, windowHeight);
+    // await setStateAsync("setWindowHeight", windowHeight, window.innerHeight);
     // setWindowHeight(window.innerHeight);
     // console.log("windowWidth - " + windowWidth);
-    // console.log(carouselSliderRef.current);
+    // console.log(sliderSectRef.current);
     handleHideResize();
-    // carouselSliderRef.current.keepArrowsInsideImg(windowHeight, windowWidth);
-    // carouselSliderRef.current.keepArrowsInsideImg(
+    // sliderSectRef.current.keepArrowsInsideImg(windowHeight, windowWidth);
+    // sliderSectRef.current.keepArrowsInsideImg(
     //   window.innerHeight,
     //   window.innerWidth
     // );
   };
 
-  const handleScroll = async () => {
+  const handleScroll = () => {
     // const handleScroll = useCallback(async () => {
     // console.log("handleScroll fn");
     if (resizeFlag === false) {
@@ -314,6 +507,15 @@ function FrontPage() {
       // )
 
       // for About as class component
+      // console.log(aboutRef.current);
+      // console.log($(aboutRef.current).offset().top);
+
+      if (
+        aboutTxtStart === false &&
+        $(aboutRef.current).offset().top + windowHeight / 2 <= windowHeight
+      ) {
+        setAboutTxtStart(true);
+      }
     }
     // if (
     //   aboutAppear.current === false &&
@@ -443,11 +645,13 @@ function FrontPage() {
   const handleHideResize = async () => {
     // console.log("handleHideResize Fn");
     console.log("setResizeFlag Fn BEFORE");
-    await setStateAsync("setResizeFlag", resizeFlag, true);
+    // await setStateAsync("setResizeFlag", resizeFlag, true);
+    await setResizeFlag(true, resizeFlag);
     console.log("hideResize Fn BEFORE");
     await hideResize();
     console.log("hideResize Fn AFTER");
-    await setStateAsync("setResizeFlag", resizeFlag, false);
+    await setResizeFlag(false, resizeFlag);
+    // await setStateAsync("setResizeFlag", resizeFlag, false);
     console.log("setResizeFlag Fn AFTER");
     handleAppearing(pageFrontScrollVar.current, appearTimeResizeAndHide);
     console.log("handleAppearing Fn AFTER RESIZE");
@@ -767,69 +971,130 @@ function FrontPage() {
     }
   };
 
-  const handleAwait = () => {};
+  // function that pass pageFront scrollTop() value to check when or if the about text starts being written
+  // const scrollFrontVal = useMemo(() => {
+  //   // const scrollFrontVal = () => {
+  //   console.log(aboutTxtStart);
+  //   console.log(pageFrontScrollVar.current);
+  //   if (aboutTxtStart === false) {
+  //     return pageFrontScrollVar.current;
+  //   }
+  //   // }
+  // }, [pageFrontScrollVar.current, aboutTxtStart]);
+  const sampleStyle = {
+    backgroundColor: "blue",
+    width: "auto",
+    height: "50px",
+    position: "fixed",
+    left: "100px",
+    top: "100px",
+    zIndex: "100",
+  };
 
   return (
-    <main className="pagefront frontMain-pagefront" ref={pageFrontRef}>
-      {/* <Hamburger /> */}
-      <MenuIcon />
-      <Article getClasses={() => "align-middle"}>
-        {/* <SectSlider /> */}
-        <Slider
-          windHeight={windowHeight}
-          windWidth={windowWidth}
-          // photoWidth={handlePhotoWidth}
-          // keepArrows={keepArrowsInsideImg}
-          ref={carouselSliderRef}
-          // ref={addToRefs}
-        />
-        {/* <CarouselBtstrpSlider /> */}
-        {/* <AboutSec /> */}
-        {/* <About ref={aboutRef} /> */}
-      </Article>
-      <Article getClasses={() => "align-middle"}>
-        {/* <Services ref={() => servArrRef.push(servicesRef)} /> */}
-        {/* <Services arrRef={(iconRef) => (servicesRef = iconRef)} /> */}
-        {/* <Services arrRef={(ref) => servicesRef.push(ref)} /> */}
-        {/* <Services ref={(ref) => servicesRef.push(ref)} /> */}
-        {/* <Services ref={servicesRef.current} /> */}
-        {/* <Services
+    <div>
+      <div ref={mainmenuRef}>{props.children}</div>
+
+      <div className="frontMain body-frontMain" ref={frontRef}>
+        <main className="pagefront frontMain-pagefront" ref={pageFrontRef}>
+          {/* <Hamburger /> */}
+          <MenuIcon ref={menuIconRef} />
+          {/* <div style={sampleStyle}>Sample 1</div> */}
+          <Article getClasses={() => "align-middle"}>
+            {/* <SectSlider /> */}
+            <Slider
+              windHeight={windowHeight}
+              windWidth={windowWidth}
+              // photoWidth={handlePhotoWidth}
+              // keepArrows={keepArrowsInsideImg}
+              ref={sliderSectRef}
+              // ref={addToRefs}
+            />
+            {/* <CarouselBtstrpSlider /> */}
+            {/* <AboutSec /> */}
+            {/* <About ref={aboutRef} /> */}
+            <About
+              ref={aboutRef}
+              // scrollPageFrontValue={pageFrontScrollVar.current}
+              // scrollPageFrontValue={scrollFrontVal}
+              // windHeight={windowHeight}
+              // onAboutTxtAppear={() => setAboutTxtStart(true)}
+              aboutTxtAppear={aboutTxtStart}
+            />
+          </Article>
+          <Article getClasses={() => "align-middle"}>
+            {/* <Services ref={() => servArrRef.push(servicesRef)} /> */}
+            {/* <Services arrRef={(iconRef) => (servicesRef = iconRef)} /> */}
+            {/* <Services arrRef={(ref) => servicesRef.push(ref)} /> */}
+            {/* <Services ref={(ref) => servicesRef.push(ref)} /> */}
+            {/* <Services ref={servicesRef.current} /> */}
+            {/* <Services
             ref={(ref) => (servicesRef = [...servicesRef, ref])}
           /> */}
-        {/* <Services
+            {/* <Services
             ref={(icon) =>
               (servArrRef.current = [...servArrRef.current, icon])
             }
           /> */}
-        {/* <Services arrRef={handleRefs} /> */}
-        <Services ref={addToRefs} />
-        {/* <Services
+            {/* <Services arrRef={handleRefs} /> */}
+            <Services ref={addToRefs} refProp={servicesSectRef} />
+            {/* <Services
             ref={(icon) =>
               (servicesRef.current = [...servicesRef.current, icon])
             }
           /> */}
-        {/* <Skills ref={addToRefs} handleStartCount={startCountFlag} /> */}
-        <Skills ref={addToRefs} handleStartCount={ifStartCount} />
-        {/* <SkillsSect ref={addToRefs} /> */}
-        {/* <div>Aboutappear: {aboutAppear.current ? "true" : "false"}</div> */}
-        <div>{counter}</div>
-        <button onClick={() => setCounter((c) => c + 1)}>
-          Click to incr counter value
-        </button>{" "}
-        <br />
-        <input
-          type="text"
-          value={name}
-          // onChange={(e) => setName(e.target.value)}
-          onChange={(e) => callSetName(e.target.value)}
-        />
-        <div>My name is {name} </div>
-        <div>This page has been rendered {renderCountRef.current} </div>
-        <div>Render index = {renderIndex} </div>
-        {/* <div>{divsToShowWithClassInView}</div> */}
-        {/* <div>{divsToHideWithClassNotInView}</div> */}
-      </Article>
-    </main>
+            {/* <Skills ref={addToRefs} handleStartCount={startCountFlag} /> */}
+            <Skills
+              ref={addToRefs}
+              handleStartCount={ifStartCount}
+              refProp={skillsSectRef}
+            />
+            {/* <SkillsSect ref={addToRefs} /> */}
+            {/* <div>Aboutappear: {aboutAppear.current ? "true" : "false"}</div> */}
+            <div>{counter}</div>
+            <button onClick={() => setCounter((c) => c + 1)}>
+              Click to incr counter value
+            </button>{" "}
+            <br />
+            <input
+              type="text"
+              value={name}
+              // onChange={(e) => setName(e.target.value)}
+              onChange={(e) => callSetName(e.target.value)}
+            />
+            <div>My name is {name} </div>
+            <div>This page has been rendered {renderCountRef.current} </div>
+            <div>Render index = {renderIndex} </div>
+            {/* <div>{divsToShowWithClassInView}</div> */}
+            {/* <div>{divsToHideWithClassNotInView}</div> */}
+          </Article>
+          <Article getClasses={() => "align-middle"}>
+            <section
+              style={{
+                backgroundColor: "greenyellow",
+                // color: "black",
+                textAlign: "center",
+                height: "100vh",
+              }}
+              ref={projectsSectRef}
+            >
+              Projects
+            </section>
+            <section
+              style={{
+                backgroundColor: "royalblue",
+                color: "ghostwhite",
+                textAlign: "center",
+                height: "100vh",
+              }}
+              ref={contactSectRef}
+            >
+              Contact
+            </section>
+          </Article>
+        </main>
+      </div>
+    </div>
   );
 }
 

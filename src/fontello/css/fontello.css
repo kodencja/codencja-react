@@ -70,9 +70,9 @@
   margin-top: 10px;
   }
   
-  [class="icon-cancel-circled"]:before {
+  [class="icon-cancel-circled"]:before,  [class="icon-cancel-squared"]:before {
     color: #fff1dd;
-    font-size: 3rem;
+    font-size: 3.25rem;
   }
  
 .icon-check:before { content: '\e800'; } /* '' */

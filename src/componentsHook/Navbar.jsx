@@ -3,32 +3,34 @@ import NavItem from "./NavItem";
 
 const navItemsTab = [
   {
-    nameClass: "home color-dark p-3 bgr-col-org-bright",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
     content: "HOME",
   },
   {
-    nameClass: "about color-dark p-3 bgr-col-org-bright",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
     content: "ABOUT ME",
   },
   {
-    nameClass: "services color-dark p-3 bgr-col-org-bright",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
     content: "SERVICES",
   },
   {
-    nameClass: "skills color-dark p-3 bgr-col-org-bright",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
     content: "SKILLS",
   },
   {
-    nameClass: "check color-dark p-3 bgr-col-org-bright",
-    content: "LET'S CHECK",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
+    content: "PROJECTS",
   },
   {
-    nameClass: "contact color-dark p-3 bgr-col-org-bright",
+    nameClass: "color-dark p-3 bgr-col-org-bright shadow-dark ",
     content: "CONTACT",
   },
   {
-    nameClass: "closes color-orange-bright p-1 ",
+    // nameClass: "closes color-orange-bright p-1 ",
+    nameClass: "closes p-1 ",
     content: <i className="icon-cancel-circled" />,
+    // content: <i className="icon-cancel-squared" />,
   },
 ];
 // class Navbar extends Component {
@@ -51,7 +53,7 @@ function Navbar() {
   return (
     <nav className="navbar nav-light">
       <div className="order-first mainmenu mainmenu-persp">
-        <ul className="navbar-nav nav h4 ">{navItemList}</ul>
+        <ul className="navbar-nav nav h4 notvisible">{navItemList}</ul>
       </div>
     </nav>
   );

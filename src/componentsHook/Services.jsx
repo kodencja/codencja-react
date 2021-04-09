@@ -26,6 +26,7 @@ const iconNames = [
 // function Services(props) {
 const Services = React.forwardRef((props, ref) => {
   const sectionRef = useRef();
+
   // const iconRef = useRef([]);
   // let iconRef = useRef([]);
   // const iconRef = useRef(null);
@@ -47,6 +48,10 @@ const Services = React.forwardRef((props, ref) => {
   // }, []);
 
   console.log("Services Render");
+
+  // useEffect(() => {
+  //   props.refProp = sectionRef.current;
+  // }, [sectionRef]);
 
   useEffect(() => {
     console.log("Services mounted");
@@ -141,7 +146,8 @@ const Services = React.forwardRef((props, ref) => {
       data-no="2"
       data-ctrlnav="ScrollNav"
       // data-ref={props.arrRef(iconRef)}
-      ref={sectionRef}
+      // ref={sectionRef}
+      ref={props.refProp}
     >
       <header className="title sec-title">SERVICES</header>
       <div className="container sec-cont py-3">

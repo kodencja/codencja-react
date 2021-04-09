@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 function NavItem({ navItem }) {
   console.log("NavItem render");
   return (
-    <li className="nav-item bgr-col-dark">
-      <a
-        href="foo"
-        className={
-          "nav-link shadow-dark transform-scale-sm " + navItem.nameClass
-        }
+    <li className="nav-item bgr-col-dark pt-1">
+      <div
+        // href="#"
+        role="link"
+        className={"nav-link transform-scale-sm " + navItem.nameClass}
       >
         {navItem.content}
-      </a>
+      </div>
     </li>
 
     // <li className="nav-item bgr-col-dark">
