@@ -49,7 +49,7 @@ const carouselHead = [
   ["Up to", sign50, "ideas / h", "in built-up area"],
   ["To make sens", "to make order"],
   ["from tangle", "of non-decimal numbers"],
-  ["Krzysztof Lalik", "Front-end developing", "Back-end supporting"],
+  ["COD </> ENCJA", "Front-end developing", "Back-end supporting"],
   [
     "Programming & designing websites",
     "Eye-catching & functional",

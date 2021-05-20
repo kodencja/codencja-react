@@ -28,18 +28,8 @@ const pause1 = 1500;
 const pause2 = 1800;
 const pause3 = 1200;
 
-// function About(props) {
-const About = React.forwardRef((props, ref) => {
-  const {
-    // scrollPageFrontValue,
-    aboutTxtAppear,
-    // onAboutTxtAppear,
-    // windHeight,
-  } = props;
-  // const currentSubTitle = useRef("Front-end Developing");
-  // const [currentSubTitle, setcurrentSubTitle] = useState(subTitles[0]);
+function WriteText({ aboutTxtAppear }) {
   // currentSubTitle - musi być w useState a nie w useRef, bo jego zmiana musi wyrenderować nowe zdanie w jsx
-  // const [currentSubTitle, setcurrentSubTitle] = useStateAsync(subTitles[0]);
   const [currentSubTitle, setcurrentSubTitle] = useStateAsync("", 1000);
   const [spanSubChange, setSpanSubChange] = useState(false);
 
@@ -47,19 +37,10 @@ const About = React.forwardRef((props, ref) => {
 
   const subTxtCurrentIndex = useRef(0);
 
-  // const spanMainTitleRefTab = useRef([]);
-  // const spanSubTitleRefTab = useRef([]);
-  const visibility = useRef("hidden");
-
-  // const mainTxt = React.createRef();
-  // const subTxt = React.createRef();
-
   // mainTxtRef - reference to the div embracing the mainTitle within spanMainTitleRef.current
-  // const mainTxtRef = React.createRef();
   const mainTxtRef = useRef();
 
   // subTxtRef - reference to the div embracing the currentSubTitle within spanSubTitleRef.current
-  // const subTxtRef = React.createRef();
   const subTxtRef = useRef();
 
   // reference array to mainTitle 's each letter embraced around span
@@ -67,21 +48,6 @@ const About = React.forwardRef((props, ref) => {
 
   // reference array to currentSubTitle 's each letter embraced around span
   const spanSubTitleRef = useRef([]);
-
-  // componentDidMount() {
-  // console.log("about componentDidMount");
-  // let flagC = true;
-  // console.log(this.mainTxt);
-  // console.log(this.state.currentSubTitle);
-  //   this.setState({
-  //     spanMainTitleRefTab: [...this.spanMainTitleRef],
-  //     spanSubTitleRefTab: [...this.spanSubTitleRef],
-  //   });
-  // }
-
-  // if (el && el !== null) {
-  //   (!servicesRef.current.includes(el))
-  // }
 
   useEffect(() => {
     console.log("About render every time");
@@ -96,7 +62,6 @@ const About = React.forwardRef((props, ref) => {
   }, [aboutTxtAppear]);
 
   useEffect(() => {
-    // console.log(spanSubTitleRef.current[0]);
     // console.log(spanSubTitleRef.current[3]);
     // console.log(spanSubTitleRef.current.length);
     if (mainTxtShown.current === true && spanSubTitleRef.current.length > 0) {
@@ -105,7 +70,6 @@ const About = React.forwardRef((props, ref) => {
       display(spanSubTitleRef.current, 0, subTxtCurrentIndex.current);
     }
   }, [spanSubChange]);
-  // }, [mainTxtShown]);
 
   // const subTitleAddRef = useCallback(
   const subTitleAddRef = (el) => {
@@ -115,9 +79,6 @@ const About = React.forwardRef((props, ref) => {
       // console.log("sub span pushed!");
     }
   };
-  // [spanSubTitleRef, spanSubChange]
-  // [spanSubTitleRef]
-  // );
 
   const mainTitleAddRef = useCallback(
     (el) => {
@@ -128,32 +89,9 @@ const About = React.forwardRef((props, ref) => {
     [spanMainTitleRef]
   );
 
-  // resolve tutaj to pusty callback, ale musi być, żeby Promise mógł cos zwrócić, bo inaczej wyrzuci błąd
-  // const setStateAsync = (state) => {
-  // console.log("Promise");
-  //   return new Promise((resolve, reject) => {
-  //     if (reject.length > 1) reject(new Error("Error!"));
-  //     else {
-  //       this.setState(state, resolve);
-  //     }
-  //   });
-  // };
-
-  // await setStateAsync("setWindowWidth", windowWidth, window.innerWidth);
-  // await setStateAsync("setResizeFlag", resizeFlag, true);
-
   // spanTab - spanMainTitleRef or spanSubTitleRef
   // iSubTab - subTxtCurrentIndex
   const display = (spanTab, i, iSubTab) => {
-    // const {
-    //   mainTxtShown,
-    //   pause1,
-    //   spanMainTitleRefTab,
-    //   spanSubTitleRefTab,
-    //   subTxtCurrentIndex,
-    //   timeToDisplayTxt1,
-    //   timeToDisplayTxt2,
-    // } = this.state;
     if (subTxtRef.current.classList.contains("fadeOutFast")) {
       subTxtRef.current.classList.remove("fadeOutFast");
     }
@@ -175,8 +113,7 @@ const About = React.forwardRef((props, ref) => {
         mainTxtShown.current = true;
         setTimeout(async () => {
           // console.log("call spanSub first");
-          // this.setState({ mainTxtShown: true }, () => {
-          // display(spanSubTitleRef.current, i, subTxtCurrentIndex);
+
           await setcurrentSubTitle(
             subTitles[subTxtCurrentIndex.current],
             currentSubTitle
@@ -194,16 +131,11 @@ const About = React.forwardRef((props, ref) => {
       }
       // if index of the particular sentence from subTitle array has reached its last element (letter)
       else {
-        // i = 0;
-        // console.log("call spanSub last");
-        // if(subTxtCurrentIndex.current <=0){
-        // console.log(subTxtRef.current);
-        // }
         subTxtCurrentIndex.current++;
         // here we have to clear spanSubTitleRef.current since another spans with another letter will have to be stored in this reference
         spanSubTitleRef.current = [];
 
-        // // if index of the subTitles array HAS NOT reached its last element (sentence) = if index of the subTitles array is less or equal to its last element (sentence)
+        // if index of the subTitles array HAS NOT reached its last element (sentence) = if index of the subTitles array is less or equal to its last element (sentence)
         if (subTxtCurrentIndex.current < subTitles.length) {
           setTimeout(() => {
             // console.log(subTxtRef.current);
@@ -236,11 +168,6 @@ const About = React.forwardRef((props, ref) => {
               spanMainTitleRef.current.forEach((span) => {
                 $(span).css("visibility", "hidden");
               });
-              // await setcurrentSubTitle(
-              //   subTitles[subTxtCurrentIndex.current],
-              //   currentSubTitle
-              // );
-              // console.log("subTxtCurrentIndex.current < subTitles.length");
 
               setTimeout(() => {
                 display(
@@ -252,10 +179,6 @@ const About = React.forwardRef((props, ref) => {
             }, pause1);
           }, pause2);
         }
-
-        // $(subTxtRef.current).html("");
-
-        // callDisplay(spanSubTitleRef.current, i, subTxtCurrentIndex.current);
       }
     }
   };
@@ -265,45 +188,23 @@ const About = React.forwardRef((props, ref) => {
   const displayOneSentence = (spanTab, i, iSubTab, time) => {
     setTimeout(() => {
       $(spanTab[i]).css("visibility", "visible");
-      //   spansArray[i] = el;
       i++;
-      // this.setState({ spanMainTitleRefTab: spansArray }, () => {
-      // setState({ titleRefTab: spanTab }, () => {
-      // console.log(this.state.spanMainTitleRefTab);
-      // display(titleRefTab, i, iSubTab);
-      // });
       display(spanTab, i, iSubTab);
     }, time);
   };
 
-  // sectionStyle = () => {
-  // console.log("section style");
-  //   return {
-  //     backgroundImage: "url(" + phI + ")",
-  //     backgroundPosition: "right",
-  //   };
-  // };
   const sectionStyle = {
     // console.log("section style");
     backgroundImage: "url(" + phI + ")",
     backgroundPosition: "right",
   };
 
-  // const {
-  //   mainTitle,
-  //   aboutTitle,
-  //   currentMainTitle,
-  //   currentSubTitle,
-  // } = this.state;
-
   // mainTitle divided into each letter embraced around span
   const mainTitleSpans = useMemo(() => {
     return [...mainTitle].map((letter, ind) => {
       // console.log("mainTitleSpan");
-      // if(ind>= this.state)
       return (
         <span
-          // style={mainTxtShown.current === false ? { visibility: visibility } : ''}
           style={
             mainTxtShown.current === false
               ? { visibility: "hidden" }
@@ -311,7 +212,6 @@ const About = React.forwardRef((props, ref) => {
           }
           key={ind}
           ref={mainTitleAddRef}
-          // ref={(ref) => (this.spanMainTitleRef[ind] = ref)}
         >
           {letter}
         </span>
@@ -319,31 +219,14 @@ const About = React.forwardRef((props, ref) => {
     });
   }, [mainTitle]);
 
-  // const mainTitleSpansMemo = React.memo([...mainTitleSpans]);
-
   // currentSubTitle divided into each letter embraced around span
   const subTitleSpans = useMemo(() => {
     if (currentSubTitle.length > 0) {
       const subTitleArray = [...currentSubTitle].map((letter, ind) => {
         // console.log("subTitleSpans");
-        // console.log([...currentSubTitle]);
-        // console.log(this.spanSubTitleRefTab);
+
         return (
-          <span
-            // style={{ visibility: visibility }}
-            style={{ visibility: "hidden" }}
-            key={ind}
-            ref={subTitleAddRef}
-            // ref={(ref) => (this.spanSubTitleRef[ind] = ref)}
-            // ref={(ref) => this.setState(spanSubTitleRefTab: [ref)}
-            //   ref={(ref) =>
-            //     this.state((prevState) => {
-            //       return {
-            //         spanSubTitleRefTab: [...prevState.spanSubTitleRefTab, ref],
-            //       };
-            //     })
-            //   }
-          >
+          <span style={{ visibility: "hidden" }} key={ind} ref={subTitleAddRef}>
             {letter}
           </span>
         );
@@ -360,56 +243,21 @@ const About = React.forwardRef((props, ref) => {
   }, [currentSubTitle]);
 
   return (
-    <section
-      className="section photo2 parallax art-sect bgr-center text-center"
-      data-no="1"
-      data-ctrlnav="ScrollNav"
-      style={sectionStyle}
-      ref={ref}
-    >
-      <header className="title sec-title title-col-bright title-bgr-dark-bright-grad">
-        {aboutTitle}
-      </header>
-      {/* <img src={phI} alt="Me" className="photo2" /> */}
-      <div className="container sec-cont">
-        <div className="row justify-content-left cont-about-me about-me align-left">
-          <div
-            className="text1 row-text1 col-sm-10 mb-4 h1 animated "
-            ref={mainTxtRef}
-          >
-            {/* {currentMainTitle} */}
-            {mainTitleSpans}
-            {/* {mainTitleSpansMemo} */}
-          </div>
-          <div
-            className="text2 row-text2 col-sm-10 mb-4 h2 animated "
-            ref={subTxtRef}
-          >
-            {subTitleSpans}
-          </div>
-        </div>
+    <div>
+      <div
+        className="text1 row-text1 col-sm-10 mb-4 h1 animated "
+        ref={mainTxtRef}
+      >
+        {mainTitleSpans}
       </div>
-    </section>
+      <div
+        className="text2 row-text2 col-sm-10 mb-4 h2 animated "
+        ref={subTxtRef}
+      >
+        {subTitleSpans}
+      </div>
+    </div>
   );
-});
+}
 
-// export default React.forwardRef(About);
-export default React.memo(About);
-
-// this.spanSubTitleRefTab = [];
-// let currSpanTabLeng = this.spanSubTitleRefTab.length;
-// let correctedArrayByLength;
-// let difference = Math.abs(currSpanTabLeng - prevSpanTabLeng);
-// let longer;
-// if (currSpanTabLeng < prevSpanTabLeng) {
-// currSpanTabLeng > prevSpanTabLeng ? longer=currSpanTabLeng : longer=prevSpanTabLeng;
-
-//   for (let i = 0; i < difference; i++) {
-//     this.spanSubTitleRefTab.pop();
-//   }
-// }
-
-// console.log(this.spanSubTitleRefTab);
-// console.log(this.spanSubTitleRefTab.length);
-// console.log(this.state.currentSubTitle);
-// console.log(this.state.currentSubTitle.length);
+export default WriteText;

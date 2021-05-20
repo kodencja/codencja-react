@@ -26,40 +26,46 @@ import CountUp from "react-countup";
 // ];
 
 const txtSkillsQ = [
-  "The most",
+  "The",
+  "most",
   "important",
-  "property of",
-  "a program",
+  "property",
+  "of a",
+  "program",
   "is",
   "whether it",
   "accomp- lishes",
-  "the intention",
+  "the",
+  "intention",
   "of its",
   "user.",
   "- C.A.R.",
   "Hoare",
 ];
-const countEnds = [75, 75, 70, 70, 60, 55, 55, 60, 55, 60, 60, 50];
+const countEnds = [75, 75, 70, 70, 75, 75, 75, 65, 65, 65, 55, 55, 60, 70, 50];
 const countingTime = 7;
 
 const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
   //
   const [countTextArr, setCountTextArr] = useState([
-    "HTML",
-    "CSS",
+    "HTML5",
+    "CSS3",
     "JS",
+    "jQUERY",
+    "REACT.JS",
+    "HOOKS",
     "Bootstrap",
-    "Webpack",
     "NodeJS",
+    "NPM",
+    "Express.js",
     "PHP",
     "MySQL",
     "mongoDB",
     "GIT",
     "C++",
-    "REACT",
   ]);
 
-  const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([...txtSkillsQ]);
+  // const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([...txtSkillsQ]);
   // const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([
   //   "The most",
   //   "important",
@@ -182,7 +188,8 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
     // console.log(txtSkillsQuotation);
     // console.log("circles");
     // return txtSkillsQuotation.map((txt, index) => {
-    return txtSkillsQuotation.map((txt, index) => {
+    // return txtSkillsQuotation.map((txt, index) => {
+    return txtSkillsQ.map((txt, index) => {
       let divsArrSkills;
 
       divsArrSkills = (
@@ -228,7 +235,7 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
               {/* <div className={(index) => getFlipBackQuoteClass}>{txt}</div> */}
               <div
                 className={
-                  index > 9
+                  index > 12
                     ? "flip-back-quote authorFontStyle"
                     : "flip-back-quote"
                 }
@@ -250,13 +257,13 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
 
   return (
     <section
-      className="skills section sec4 bgr-cov-norp text-center pb-4"
+      className="skills section bgr-cov-norp text-center pb-4"
       data-no="3"
       data-ctrlnav="ScrollNav"
       ref={refProp}
     >
       <header className="title sec-title title-col-bright title-bgr-dark">
-        SKILLS
+        SKILLS PILLS
       </header>
       <div style={{ color: "white" }}>{counter}</div>
       <button onClick={increment}>Click</button>

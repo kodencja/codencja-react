@@ -3,12 +3,12 @@ import $ from "jquery";
 
 const txtSerives = [
   "UI Designing Front-End Developing Back-End Support",
-  "Languagues Frameworks Technologies MVC\u00A0Pattern",
+  "Modern Frameworks &\u00A0Technologies REACT\u00A0JS\u00A0HOOKS",
   "Coding Graphic Custom-made &\u00A0Standard",
   "Fully Responsive For\u00A0All Displays",
   "Innovative Ideas Sync\u00A0/ Async",
   "Projects for Individuals &\u00A0Companies",
-  "High Quality Clear, Fresh &\u00A0Interactive",
+  "High Quality, Clear, Interactive &\u00A0Animated",
   "Consultations Web Design &\u00A0Content",
 ];
 
@@ -142,7 +142,7 @@ const Services = React.forwardRef((props, ref) => {
 
   return (
     <section
-      className="services section photo3 art-sect text-center"
+      className="services section photo3 text-center"
       data-no="2"
       data-ctrlnav="ScrollNav"
       // data-ref={props.arrRef(iconRef)}

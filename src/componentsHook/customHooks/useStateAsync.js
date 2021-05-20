@@ -5,7 +5,8 @@ function useStateAsync(initValue, time = 0) {
   const setStateAsync = (newState, oldState = initValue) => {
     // console.log("Promise setState Async");
     return new Promise((resolve, reject) => {
-      if (reject.length > 1) reject(new Error("Error! in setStateAsync"));
+      if (initValue === undefined)
+        reject(new Error("Error in setStateAsync to get initvalue"));
       else {
         setTimeout(() => {
           // console.log(typeof oldState);
@@ -29,7 +30,8 @@ function useStateAsync(initValue, time = 0) {
 
   const reset = () => {
     return new Promise((resolve, reject) => {
-      if (reject.length > 1) reject(new Error("Error! in setStateAsync"));
+      if (initValue === undefined)
+        reject(new Error("Error in setStateAsync to read initvalue"));
       else {
         setTimeout(() => {
           console.log(initValue);
