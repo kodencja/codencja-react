@@ -5,6 +5,9 @@ import counterApp from "../img/projects/counter-app.jpg";
 import cssVariables from "../img/projects/css-var.jpg";
 import exchange from "../img/projects/exchange.jpg";
 import todoList from "../img/projects/todoList.jpg";
+import vpanels from "../img/projects/vpanels1.jpg";
+import SPOJ from "../img/projects/SPOJEx.jpg";
+import "../css/projects.css";
 
 // const projectsName = [
 //   "Online shop - front-end side",
@@ -16,27 +19,45 @@ import todoList from "../img/projects/todoList.jpg";
 // ];
 
 const projectsPhotos = [
-  [todoList, "Todo-list with axios", "https://kodencja.github.io/react-todo/"],
+  [
+    todoList,
+    "Todo-list with axios - React App",
+    "https://kodencja.github.io/react-todo/",
+  ],
   [
     cssVariables,
-    "Change css variables with inputs",
+    "Change css variables by inputs - React App",
     "https://kodencja.github.io/css-variables/",
   ],
-  [clockWall, "Wall-clock animation", "https://kodencja.github.io/wall-clock/"],
+  [
+    clockWall,
+    "Wall-clock animation - React App",
+    "https://kodencja.github.io/wall-clock/",
+  ],
   [
     counterApp,
-    "Let's buy some products - frontend side",
+    "Let's buy some products - React App",
     "https://kodencja.github.io/counter-app/",
   ],
   [
     exchange,
-    "Currency exchange rate with validation - plus backend",
+    "Currency exchange rate with validation - React.js + Node.js",
     "https://exchange-codenc.herokuapp.com/",
   ],
   [
     contact,
-    "Contact Form Page with validation - plus backend",
+    "Contact Form Page with validation - React.js + Node.js",
     "https://contactcodenc.herokuapp.com/",
+  ],
+  [
+    vpanels,
+    "Fun with css flex - React App",
+    "https://kodencja.github.io/vpanels/",
+  ],
+  [
+    SPOJ,
+    "Exercises from Polish SPOJ - C++",
+    "https://github.com/kodencja/SPOJ-exercises",
   ],
 ];
 

@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
-import $, { speed } from "jquery";
+import $ from "jquery";
 // import Article from "../components/Article";
 // import CarouselSlider from "../components/CarouselSlider";
 // import About from "../components/About";
@@ -14,19 +14,20 @@ import $, { speed } from "jquery";
 // import Skills from "../components/Skills.jsx";
 // import MenuIcon from "../components/MenuIcon";
 
-import Article from "./Article";
+// import Article from "./Article";
 // import { CarouselSlider, logMsg } from "./CarouselSlider";
 import Slider from "./Slider";
 // import About from "./About";
 import Services from "./Services";
 import Skills from "./Skills.jsx";
 import MenuIcon from "./MenuIcon";
-import About from "./About";
+// import About from "./About";
 import useStateAsync from "./customHooks/useStateAsync";
 import AboutMe from "./AboutMe";
 import useAppear from "./customHooks/useAppear";
 import useParallaxBgrImage from "./customHooks/useParallaxBgrImage";
 import Projects from "./Projects";
+import Contact from "./Contact";
 
 const animShow4 = ["fadeInLeft", "fadeInDown", "fadeInUp", "fadeInRight"];
 const animShow3 = ["fadeInLeft", "fadeInUp", "fadeInRight"];
@@ -551,7 +552,7 @@ function FrontPage(props) {
             >
               Projects
             </section> */}
-          <section
+          {/* <section
             style={{
               backgroundColor: "royalblue",
               color: "ghostwhite",
@@ -561,7 +562,8 @@ function FrontPage(props) {
             ref={contactSectRef}
           >
             Contact
-          </section>
+          </section> */}
+          <Contact ref={contactSectRef} />
           <div>{counter}</div>
           <button onClick={() => setCounter((c) => c + 1)}>
             Click to incr counter value

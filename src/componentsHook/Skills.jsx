@@ -41,8 +41,11 @@ const txtSkillsQ = [
   "user.",
   "- C.A.R.",
   "Hoare",
+  " ",
 ];
-const countEnds = [75, 75, 70, 70, 75, 75, 75, 65, 65, 65, 55, 55, 60, 70, 50];
+const countEnds = [
+  75, 75, 70, 70, 75, 75, 75, 65, 65, 65, 55, 55, 60, 70, 50, 70,
+];
 const countingTime = 7;
 
 const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
@@ -63,6 +66,7 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
     "mongoDB",
     "GIT",
     "C++",
+    "PhotoShop",
   ]);
 
   // const [txtSkillsQuotation, setTxtSkillsQuotation] = useState([...txtSkillsQ]);
@@ -263,7 +267,7 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
       ref={refProp}
     >
       <header className="title sec-title title-col-bright title-bgr-dark">
-        SKILLS PILLS
+        TECHNICAL SKILLS
       </header>
       <div style={{ color: "white" }}>{counter}</div>
       <button onClick={increment}>Click</button>

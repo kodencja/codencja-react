@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot?54868292');
-  src: url('../font/fontello.eot?54868292#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?54868292') format('woff2'),
-       url('../font/fontello.woff?54868292') format('woff'),
-       url('../font/fontello.ttf?54868292') format('truetype'),
-       url('../font/fontello.svg?54868292#fontello') format('svg');
+  font-family: "fontello";
+  src: url("../font/fontello.eot?61666151");
+  src: url("../font/fontello.eot?61666151#iefix") format("embedded-opentype"),
+    url("../font/fontello.woff2?61666151") format("woff2"),
+    url("../font/fontello.woff?61666151") format("woff"),
+    url("../font/fontello.ttf?61666151") format("truetype"),
+    url("../font/fontello.svg?61666151#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -15,88 +15,107 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?54868292#fontello') format('svg');
+    src: url('../font/fontello.svg?61666151#fontello') format('svg');
   }
 }
 */
- 
-[class^="icon-"]:before, [class*=" icon-"]:before {
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: never;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
-  margin-left: .2em;
- 
+  margin-left: 0.2em;
+
   /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
-  font-size: 4.5rem;
- color: #008AFB;
- 
+  font-size: 120%;
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-[class="icon-lightbulb"]:before, [class*="icon-sitemap"]:before {
+[class="icon-lightbulb"]:before,
+[class*="icon-sitemap"]:before {
   margin-top: 10px;
   margin-bottom: 10px;
-  }
+  font-size: 4.5rem;
+  color: #008afb;
+}
 
-[class="icon-cancel-circled-1"]:before, [class*="icon-menu-3"]:before {
+[class="icon-cancel-circled-1"]:before,
+[class*="icon-menu-3"]:before {
   font-size: 2.7rem;
   color: #696969;
   margin-right: 5px;
   margin-left: 2px;
-  margin-top: 10px;
-  }
-  
-  [class="icon-cancel-circled"]:before,  [class="icon-cancel-squared"]:before {
-    color: #fff1dd;
-    font-size: 3.25rem;
-  }
- 
-.icon-check:before { content: '\e800'; } /* '' */
-.icon-ok:before { content: '\e801'; } /* '' */
-.icon-ok-circle:before { content: '\e802'; } /* '' */
-.icon-cancel-circled:before { content: '\e803'; } /* '' */
-.icon-cancel:before { content: '\e804'; } /* '' */
-.icon-cancel-circled-1:before { content: '\e805'; } /* '' */
-.icon-cancel-squared:before { content: '\e806'; } /* '' */
-.icon-cancel-1:before { content: '\e807'; } /* '' */
-.icon-menu-1:before { content: '\e808'; } /* '' */
-.icon-volume:before { content: '\e809'; } /* '' */
-.icon-volume-off:before { content: '\e80a'; } /* '' */
-.icon-menu-3:before { content: '\e80b'; } /* '' */
-.icon-cancel-circled-2:before { content: '\e80c'; } /* '' */
-.icon-cancel-circle:before { content: '\e80d'; } /* '' */
-.icon-cancel-circle-1:before { content: '\e80e'; } /* '' */
-.icon-cancel-2:before { content: '\e80f'; } /* '' */
-.icon-cancel-3:before { content: '\e810'; } /* '' */
-.icon-lightbulb:before { content: '\e811'; } /* '' */
-.icon-menu-2:before { content: '\f008'; } /* '' */
-.icon-cancel-circled-3:before { content: '\f06e'; } /* '' */
-.icon-menu:before { content: '\f0c9'; } /* '' */
-.icon-sitemap:before { content: '\f0e8'; } /* '' */
-.icon-ok-squared:before { content: '\f14a'; } /* '' */
-.icon-toggle-off:before { content: '\f204'; } /* '' */
-.icon-toggle-on:before { content: '\f205'; } /* '' */
+  /* margin-top: 10px; */
+}
+
+[class="icon-cancel-circled"]:before {
+  color: #fff1dd;
+  font-size: 3.25rem;
+}
+
+.icon-mail:before {
+  content: "\e800";
+  color: rgb(49, 82, 179);
+  /* color: rgb(126, 103, 2); */
+} /* '' */
+.icon-ok:before {
+  content: "\e801";
+} /* '' */
+.icon-ok-circle:before {
+  content: "\e802";
+} /* '' */
+.icon-cancel-circled:before {
+  content: "\e803";
+} /* '' */
+.icon-edit-alt:before {
+  content: "\e804";
+} /* '' */
+.icon-edit:before {
+  content: "\e805";
+} /* '' */
+.icon-cancel-circled-1:before {
+  content: "\e806";
+} /* '' */
+.icon-menu-3:before {
+  content: "\e80b";
+} /* '' */
+.icon-lightbulb:before {
+  content: "\e811";
+} /* '' */
+.icon-location:before {
+  content: "\f031";
+} /* '' */
+.icon-sitemap:before {
+  content: "\f0e8";
+} /* '' */
+.icon-git-squared:before {
+  content: "\f1d2";
+} /* '' */
+.icon-linkedin-squared:before {
+  content: "\f30c";
+} /* '' */

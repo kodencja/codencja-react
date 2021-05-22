@@ -3,7 +3,7 @@ import phI from "../img/ja_odb4-2.jpg";
 import WriteText from "./WriteText";
 
 const aboutTitle = "ABOUT ME";
-const mainTitle = "COD </&# ENCJA";
+const mainTitle = "Krzysztof Lalik";
 const subTitles = [
   "Front-end Developing",
   "Back-end Supporting",
