@@ -2,6 +2,8 @@ import React from "react";
 import "../css/contact.css";
 
 const Contact = React.forwardRef((props, ref) => {
+  console.log("Contact Comp.");
+
   return (
     <div className="contact sec-cont-h" ref={ref}>
       <header className="title sec-title text-center">CONTACT</header>
@@ -39,10 +41,9 @@ const Contact = React.forwardRef((props, ref) => {
           </div>
           <span>Cracow, Poland</span>
         </div>
-        {/* <div style={{ clear: "both" }}></div> */}
       </div>
     </div>
   );
 });
 
-export default Contact;
+export default React.memo(Contact);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo, memo } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import $ from "jquery";
 import Carousel from "react-bootstrap/Carousel";
 import photo1 from "../img/coding-924920_1280.jpg";
@@ -14,22 +14,9 @@ import photo9 from "../img/programming-1009134_1280.jpg";
 import photo10 from "../img/monitors.jpg";
 import photo11 from "../img/technology-785742_1280.jpg";
 import photo12 from "../img/macbook-336704_1280.jpg";
-import { getAllByDisplayValue } from "@testing-library/react";
+import("../css/slider.css");
+// import { getAllByDisplayValue } from "@testing-library/react";
 
-const carouselItemIndicators = [
-  "item1 active",
-  "item2",
-  "item3",
-  "item4",
-  "item5",
-  "item6",
-  "item7",
-  "item8",
-  "item9",
-  "item10",
-  "item11",
-  "item12",
-];
 const carouselItemsPhotos = [
   photo1,
   photo2,
@@ -49,19 +36,20 @@ const carouselHead = [
   ["Up to", sign50, "ideas / h", "in built-up area"],
   ["To make sens", "to make order"],
   ["from tangle", "of non-decimal numbers"],
-  ["COD </> ENCJA", "Front-end developing", "Back-end supporting"],
+  ["Krzysztof Lalik", "Front-end developing", "Back-end supporting"],
   [
     "Programming & designing websites",
     "Eye-catching & functional",
     "Fully Responsive",
   ],
+  ["Modern Framework", "REACT.JS", "Interactive & Animated"],
   [
-    "For individuals & companies",
-    "Portfolios, blogs, online-shops",
-    "adjusted to Customer expectations",
+    "Desktop, Tablet, Mobile",
+    "Caring of details",
+    "standard & original templates",
   ],
-  ["Desktop, Tablet, Mobile", "MVC Pattern", "standard & original templates"],
-  ["Meeting high standards", "Update with new trends and technology"],
+  ["Meeting high standards", "adjusted to Customer expectations"],
+  // ["Meeting high standards", "Update with new trends and technology"],
   ["creative design animations", "with one to one swipe movement!"],
   ["Flexible working time"],
   ["until the project is done"],
@@ -78,315 +66,89 @@ const animShowArr4 = [
   "fadeInRight",
 ];
 
-// export const logMsg = (txt) => {
-//   const msgDisplay = () => {
-//     console.log("msgDisplay!");
-//   };
-
-//   <CarouselSlider logs={msgDisplay} />;
-//   console.log("logMsg Fn");
-//   // <CarouselSlider log= />;
-//   return txt + " morning!";
-// };
-
-// export const setArrowMargins = (photoWidth, windWidth) => {
-//   // const { btnPrev, btnNext } = this.state;
-//   if (windWidth > photoWidth) {
-//     const mrgnExt = (windWidth - photoWidth) / 2.35;
-//     setCss(btnPrev, "margin-left", mrgnExt + "px");
-//     setCss(btnNext, "margin-right", mrgnExt + "px");
-//   } else {
-//     setCss(btnPrev, "margin-left", 0);
-//     setCss(btnNext, "margin-right", 0);
-//   }
-// };
-
-// export const keepArrowsInsideImg = (windHeight, windWidth) => {
-//   const proportionPhoto = 1.5;
-//   let photoWidth, photoHeight;
-//   if (windHeight >= windWidth) {
-//     photoWidth = windWidth;
-//   } else {
-//     photoHeight = windHeight;
-//     photoWidth = photoHeight * proportionPhoto;
-//   }
-// setArrowMargins(photoWidth, windWidth);
-// this.setState({ photoWidth }, () => {
-// this.setArrowMargins(this.state.photoWidth, windWidth);
-// console.log(this.state.photoWidth);
-// console.log(windHeight);
-// console.log(windWidth);
-// });
-// };
-
-// class CarouselSlider extends Component {
-// function CarouselSlider({ windHeight, windWidth }) {
 const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
-  // ({ windHeight, windWidth }, ref) => {
-  const [captionsRef, setCaptionsRef] = useState();
   const [btnPrev, setBtnPrev] = useState();
   const [btnNext, setBtnNext] = useState();
   const [photoWidth, setPhotoWidth] = useState(0);
-  const [photoWindowWidthDifference, setPhotoWindowWidthDifference] = useState(
-    0
-  );
-  const [msg, setMsg] = useState("");
+  const [photoWindowWidthDifference, setPhotoWindowWidthDifference] =
+    useState(0);
 
   const secSliderRef = React.createRef();
-  // const crslItemRef = React.createRef();
-  // captionsRef = React.createRef([]);
-  const captionsRefer = [];
+  const captionsRef = useRef([]);
 
   useEffect(() => {
     console.log("CarouselSlider Rendered!");
-    // console.log(btnPrev);
-    // console.log(btnNext);
-    console.log("photoWidth: -> " + photoWidth);
   });
 
   useEffect(() => {
-    // console.log("useEffect 0 run - setPhotoWidth(keepArrows())");
-    // setPhotoWidth(keepArrows(windHeight, windWidth));
-    // keepArrows(windHeight, windWidth);
-    // asyncSetStateCall();
-    // console.log(captionsRefer);
-    setCaptionsRef([...captionsRefer]);
-
-    // keepArrowsInsideImg(windHeight, windWidth)
-    // keepArrowsInsideImg(windHeight, windWidth)
-    // const msg2 = logMsg("Sunny");
-    // console.log(logs);
-    // console.log(windHeight);
-    // setMsg(msg2);
-  }, []);
-
-  useEffect(() => {
-    console.log("useEffect btnPrev btnNext");
-    // secSliderRef.current.element - to 'element' to property dodawane przy React.createRef()
     const btnPrevC = secSliderRef.current.element.childNodes[2];
     const btnNextC = secSliderRef.current.element.childNodes[3];
     setBtnPrev(btnPrevC);
     setBtnNext(btnNextC);
-    // console.log(btnPrev);
-    // console.log(btnNext);
-    // }, [btnPrev, btnNext]);
+    // console.log(captionsRefer);
   }, []);
 
-  // const callSetPhotoWidth = (phWidth) => {
-  // const callSetPhotoWidth = useCallback(() => {
-  // console.log(phWidth);
-  //   console.log("callSetPhotoWidth");
-  //   return new Promise((resolve, reject) => {
-  //     if (reject.length > 1) reject(new Error("Error in callSetPhotoWidth!"));
-  //     else {
-  // setPhotoWidth(phWidth);
-  // console.log(phWidth);
-  // resolve(phWidth);
-  // setPhotoWidth(keepArrows(windHeight, windWidth));
-  // console.log(keepArrows());
-  // const phWidth = keepArrows();
-  //   const phWidth = keepArrows(windHeight, windWidth);
-  // setPhotoWidth(keepArrows());
-  //   console.log(phWidth);
-  //   resolve(phWidth);
-  // }
-  //   });
-  // };
-  // }, [windWidth]);
-  // }, [keepArrows]);
-
-  // const asyncSetStateCall = useCallback(
-  //   async (btnPrevVar, btnNextVar) => {
-  //     console.log("asyncSetStateCall");
-  //     console.log(btnPrevVar);
-  //     console.log(windHeight);
-  //     console.log(windWidth);
-  //     // const photoW = await callSetPhotoWidth(keepArrows(windHeight, windWidth));
-  //     const photoW = await callSetPhotoWidth();
-  //     console.log(photoW);
-  //     // if (photoW > 0) {
-  //     // console.log(btnPrev);
-  //     console.log(btnNext);
-  //     // setCss(btnPrev, "margin-left", 200 + "px");
-  //     // setCss(btnNext, "margin-right", 200 + "px");
-  //     setArrowMargins(photoW, windWidth, btnPrevVar, btnNextVar);
-  //     // }
-  //     // }, [windWidth, windHeight]);
-  //   },
-  //   [windWidth]
-  // );
-
-  // to obliczanie phWidth jest nieprawidłowe - trzeba je poprawić
   useEffect(() => {
-    console.log("useEffect setPhotoWidth");
+    // console.log("useEffect setPhotoWidth");
     let phWidth;
-    const proportionPhoto = 1.5;
-    if (windHeight * proportionPhoto >= windWidth) {
+    const proportionOfPhoto = 1.5;
+    if (windHeight * proportionOfPhoto >= windWidth) {
       phWidth = windWidth;
     } else {
-      phWidth = windHeight * proportionPhoto;
-      //   phWidth = windWidth / proportionPhoto;
+      phWidth = windHeight * proportionOfPhoto;
     }
-    console.log("WINDWidth -> " + windWidth);
-    console.log(phWidth);
     setPhotoWidth(phWidth);
-
-    // if (windWidth > phWidth) {
     setPhotoWindowWidthDifference(windWidth - phWidth);
-    // }
   }, [windWidth, windHeight]);
 
-  // useEffect(() => {
-  //   if (windWidth - photoWidth > 5) {
-  //     setPhotoWindowWidthDifference(windWidth - photoWidth);
-  //   }
-  // }, [windWidth, windHeight]);
-
   useEffect(() => {
-    console.log("useEffect keepArrows");
-    console.log(photoWindowWidthDifference);
-    // console.log(btnPrev);
-    // console.log(btnNext);
-    // console.log(typeof btnPrev);
-    // console.log(typeof btnNext);
+    // console.log("useEffect keepArrows");
+
     if (typeof btnPrev !== "undefined" && typeof btnNext !== "undefined") {
-      // if (typeof btnPrev === "object" && typeof btnNext === "object") {
-      console.log("Call keepArrowsInsideImg");
       keepArrowsInsideImg(btnPrev, btnNext);
     }
-    // return () => {
-    //   keepArrowsInsideImg();
-    // };
-    // }, [keepArrows]);
-    // }, [windWidth]);
-    //   }, [btnPrev, windWidth, windHeight]);
   }, [photoWindowWidthDifference]);
-  // }, [windWidth, windHeight]);
-  // }, []);
-  //   });
 
-  // console.log("photoWidth: " + photoWidth);
-  // console.log("windWidth: " + windWidth);
-  // console.log("windHeight: " + windHeight);
-
-  // useEffect(() => {
-  // setMsg(logs());
-  // console.log(msg);
-  // return () => {
-  //   logs();
-  // };
-  // }, [logs]);
-
-  // const msgShow = () => {
-  //   console.log("msgShow from Carousel");
-  // };
-
-  // ta funkcja powinna reagować na zmianę różnicy pomiedzy wartością photoWidth a windowWidth
-  // const keepArrowsInsideImg = useCallback(
-  const keepArrowsInsideImg = (btnPrevVar, btnNextVar) => {
-    console.log("keepArrowsInsideImg Fn");
-    console.log("windWidth - " + windWidth);
-    //   const proportionPhoto = 1.5;
-    //   let photoWidth, photoHeight;
-    //   if (windHeight >= windWidth) {
-    //     photoWidth = windWidth;
-    //   } else {
-    //     photoHeight = windHeight;
-    //     photoWidth = photoHeight * proportionPhoto;
-    //   }
-    //   console.log(photoWidth);
-    // return { photoWidth, windWidth };
-    //   return photoWidth;
-    setArrowMargins(photoWidth, windWidth, btnPrevVar, btnNextVar);
-    // },[windowWidth, windowHeight]);
+  const addToCaptionsRef = (el) => {
+    if (el && !captionsRef.current.includes(el)) {
+      console.log("addToCaptionsRef Fn");
+      captionsRef.current.push(el);
+    }
   };
-  // },
-  // [windWidth, windHeight]
-  // [photoWindowWidthDifference]
-  // );
 
-  // const setArrowMargins = useCallback(
+  // ta funkcja reaguje na zmianę różnicy pomiedzy wartością photoWidth a windowWidth aby utrzymać strzałki wewnątrz szerokości zdjęcia  /  this function reacts to any changes of difference between values of photoWidth and windowWidth to keep arrows of carousel inside the photo's width
+  const keepArrowsInsideImg = (btnPrevVar, btnNextVar) => {
+    setArrowMargins(photoWidth, windWidth, btnPrevVar, btnNextVar);
+  };
+
   const setArrowMargins = (photoW, windWidth, btnP, btnN) => {
-    // const setArrowMargins = () => {
-    console.log("setArrowMargins Fn");
-    //   console.log(photoW);
-    //   console.log(windWidth);
-    // console.log(btnPrev);
-    // console.log(btnNext);
-    // const { btnPrev, btnNext } = this.state;
     if (windWidth > photoW) {
       const mrgnExt = (windWidth - photoW) / 2.35;
-      // setCss(btnPrev, "margin-left", mrgnExt + "px");
-      // setCss(btnNext, "margin-right", mrgnExt + "px");
       setCss(btnP, "margin-left", mrgnExt + "px");
       setCss(btnN, "margin-right", mrgnExt + "px");
     } else {
-      // setCss(btnPrev, "margin-left", 0);
-      // setCss(btnNext, "margin-right", 0);
       setCss(btnP, "margin-left", 0);
       setCss(btnN, "margin-right", 0);
     }
   };
-  // },
-  // [windWidth, windHeight]
-  // [photoWindowWidthDifference]
-  // [keepArrowsInsideImg]
-  // );
 
   const handleNextSlide = (ind) => {
-    // console.log(ind);
-    // const {
-    //   animShowArr2,
-    //   animShowArr3,
-    //   animShowArr4,
-    //   nonVisibileClass,
-    //   captionsRef,
-    // } = this.state;
-    const captionsCopy = [...captionsRef];
-    // const captionNext = captionsCopy[ind];
-    // console.log(captionsCopy);
-    // console.log(captionsCopy[i].childNodes[0].className);
-    const captionsNextArray = captionsCopy[ind].childNodes;
-    // console.log(captionsNextArray);
-    // console.log(captionsArray[0]);
+    const captionsNextArray = captionsRef.current[ind].childNodes;
 
     let animationArray;
     if (captionsNextArray.length < 3) animationArray = animShowArr2;
     else if (captionsNextArray.length === 3) animationArray = animShowArr3;
     else if (captionsNextArray.length > 3) animationArray = animShowArr4;
-    // captionsCopy[i].childNodes[0].className += " " + this.state.visibileClass + " "+ this.state.fadeInDown;
     for (let i = 0; i < captionsNextArray.length; i++) {
       captionsNextArray[i].classList.remove(nonVisibileClass);
       captionsNextArray[i].classList.add(animationArray[i]);
     }
-
-    // console.log(captionsNextArray);
-    // console.log([...this.state.captionsRef]);
-
-    // captionsCopy[ind].childNodes[0].classList.remove(this.state.nonVisibileClass);
-    // captionsCopy[ind].childNodes[0].classList.add(this.state.fadeInDown);
-    // console.log(captionsCopy[i].childNodes[0].className);
   };
 
   const handlePrevSlide = (ind) => {
-    // const {
-    //   animShowArr2,
-    //   animShowArr3,
-    //   animShowArr4,
-    //   nonVisibileClass,
-    //   carouselItemsPhotos,
-    //   captionsRef,
-    // } = this.state;
     let index;
     ind === 0 ? (index = carouselItemsPhotos.length - 1) : (index = ind - 1);
-    // console.log(index);
-    const captionsCopy = [...captionsRef];
-    // const captionNext = captionsCopy[ind];
-    // console.log(captionsCopy);
-    // console.log(captionsCopy[i].childNodes[0].className);
-    const captionsPrevArray = captionsCopy[index].childNodes;
-    // console.log(captionsNextArray);
-    // console.log(captionsArray[0]);
+    const captionsPrevArray = captionsRef.current[index].childNodes;
 
     let animationArray;
     if (captionsPrevArray.length < 3) animationArray = animShowArr2;
@@ -400,62 +162,16 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
   };
 
   const setCss = (div, property, val) => {
+    // console.log("setCss FN");
     $(div).css(property, val);
-    // console.log(property);
-    // console.log(val);
-    // console.log(div);
   };
 
-  // const setArrowMargins = (photoWidth, windWidth) => {
-  //   // const { btnPrev, btnNext } = this.state;
-  //   if (windWidth > photoWidth) {
-  //     const mrgnExt = (windWidth - photoWidth) / 2.35;
-  //     setCss(btnPrev, "margin-left", mrgnExt + "px");
-  //     setCss(btnNext, "margin-right", mrgnExt + "px");
-  //   } else {
-  //     setCss(btnPrev, "margin-left", 0);
-  //     setCss(btnNext, "margin-right", 0);
-  //   }
-  // };
-
-  // ustawienie położenia strzałek kontrolnych prev i next w trakcie resize
-  // setArrowPosition = async function (vH, vW) {
-  //   try {
-  //     imgWidth = await self.getImgSize(vH, vW);
-  //     await self.setMrgnArr(imgWidth, vW);
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // };
-
-  // const keepArrowsInsideImg = (windHeight, windWidth) => {
-  //   const proportionPhoto = 1.5;
-  //   let photoWidth, photoHeight;
-  //   if (windHeight >= windWidth) {
-  //     photoWidth = windWidth;
-  //   } else {
-  //     photoHeight = windHeight;
-  //     photoWidth = photoHeight * proportionPhoto;
-  //   }
-  //   setArrowMargins(photoWidth, windWidth);
-  // // this.setState({ photoWidth }, () => {
-  // // this.setArrowMargins(this.state.photoWidth, windWidth);
-  // // console.log(this.state.photoWidth);
-  // // console.log(windHeight);
-  // // console.log(windWidth);
-  // // });
-  // };
-
-  // const { carouselHead, captionsClass, nonVisibileClass } = this.state;
-
   const carslHeaders = (index) => {
+    // console.log("carslHeaders Fn");
     const carslCaptions = carouselHead[index].map((header, index2) => {
-      // let i = 0;
-      // while (i < 100000000) i++;
       let carslCaption;
       if (index2 === 1 && index === 1) {
         carslCaption = (
-          // <div className={this.state.captionsClassSign} key={index2}>
           <div
             className={
               captionsClass + " sign carl-caption-sign " + nonVisibileClass
@@ -481,32 +197,20 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
           </div>
         );
       }
-      // console.log(carslCaption);
       return carslCaption;
     });
-
-    // console.log(carslCaptions);
     return carslCaptions;
   };
 
   const carouselItemList = carouselItemsPhotos.map((photo, index) => {
-    // const newRef = React.createRef();
-    // this.captionsRef.push(newRef);
     return (
-      // <Carousel.Item key={index} ref={crslItemRef}>
       <Carousel.Item key={index}>
-        {/* <center> */}
         <img
           src={photo}
           alt={"Slide " + index}
           className="carous-img carous-item-img"
         />
-        {/* </center> */}
-        {/* <Carousel.Caption key={index} ref={newRef}> */}
-        <Carousel.Caption
-          key={index}
-          ref={(refe) => (captionsRefer[index] = refe)}
-        >
+        <Carousel.Caption key={index} ref={addToCaptionsRef}>
           {carslHeaders(index)}
         </Carousel.Caption>
       </Carousel.Item>
@@ -515,13 +219,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
 
   return (
     <center>
-      <section
-        id="slider"
-        className="section slider article-slider"
-        data-no="0"
-        data-ctrlnav="ScrollNav"
-        ref={ref}
-      >
+      <section className="section slider article-slider" ref={ref}>
         <Carousel
           style={{ position: "relative" }}
           fade={true}
@@ -532,8 +230,6 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
           onSlid={(ind) => {
             handlePrevSlide(ind);
           }}
-          // onSlid={(el) => console.log(el)}
-          // onSelect={(activeIndex) => console.log(activeIndex)}
         >
           {carouselItemList}
         </Carousel>
@@ -541,5 +237,5 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
     </center>
   );
 });
-// export default msgShow;
+
 export default memo(Slider);

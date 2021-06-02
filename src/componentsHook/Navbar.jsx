@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavItem from "./NavItem";
 
 const navItemsTab = [
@@ -27,28 +27,16 @@ const navItemsTab = [
     content: "CONTACT",
   },
   {
-    // nameClass: "closes color-orange-bright p-1 ",
     nameClass: "closes p-1 ",
     content: <i className="icon-cancel-circled" />,
-    // content: <i className="icon-cancel-squared" />,
   },
 ];
-// class Navbar extends Component {
+
 function Navbar() {
-  // const [navItemsTab, setNavItemsTab] = useState(initialState)
   console.log("Navbar render");
   const navItemList = navItemsTab.map((navItem, index) => {
-    // console.log(navItem);
-    return (
-      <NavItem
-        key={index}
-        navItem={navItem}
-        // navItemClass={navItem.nameClass}
-      ></NavItem>
-    );
+    return <NavItem key={index} navItem={navItem}></NavItem>;
   });
-
-  // const navItemClasses = this.state.navItemClass.map(/)
 
   return (
     <nav className="navbar nav-light">
@@ -59,5 +47,4 @@ function Navbar() {
   );
 }
 
-// export const NavbarMemo = React.memo(Navbar);
 export default React.memo(Navbar);

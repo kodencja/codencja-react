@@ -1,9 +1,10 @@
-import React from "react";
-
 const speedToMoveBgrImg = 2.5,
-  hem = 1;
+  magnifyVar = 1;
 
+// to handle setting the right size and moving background image of divs with class "PARALLAX"
 function useParallaxBgrImage(windowHeight) {
+  // console.log("useParallaxBgrImage Hook!");
+
   // function launched at the very beginning and after resize
   const setSizeParallaxBackgroundImage = (
     divsWithMovingBgrImage,
@@ -29,56 +30,49 @@ function useParallaxBgrImage(windowHeight) {
 
       if (elemHeight <= windowHeight) {
         if (elemHeight <= elemWidth) {
-          elemNewWidth = (elemWidth + windowHeight / speedToMoveBgrImg) * hem;
+          elemNewWidth =
+            (elemWidth + windowHeight / speedToMoveBgrImg) * magnifyVar;
           elemNewHeight = elemNewWidth / proportion;
           if (elemNewHeight < elemHeight + windowHeight / speedToMoveBgrImg) {
             elemNewHeight =
-              (elemHeight + windowHeight / speedToMoveBgrImg) * hem;
+              (elemHeight + windowHeight / speedToMoveBgrImg) * magnifyVar;
           }
         } else if (elemHeight > elemWidth) {
-          elemNewHeight = (elemHeight + windowHeight / speedToMoveBgrImg) * hem;
+          elemNewHeight =
+            (elemHeight + windowHeight / speedToMoveBgrImg) * magnifyVar;
         }
       } else if (elemHeight > windowHeight) {
         if (elemHeight <= elemWidth) {
-          elemNewWidth = (elemWidth + elemHeight / speedToMoveBgrImg) * hem;
+          elemNewWidth =
+            (elemWidth + elemHeight / speedToMoveBgrImg) * magnifyVar;
           elemNewHeight = elemNewWidth / proportion;
           if (elemNewHeight < elemHeight + elemHeight / speedToMoveBgrImg) {
-            elemNewHeight = (elemHeight + elemHeight / speedToMoveBgrImg) * hem;
+            elemNewHeight =
+              (elemHeight + elemHeight / speedToMoveBgrImg) * magnifyVar;
           }
         } else if (elemHeight > elemWidth) {
-          elemNewHeight = (elemHeight + elemHeight / speedToMoveBgrImg) * hem;
+          elemNewHeight =
+            (elemHeight + elemHeight / speedToMoveBgrImg) * magnifyVar;
         }
       }
 
       elem.style.backgroundSize = "auto " + elemNewHeight + "px";
-
-      // wScr = $("#pagefront").scrollTop(); // wartośc bez 'px'
       const elemOffTop = elem.offsetTop;
       const elTopValue = elemOffTop - scrollValue;
       elem.style.backgroundPositionY = -(elTopValue / speedToMoveBgrImg) + "px";
-
-      // eOff = e.offsetTop;
-      // eT = eOff - pageFrontScrollVar.current;
     }
   };
 
   const handleParallaxBgrImg = (divsWithMovingBgrImage, scrollValue) => {
-    // vH=window.innerHeight;
-    // wScr = $("#pagefront").scrollTop(); // wartośc bez 'px'
-
     for (let i = 0; i < divsWithMovingBgrImage.length; i++) {
       const elem = divsWithMovingBgrImage[i];
-      // const elemOffTop = elem.offsetTop;
       const elTopValue = elem.offsetTop - scrollValue;
       if (elTopValue <= windowHeight) {
         elem.style.backgroundPositionY =
           -(elTopValue / speedToMoveBgrImg) + "px";
       }
-      // eOff = e.offsetTop;
-      // eT = eOff - wScr;
     }
   };
-
   return { handleParallaxBgrImg, setSizeParallaxBackgroundImage };
 }
 

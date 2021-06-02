@@ -6,63 +6,69 @@ import cssVariables from "../img/projects/css-var.jpg";
 import exchange from "../img/projects/exchange.jpg";
 import todoList from "../img/projects/todoList.jpg";
 import vpanels from "../img/projects/vpanels1.jpg";
+import codencja from "../img/projects/codenc.jpg";
+import memoryCards from "../img/projects/memorycards.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
-
-// const projectsName = [
-//   "Online shop - front-end side",
-//   "Change css variables with inputs",
-//   "Wall-clock animation",
-//   "Todo-list with axios",
-//   "Exchange currency",
-//   "Contact Form Page",
-// ];
 
 const projectsPhotos = [
   [
     todoList,
-    "Todo-list with axios - React App",
+    "Todo-list with axios - React, JS, CSS",
     "https://kodencja.github.io/react-todo/",
   ],
   [
     cssVariables,
-    "Change css variables by inputs - React App",
+    "Change css variables by inputs - React, JS, CSS, Bootstrap-4",
     "https://kodencja.github.io/css-variables/",
   ],
   [
     clockWall,
-    "Wall-clock animation - React App",
+    "Wall-clock animation - React, JS, CSS",
     "https://kodencja.github.io/wall-clock/",
   ],
   [
     counterApp,
-    "Let's buy some products - React App",
+    "Let's buy some products - React, JS, CSS, Bootstrap-4",
     "https://kodencja.github.io/counter-app/",
   ],
   [
     exchange,
-    "Currency exchange rate with validation - React.js + Node.js",
+    "Currency exchange rate with validation - React.js, Node.js, JS, CSS",
     "https://exchange-codenc.herokuapp.com/",
   ],
   [
     contact,
-    "Contact Form Page with validation - React.js + Node.js",
+    "Contact Form Page with validation - React.js, Node.js, JS, CSS",
     "https://contactcodenc.herokuapp.com/",
   ],
   [
     vpanels,
-    "Fun with css flex - React App",
+    "Fun with flex - React, JS, SASS",
     "https://kodencja.github.io/vpanels/",
+  ],
+
+  [
+    memoryCards,
+    "Memory Cards Game - React, JS, CSS-GRID, SASS",
+    "https://kodencja.github.io/cards-memory/",
   ],
   [
     SPOJ,
     "Exercises from Polish SPOJ - C++",
     "https://github.com/kodencja/SPOJ-exercises",
   ],
+  [
+    codencja,
+    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc.",
+    "https://codencja.herokuapp.com/",
+  ],
 ];
 
 const Projects = React.forwardRef((props, ref) => {
   const projectsRef = useRef([]);
+
+  console.log("Projects Comp.");
 
   useEffect(() => {
     const projCurrent = projectsRef.current;
@@ -100,62 +106,40 @@ const Projects = React.forwardRef((props, ref) => {
     project.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
   };
 
-  const addToProjectRef = useCallback(
-    (el) => {
-      if (el && !projectsRef.current.includes(el)) {
-        console.log("addToProjectRef Fn");
-        projectsRef.current.push(el);
-      }
-    },
-    [projectsRef]
-  );
+  const addToProjectRef = (el) => {
+    if (el && !projectsRef.current.includes(el)) {
+      projectsRef.current.push(el);
+    }
+  };
 
-  //   const animateProjects = () => {
-  //     projectsRef.current.forEach((project) => {
-  //       const deg = 30;
-  //       const stepX = deg / project.clientWidth;
-  //       const stepY = deg / project.clientHeight;
-  //       project.addEventListener("mousemove", (e) => {
-  //         let rotateX = 0.5 * deg - e.layerY * stepY;
-  //         let rotateY = -0.5 * deg + e.layerX * stepX;
-  //         project.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-  //       });
-  //       project.addEventListener("mouseleave", () => {
-  //         project.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)`;
-  //       });
-  //     });
-  //   };
-
-  const projects = useMemo(() => {
-    return projectsPhotos.map((project, ind) => {
-      return (
-        <div
-          key={ind}
-          className="project"
-          ref={addToProjectRef}
-          style={{ backgroundImage: "url(" + project[0] + ")" }}
+  const projects = projectsPhotos.map((project, ind) => {
+    return (
+      <div
+        key={ind}
+        className="project"
+        ref={addToProjectRef}
+        style={{ backgroundImage: "url(" + project[0] + ")" }}
+      >
+        <a
+          href={project[2]}
+          target="_blank"
+          rel="noreferrer"
+          className="project-link"
         >
-          <a
-            href={project[2]}
-            target="_blank"
-            rel="noreferrer"
-            className="project-link"
-          >
-            <div className="project-description">{project[1]}</div>
-          </a>
-        </div>
-      );
-    });
-  }, []);
+          <div className="project-description">{project[1]}</div>
+        </a>
+      </div>
+    );
+  });
 
   return (
     <section className="projects section text-center" ref={ref}>
       <header className="title sec-title">MY PROJECTS</header>
       <div className="container py-4">
-        <div className="row mx-auto projects-row px-3">{projects}</div>
+        <div className="row mx-auto projects-row px-2">{projects}</div>
       </div>
     </section>
   );
 });
 
-export default Projects;
+export default React.memo(Projects);

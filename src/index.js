@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-multi-carousel/lib/styles.css";
 // import $ from "jquery";
 import Popper from "popper.js";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+// import "bootstrap/dist/js/bootstrap.bundle.min";
 // import './fontello/css/fontello.css';
 import React from "react";
 import ReactDOM from "react-dom";

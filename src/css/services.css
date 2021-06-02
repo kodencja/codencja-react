@@ -1,0 +1,15 @@
+/* **********  SERVICES  **************** */
+
+.infotxt {
+  color: #342f57;
+}
+
+@media all and (max-width: 575px) {
+  #note {
+    font-size: 1.2rem;
+  }
+
+  .infotxt > .h4 {
+    font-size: 1.8rem;
+  }
+}

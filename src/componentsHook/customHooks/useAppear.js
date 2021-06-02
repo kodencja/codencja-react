@@ -1,6 +1,7 @@
 import { useState } from "react";
 import $ from "jquery";
 
+// dealing with appearing and hiding divs while scrolling
 function useAppear(
   animShow1,
   animShow2,
@@ -32,6 +33,7 @@ function useAppear(
         const arrShowName = eval("animShow" + rowLength);
         // const arrHideName = eval("animHide" + rowLength);
         setTimeout(() => {
+          // remove hide classes
           // resolve(function () {
           if ($(oneDiv).hasClass(animHide1[0])) {
             $(oneDiv).removeClass(animHide1[0]);
@@ -42,10 +44,12 @@ function useAppear(
               return (css.match(/(^|\s)fade\S+/g) || []).join(" ");
             });
           }
+          // add the right show class
           $(oneDiv).addClass(arrShowName[rowIndex]);
           setDivJustAppeared(oneDiv);
 
           setTimeout(() => {
+            // removed show classess
             if ($(oneDiv).hasClass(animShow1[0])) {
               $(oneDiv).removeClass(animShow1[0]);
             } else {
@@ -55,19 +59,15 @@ function useAppear(
                 return (css.match(/(^|\s)fade\S+/g) || []).join(" ");
               });
             }
+
+            $(oneDiv).addClass("appeared");
+
+            if ($(oneDiv).hasClass("box")) {
+              $(oneDiv).addClass("box-after-appear");
+            } else if ($(oneDiv).hasClass("flip-card")) {
+              $(oneDiv).addClass("flip-card-after-appear");
+            }
           }, 1300);
-
-          // console.log(countDiv.prop("classList"));
-          // a może by tu dodać jakąś zmienną typu useState, która będzie wskazywać na to, że animacja appearing została wykonana dla danego diva i tą zmienną zwrócić z tej funkcji?
-          // if (
-          //   $(oneDiv).find(".counting").length > 0 &&
-          //   !oneDiv.classList.contains("countStarted")
-          // ) {
-          //   // console.log("COUNTING OBJECT");
-          //   const index = skillsRef.current.indexOf(oneDiv);
-
-          //   startCountFlag(oneDiv, index);
-          // }
           resolve(arrShowName);
         }, time);
       }
@@ -75,7 +75,7 @@ function useAppear(
   };
 
   const hideDivsAnimation = (oneDiv, rowLength, rowIndex, time) => {
-    console.log("hideDivsAnimation");
+    // console.log("hideDivsAnimation");
     return new Promise((resolve, reject) => {
       if (reject.length > 1) reject(new Error("Error"));
       else {
@@ -87,29 +87,17 @@ function useAppear(
         if (rowLength > 4) {
           rowLength = 4;
         }
-        // const arrShowName = eval("animShow" + rowLength);
+
         const arrHideName = eval("animHide" + rowLength);
         setTimeout(() => {
-          // if ($(oneDiv).hasClass(animShow1[0])) {
-          // $(oneDiv).removeClass(animShow1[0]);
-          // } else {
-          // $(oneDiv).removeClass(state.arrHideName[rowIndex]);
-          //   $(oneDiv).removeClass(function (index, css) {
-          //     // console.log(css);
-          //     return (css.match(/(^|\s)fade\S+/g) || []).join(" ");
-          //   });
-          // }
           $(oneDiv).addClass(arrHideName[rowIndex]);
+          $(oneDiv).removeClass("appeared");
         }, time / 3);
         resolve(arrHideName);
       }
     });
   };
 
-  // if (
-  // windowHeight >= getDivTop.elTop + getDivTop.elHeight &&
-  // $(serviceAppearRef[i]).hasClass("NotInView")
-  // )
   // usuwa klasę "NotInView" a dodaje "inView" dla elementów znajdujących się w jednym rzędzie
   const showDiv = (
     divsToAppear,
@@ -123,26 +111,16 @@ function useAppear(
       // console.log("showDiv Fn");
       if (divsToAppear.length <= 0) reject(new Error("Error"));
       else {
-        // resolve(
         // if the element's top value is the same as its neighbour top value and the neighbour / next element exist at all
-        if (elemTopConst === elemNextTopConst && elemNext != null) {
-          // console.log("remove NotInView 1");
-          $(elem).removeClass("NotInView");
-          $(elem).addClass("inView");
-          // console.log("setStateAsync 1");
-        }
-        // if the element's top value is different than its next neighbour
-        else if (
+        if (
+          (elemTopConst === elemNextTopConst && elemNext != null) ||
           elemTopConst !== elemNextTopConst ||
           elemNext === null ||
           indexInAllAppearDivs === divsToAppear.length - 1
         ) {
-          // console.log("remove NotInView 2");
           $(elem).removeClass("NotInView");
           $(elem).addClass("inView");
-          // console.log("setStateAsync 2");
         }
-
         resolve({
           element: elem,
         });
@@ -162,25 +140,24 @@ function useAppear(
     return new Promise(async (resolve, reject) => {
       if (divsToAppear.length <= 0) reject(new Error("Error"));
       else {
-        if (elemNextTopConst === elemTopConst && elemNext != null) {
-          $(elem).removeClass("inView");
-          $(elem).addClass("NotInView");
-          // console.log("setStateAsync 4");
-        } else if (
+        if (
+          (elemNextTopConst === elemTopConst && elemNext != null) ||
           elemNextTopConst !== elemTopConst ||
           elemNext === null ||
           indexInAllAppearDivs === divsToAppear.length - 1
         ) {
+          if ($(elem).hasClass("box-after-appear")) {
+            $(elem).removeClass("box-after-appear");
+          } else if ($(elem).hasClass("flip-card-after-appear")) {
+            $(elem).removeClass("flip-card-after-appear");
+          }
           $(elem).removeClass("inView");
           $(elem).addClass("NotInView");
-          // console.log("setStateAsync 5");
         }
         resolve({
           element: elem,
         });
       }
-      // })()
-      // );
     });
   };
 
@@ -193,8 +170,6 @@ function useAppear(
         resolve({
           elem: elem,
           elTopConst: elem.offsetTop,
-          // elTop: elem.offsetTop - pageFrontScrollBar,
-          // elTop: elem.offsetTop - pageFrontScrollVar.current,
           elTop: elem.offsetTop - frontScroll,
           elHeight: elem.offsetHeight / 2,
           elNext: elem.nextElementSibling,
@@ -209,31 +184,22 @@ function useAppear(
     appearTime,
     divsToAppear
   ) => {
-    // const { current } = appearDivsRef;
     let divsToShowInOneRow = [];
     let divsToHideInOneRow = [];
     try {
-      // console.log("try");
       let getDivTop,
         elNextTopConst = null;
-      // showDivVar,
-      // hideDivVar;
       for (let i = 0; i < divsToAppear.length; i++) {
         // console.log("try loop");
         getDivTop = await getDivTopVal(pFrontScroll, divsToAppear[i]);
-        // console.log(getDivTop.elem);
-        // console.log(getDivTop.elHeight);
-        // console.log(getDivTop.elTop);
-        // console.log(current[i].classList);
-        // let elNextTopConst = null;
-        // console.log("getDivTop after");
         if (getDivTop.elNext !== null) {
           elNextTopConst = getDivTop.elNext.offsetTop;
         }
-        // if the element's top offset value plus its height are smaller than windowHeight and it hasn't got a "NotInView" class i.e. it hasn't appeared yet
+        // if the element's top offset value plus its height are smaller than windowHeight and it hasn't got a "NotInView" class and it hasn't appeared yet (nto having class 'appeared')
         if (
           windowHeight >= getDivTop.elTop + getDivTop.elHeight &&
-          $(divsToAppear[i]).hasClass("NotInView")
+          $(divsToAppear[i]).hasClass("NotInView") &&
+          $(divsToAppear[i]).not(".appeared")
         ) {
           // console.log("has class NotInView");
           // tu gdzieś trzeba zrobić pętlę żeby uzyskać oneRowOfDivs.length
@@ -246,13 +212,11 @@ function useAppear(
             getDivTop.elNext,
             elNextTopConst
           );
-          // console.log("showDivVar after");
           divsToShowInOneRow.push(showDivVar.element);
-          // console.log(getDivTop.elem);
-          // console.log(showDiv.oneRowOfDivs);
         } else if (
           windowHeight < getDivTop.elTop + getDivTop.elHeight &&
-          $(divsToAppear[i]).hasClass("inView")
+          $(divsToAppear[i]).hasClass("inView") &&
+          $(divsToAppear[i]).hasClass("appeared")
         ) {
           // console.log("has class inView");
           const hideDivVar = await hideDiv(
@@ -267,45 +231,42 @@ function useAppear(
         }
       }
       // po skończeniu loopowania wszystkich divów pokazujemy lub ukrywamy wybrane divy po kolei
-      // if (divsToShowWithClassInView.length > 0) {
       if (divsToShowInOneRow.length > 0) {
-        // console.log(showDiv.oneRowOfDivs);
         let rowInd = 0;
-        // let rowLength = divsToShowWithClassInView.length;
         let rowLength = divsToShowInOneRow.length;
-        // console.log("call showDivsAnimation before");
-        // console.log(rowLength);
-        // await callShowDivsAnimation(divsToShowInOneRow, appearTime);
-        // console.log("call showDivsAnimation after");
-        while (rowInd < rowLength) {
-          await showDivsAnimation(
-            // divsToShowWithClassInView[rowInd],
-            divsToShowInOneRow[rowInd],
-            rowLength,
-            rowInd,
-            appearTime
-          );
-          // console.log(rowInd);
-          rowInd++;
+        if (
+          $(divsToShowInOneRow[divsToShowInOneRow.length - 1]).not(".appeared")
+        ) {
+          console.log("showDivsAnimation not appeared yet");
+          while (rowInd < rowLength) {
+            await showDivsAnimation(
+              divsToShowInOneRow[rowInd],
+              rowLength,
+              rowInd,
+              appearTime
+            );
+            rowInd++;
+          }
         }
       }
       if (divsToHideInOneRow.length > 0) {
         let rowInd = 0;
-        // let rowLength = divsToHideWithClassNotInView.length;
         let rowLength = divsToHideInOneRow.length;
-        // console.log(rowLength);
-        // console.log("call hideDivsAnimation");
-        // console.log(rowLength);
-        while (rowInd < rowLength) {
-          await hideDivsAnimation(
-            // divsToHideWithClassNotInView[rowInd],
-            divsToHideInOneRow[rowInd],
-            rowLength,
-            rowInd,
-            appearTime
-          );
-          // console.log(rowInd);
-          rowInd++;
+        if (
+          $(divsToHideInOneRow[divsToHideInOneRow.length - 1]).hasClass(
+            "appeared"
+          )
+        ) {
+          // console.log("hideDivsAnimation not hidden yet");
+          while (rowInd < rowLength) {
+            await hideDivsAnimation(
+              divsToHideInOneRow[rowInd],
+              rowLength,
+              rowInd,
+              appearTime
+            );
+            rowInd++;
+          }
         }
       }
     } catch (err) {

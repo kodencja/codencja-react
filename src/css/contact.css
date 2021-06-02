@@ -1,7 +1,5 @@
 .contact {
   background-color: #eeeeee;
-  /* background-color: rgb(246, 242, 199); */
-  /* margin: 1rem 1rem; */
   font-family: "Open Sans", sans-serif;
 }
 
@@ -23,35 +21,22 @@ a:hover {
 }
 
 .contact-please {
-  /* font-family: "Open Sans", sans-serif; */
   font-size: 1.4rem;
-  /* font-style: italic; */
   font-weight: 500;
-  /* font-variant: small-caps; */
   margin-bottom: 1.6rem;
 }
 
 .contact-address > div {
   margin-bottom: 1.25rem;
-  /* max-width: 50%; */
 }
 
 .contact-subtitle {
   color: darkslategrey;
   margin-bottom: 0.25rem;
-  /* float: left; */
-  /* text-align: right; */
-  /* margin-right: 1rem; */
-  /* width: 5rem; */
 }
 
-/* .contact-address > p > i { */
 .contact-address > div:nth-child(1) a {
-  /* color: rgb(49, 82, 179); */
   color: rgb(48, 64, 170);
-  /* color: rgb(1, 100, 1); */
-  /* font-weight: 700; */
-  /* margin-left: 15px; */
 }
 
 .contact-address > div:nth-child(1) a:hover {
@@ -70,16 +55,12 @@ a:hover {
   /* margin-bottom: 1.5rem; */
 }
 
-/* .contact-address > div:nth-child(3) { */
 .contact-subtitle:nth-child(3) {
   margin-bottom: 0.25rem;
 }
 
 .contact-address > div:nth-child(2) a {
   color: rgb(1, 100, 1);
-
-  /* font-weight: 700; */
-  /* margin-left: 15px; */
 }
 
 .contact-address > div:nth-child(2) a:hover {
@@ -88,5 +69,4 @@ a:hover {
 
 .contact-address > div:nth-child(3) {
   color: rgb(22, 22, 22);
-  /* clear: both; */
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import $ from "jquery";
+import React, { useEffect } from "react";
+import("../css/services.css");
 
 const txtSerives = [
   "UI Designing Front-End Developing Back-End Support",
@@ -8,7 +8,7 @@ const txtSerives = [
   "Fully Responsive For\u00A0All Displays",
   "Innovative Ideas Sync\u00A0/ Async",
   "Projects for Individuals &\u00A0Companies",
-  "High Quality, Clear, Interactive &\u00A0Animated",
+  "Clear, Interactive &\u00A0Animated",
   "Consultations Web Design &\u00A0Content",
 ];
 
@@ -23,30 +23,7 @@ const iconNames = [
   "flaticon-support",
 ];
 
-// function Services(props) {
 const Services = React.forwardRef((props, ref) => {
-  const sectionRef = useRef();
-
-  // const iconRef = useRef([]);
-  // let iconRef = useRef([]);
-  // const iconRef = useRef(null);
-  // iconRef.current = [];
-
-  // let iconCopyRef = [];
-  // const refs = useRef([]);
-  // const handleRefs = (refs) => {
-  //   useMemo(() => {
-  //     return (ref = refs);
-  //   }, [iconRef]);
-  // };
-  // let icRefer;
-  // let icRef = useMemo(() => {
-  //   for (let i = 0; i < iconRef; i++) {
-  //     if (iconRef[i] != null) icRefer[i] = iconRef[i];
-  //   }
-  //   return icRefer;
-  // }, []);
-
   console.log("Services Render");
 
   // useEffect(() => {
@@ -55,59 +32,17 @@ const Services = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     console.log("Services mounted");
-    // console.log(sectionRef.current);
-    // console.log($(sectionRef.current).attr("class").split(/\s+/));
-    // console.log($(sectionRef.current).prop("classList"));
-    // console.log($(sectionRef.current).prop("classList")[1]);
-    // console.log($(sectionRef.current).prop("classList").value);
-    // console.log(iconRef);
-    // console.log(iconRef.current);
-    // props.arrRef(iconRef.current);
-    // iconRef.forEach((el)=> {el=useRef()})
-    // iconCopyRef.length = iconRef.length;
-    // for(let i=0; i<iconRef.length; i++){
-    // handleRefs(iconRef);
-    // console.log(refs);
-    // }
-    // console.log(icRefer);
-    // props.arrRef(iconRef.current);
-    // ref = iconRef;
   }, []);
 
-  // const addToRefs = (el) => {
-  //   if (el && !iconRef.current.includes(el)) {
-  //     iconRef.current.push(el);
-  //   }
-  //   console.log(iconRef.current);
-  // };
-
-  // const refs = useMemo(() => {
-  //   console.log("Memo service");
-  //   // ref = iconRef.current;
-  //   props.arrRef(iconRef.current);
-  // }, [iconRef.current]);
-
   const serviceDivs = txtSerives.map((txt, index) => {
-    // console.log("service");
+    // class 'animated' is connected with stylesheet file "anims.css"
     let servDiv;
     if (index < 6) {
-      // console.log(index);
       servDiv = (
         <div
-          className="col-sm-4 box appear row-box animated NotInView fadeOutDown"
-          data-controller="Appear"
+          className="col-sm-4 box row-box animated NotInView fadeOutDown"
           key={index}
-          // ref={ref}
-          // ref={(ref) => (ref[index] = ref)}
-          // ref={(ref) => (iconRef[index] = ref)}
-          // ref={(ref) => (iconRef.current = [...iconRef.current, ref])}
-          // ref={(ref) => props.arrRef(ref)}
-          // ref={props.arrRef(ref)}
-          // ref={props.arrRef(iconRef[index])}
-          // ref={ref}
           ref={ref}
-          // ref={ref = ref[index]}
-          // ref={addToRefs}
         >
           <i className={iconNames[index]}></i>
           <div className="infotxt mt-1">
@@ -116,19 +51,11 @@ const Services = React.forwardRef((props, ref) => {
         </div>
       );
     } else {
-      // console.log(index);
       servDiv = (
         <div
-          className="col-sm-6 box appear row-box animated NotInView fadeOutDown"
-          data-controller="Appear"
+          className="col-sm-6 box row-box animated NotInView fadeOutDown"
           key={index}
-          // ref={(ref) => (iconRef[index] = ref)}
-          // ref={(ref) => props.arrRef(ref)}
-          // ref={props.arrRef(ref)}
           ref={ref}
-          // ref={ref[index]}
-          // ref={(ref) => (iconRef.current = [...iconRef.current, ref])}
-          // ref={addToRefs}
         >
           <i className={iconNames[index]}></i>
           <div className="infotxt mt-1">
@@ -141,22 +68,13 @@ const Services = React.forwardRef((props, ref) => {
   });
 
   return (
-    <section
-      className="services section photo3 text-center"
-      data-no="2"
-      data-ctrlnav="ScrollNav"
-      // data-ref={props.arrRef(iconRef)}
-      // ref={sectionRef}
-      ref={props.refProp}
-    >
+    <section className="services section text-center" ref={props.refProp}>
       <header className="title sec-title">SERVICES</header>
       <div className="container sec-cont py-3">
         <div className="row ">{serviceDivs}</div>
       </div>
     </section>
   );
-  // }
 });
 
-// export default Services;
 export default React.memo(Services);
