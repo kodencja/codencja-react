@@ -1,7 +1,7 @@
 import React from "react";
 
 function NavItem({ navItem }) {
-  console.log("NavItem render");
+  // console.log("NavItem render");
   return (
     <li className="nav-item bgr-col-dark">
       <div

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/contact.css";
 
 const Contact = () => {
-  console.log("Contact Comp.");
+  useEffect(() => {
+    console.log("Contact Comp. mounted");
+  }, []);
 
   return (
     <>

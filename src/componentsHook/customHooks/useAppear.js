@@ -237,7 +237,7 @@ function useAppear(
         if (
           $(divsToShowInOneRow[divsToShowInOneRow.length - 1]).not(".appeared")
         ) {
-          console.log("showDivsAnimation not appeared yet");
+          // console.log("showDivsAnimation not appeared yet");
           while (rowInd < rowLength) {
             await showDivsAnimation(
               divsToShowInOneRow[rowInd],

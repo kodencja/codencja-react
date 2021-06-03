@@ -26,7 +26,7 @@ function useMoveFrontPage() {
     menuIconRef,
     menuUl
   ) => {
-    console.log("moveFrontPage Fn");
+    // console.log("moveFrontPage Fn");
 
     if (menuIsOpened.current === false) {
       getSectionsTop(pageFrontScrollVarBeforeTilt, allSectionsRef);

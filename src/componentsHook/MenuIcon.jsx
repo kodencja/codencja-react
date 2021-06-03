@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const MenuIcon = () => {
   useEffect(() => {
-    console.log("MenuIcon Comp.");
+    console.log("MenuIcon Comp. mounted");
   }, []);
 
   return (

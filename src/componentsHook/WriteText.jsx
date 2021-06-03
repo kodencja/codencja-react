@@ -34,7 +34,7 @@ function WriteText(props) {
   const spanSubTitleRef = useRef([]);
 
   useEffect(() => {
-    console.log("WriteText rendered!");
+    console.log("WriteText Comp. mounted!");
   }, []);
 
   useEffect(() => {

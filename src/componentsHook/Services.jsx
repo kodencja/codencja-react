@@ -33,7 +33,7 @@ const Services = (props) => {
   // }, [sectionRef]);
 
   useEffect(() => {
-    console.log("Services mounted");
+    console.log("Services Comp. mounted");
     if (serviceDivsRef.current.length > 0) {
       props.servicesDivs(serviceDivsRef.current);
     }

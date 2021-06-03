@@ -20,8 +20,7 @@ const About = (props) => {
   const { textAppearStart } = props;
 
   useEffect(() => {
-    // console.log("About Me render every time");
-    console.log("About Comp.");
+    console.log("About Comp. mounted");
   }, []);
 
   return (

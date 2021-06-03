@@ -36,7 +36,7 @@ const navItemsTab = [
 ];
 
 function Navbar() {
-  console.log("Navbar render");
+  // console.log("Navbar render");
   const navItemList = navItemsTab.map((navItem, index) => {
     return <NavItem key={index} navItem={navItem}></NavItem>;
   });
@@ -44,10 +44,7 @@ function Navbar() {
   return (
     <nav className="navbar nav-light">
       <div className="order-first mainmenu mainmenu-persp">
-        <ul className="navbar-nav nav h4 notvisible">
-          {navItemList}
-          {/* <Suspense fallback={<p>Loading...</p>}>{navItemList}</Suspense> */}
-        </ul>
+        <ul className="navbar-nav nav h4 notvisible">{navItemList}</ul>
       </div>
     </nav>
   );

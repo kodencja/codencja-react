@@ -22,11 +22,10 @@ const softSkills = [
   "NPM",
   "YARN",
   "EJS View",
-  "PHP",
-  "MySQL",
   "REST API",
   "C++",
-  "graphQL",
+  "PHP",
+  "MySQL",
   "PhotoShop",
   "Illustrator",
   "Premiere",
@@ -39,8 +38,7 @@ const softQuotation = [
   "problem.",
   "Then,",
   "write",
-  "the",
-  "code.",
+  "the code",
   " - ",
   "John",
   "Johnson",
@@ -66,12 +64,8 @@ const countingTime = 7;
 const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
   const skillsRef = useRef([]);
 
-  // useEffect(() => {
-  //   console.log("Skills render");
-  // });
-
   useEffect(() => {
-    console.log("Services mounted");
+    console.log("Skills Comp. mounted");
     if (skillsRef.current.length > 0) {
       skillsDivs(skillsRef.current);
     }
@@ -89,11 +83,10 @@ const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
         className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 animated NotInView fadeOutDown"
         key={index}
         ref={addToSkillsRef}
-        // ref={ref}
       >
         <div className="flip-card-inner">
           <div className="flip-card-front">
-            <div className={"row-counting counting count" + index}>
+            <div className={"row-counting counting count-hard-" + index}>
               <div className="percent counting-percent">
                 <CountUp
                   end={
@@ -137,11 +130,12 @@ const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
         className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 animated NotInView fadeOutDown"
         key={index}
         ref={addToSkillsRef}
-        // ref={ref}
       >
         <div className="flip-card-inner">
           <div className="flip-card-front">
-            <div className={"row-counting counting soft-row count" + index}>
+            <div
+              className={"row-counting counting soft-row count-soft-" + index}
+            >
               <div className="skillName counting-skillName">{skill}</div>
             </div>
           </div>

@@ -49,7 +49,6 @@ const carouselHead = [
     "standard & original templates",
   ],
   ["Meeting high standards", "adjusted to Customer expectations"],
-  // ["Meeting high standards", "Update with new trends and technology"],
   ["creative design animations", "with one to one swipe movement!"],
   ["Flexible working time"],
   ["until the project is done"],
@@ -77,7 +76,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
   const captionsRef = useRef([]);
 
   useEffect(() => {
-    console.log("CarouselSlider Rendered!");
+    console.log("Slider Comp. mounted!");
   }, []);
 
   useEffect(() => {
@@ -85,7 +84,6 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
     const btnNextC = secSliderRef.current.element.childNodes[3];
     setBtnPrev(btnPrevC);
     setBtnNext(btnNextC);
-    // console.log(captionsRefer);
   }, []);
 
   useEffect(() => {
@@ -111,7 +109,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
 
   const addToCaptionsRef = (el) => {
     if (el && !captionsRef.current.includes(el)) {
-      console.log("addToCaptionsRef Fn");
+      // console.log("addToCaptionsRef Fn");
       captionsRef.current.push(el);
     }
   };
@@ -154,7 +152,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
     if (captionsPrevArray.length < 3) animationArray = animShowArr2;
     else if (captionsPrevArray.length === 3) animationArray = animShowArr3;
     else if (captionsPrevArray.length > 3) animationArray = animShowArr4;
-    // captionsCopy[i].childNodes[0].className += " " + this.state.visibileClass + " "+ this.state.fadeInDown;
+
     for (let i = 0; i < captionsPrevArray.length; i++) {
       captionsPrevArray[i].classList.remove(animationArray[i]);
       captionsPrevArray[i].classList.add(nonVisibileClass);
@@ -218,8 +216,6 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
   });
 
   return (
-    // <center>
-    // {/* <section className="section slider article-slider" ref={ref}> */}
     <>
       <Carousel
         style={{ position: "relative" }}
@@ -235,8 +231,6 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
         {carouselItemList}
       </Carousel>
     </>
-    // {/* </section> */}
-    // </center>
   );
 });
 

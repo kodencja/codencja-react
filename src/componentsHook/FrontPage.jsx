@@ -2,7 +2,6 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useCallback,
   createRef,
   lazy,
   Suspense,
@@ -39,8 +38,6 @@ const appearTimeScroll = 1000,
 
 function FrontPage(props) {
   // DEFINE VARIABLES AND METHODS
-  const [counter, setCounter] = useState(0);
-
   const [windowWidth, setWindowWidth] = useStateAsync(window.innerWidth);
   const [windowHeight, setWindowHeight] = useStateAsync(window.innerHeight);
 
@@ -62,7 +59,6 @@ function FrontPage(props) {
 
   const divsWithMovingBgrImage = useRef([]);
   const menuIconRef = useRef();
-  // const menuUl = useRef();
   const menuUl = createRef();
   const linkBtnInMenu = useRef([]);
 
@@ -177,7 +173,6 @@ function FrontPage(props) {
     linkBtnInMenu.current = $(menuUl.current).find("div.nav-link");
 
     menuIconRef.current.addEventListener("click", () => {
-      console.log("menuIcon clicked");
       pageFrontScrollVarBeforeTilt.current = pageFrontScrollVar.current;
       // move frontPage to the right position - open or closed
       moveFrontPage(
@@ -342,10 +337,7 @@ function FrontPage(props) {
 
   return (
     <div>
-      <div ref={mainmenuRef}>
-        {props.children}
-        {/* <Suspense fallback={<p>Loading...</p>}>{props.children}</Suspense> */}
-      </div>
+      <div ref={mainmenuRef}>{props.children}</div>
 
       <div className="frontMain body-frontMain" ref={frontMainRef}>
         <main className="pagefront frontMain-pagefront" ref={pageFrontRef}>
@@ -361,11 +353,7 @@ function FrontPage(props) {
               ref={sliderSectRef}
             >
               <Suspense fallback={<p>Loading...</p>}>
-                <Slider
-                  windHeight={windowHeight}
-                  windWidth={windowWidth}
-                  // ref={sliderSectRef}
-                />
+                <Slider windHeight={windowHeight} windWidth={windowWidth} />
               </Suspense>
             </section>
           </center>
@@ -375,7 +363,6 @@ function FrontPage(props) {
           >
             <Suspense fallback={<p>Loading...</p>}>
               <About textAppearStart={aboutTxtStart} />
-              {/* <About ref={aboutSectRef} textAppearStart={aboutTxtStart} /> */}
             </Suspense>
           </section>
           <section
@@ -383,12 +370,8 @@ function FrontPage(props) {
             ref={servicesSectRef}
           >
             <Suspense fallback={<p>Loading...</p>}>
-              {/* <Services ref={addToRefs} servicesDivs={servicesRef.current} /> */}
-              {/* <Services ref={addToRefs} servicesDivs={addToServiceRefer} /> */}
               <Services servicesDivs={addToServiceRefer} />
             </Suspense>
-
-            {/* <Services ref={addToRefs} refProp={servicesSectRef} /> */}
           </section>
           <section
             className="skills section bgr-cover-norepeat text-center pb-4"
@@ -396,10 +379,8 @@ function FrontPage(props) {
           >
             <Suspense fallback={<p>Loading...</p>}>
               <Skills
-                // ref={addToRefs}
                 handleStartCount={ifStartCount}
                 skillsDivs={addToSkillsRefer}
-                // refProp={skillsSectRef}
               />
             </Suspense>
           </section>
@@ -409,13 +390,11 @@ function FrontPage(props) {
           >
             <Suspense fallback={<p>Loading...</p>}>
               <Projects />
-              {/* <Projects ref={projectsSectRef} /> */}
             </Suspense>
           </section>
           <section className="contact sec-cont-h" ref={contactSectRef}>
             <Suspense fallback={<p>Loading...</p>}>
               <Contact />
-              {/* <Contact ref={contactSectRef} /> */}
             </Suspense>
           </section>
           <footer className="text-center mx-auto footer">

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import clockWall from "../img/projects/clock.jpg";
 import contact from "../img/projects/contact.jpg";
 import counterApp from "../img/projects/counter-app.jpg";
@@ -68,7 +68,9 @@ const projectsPhotos = [
 const Projects = () => {
   const projectsRef = useRef([]);
 
-  console.log("Projects Comp.");
+  useEffect(() => {
+    console.log("Projects Comp. mounted");
+  }, []);
 
   useEffect(() => {
     const projCurrent = projectsRef.current;
