@@ -82,7 +82,7 @@ function FrontPage(props) {
     animHide4
   );
 
-  // CUSTOM HOOK setting the right size and moving background image of divs with class "PARALLAX"
+  // CUSTOM HOOK setting the right size and moving background image of divs embraced within "divsWithMovingBgrImage"
   const { handleParallaxBgrImg, setSizeParallaxBackgroundImage } =
     useParallaxBgrImage(windowHeight);
 
@@ -130,10 +130,7 @@ function FrontPage(props) {
     }
 
     if (divsWithMovingBgrImage.current.length <= 0) {
-      divsWithMovingBgrImage.current = [
-        aboutSectRef.current,
-        skillsSectRef.current,
-      ];
+      divsWithMovingBgrImage.current = [aboutSectRef.current];
     }
 
     for (let i = 0; i < skillsRef.current.length; i++) {

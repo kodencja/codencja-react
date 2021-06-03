@@ -1,7 +1,7 @@
 const speedToMoveBgrImg = 2.5,
   magnifyVar = 1;
 
-// to handle setting the right size and moving background image of divs with class "PARALLAX"
+// to handle setting the right size and moving background image of divs embraced within "divsWithMovingBgrImage"
 function useParallaxBgrImage(windowHeight) {
   // console.log("useParallaxBgrImage Hook!");
 
