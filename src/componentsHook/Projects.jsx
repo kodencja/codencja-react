@@ -61,7 +61,7 @@ const projectsPhotos = [
   [
     codencja,
     "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc.",
-    "https://codencja.herokuapp.com/",
+    "https://github.com/kodencja/codencja-react",
   ],
 ];
 
