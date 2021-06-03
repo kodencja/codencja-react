@@ -1,19 +1,16 @@
 import React, { useEffect } from "react";
 
-const MenuIcon = React.forwardRef((props, ref) => {
+const MenuIcon = () => {
   useEffect(() => {
-    console.log("MenuIcon updated");
-  });
+    console.log("MenuIcon Comp.");
+  }, []);
 
   return (
-    <div
-      className="hamburger mx-0 pagefront-hamburger transform-scale-sm"
-      ref={ref}
-    >
+    <>
       <i className="icon-menu-3 mx-0"></i>
       <i className="icon-cancel-circled-1 d-none"></i>
-    </div>
+    </>
   );
-});
+};
 
 export default React.memo(MenuIcon);

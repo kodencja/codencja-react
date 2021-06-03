@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import("../css/services.css");
 
 const txtSerives = [
@@ -23,8 +23,10 @@ const iconNames = [
   "flaticon-support",
 ];
 
-const Services = React.forwardRef((props, ref) => {
-  console.log("Services Render");
+const Services = (props) => {
+  const serviceDivsRef = useRef([]);
+
+  // console.log("Services Render");
 
   // useEffect(() => {
   //   props.refProp = sectionRef.current;
@@ -32,7 +34,16 @@ const Services = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     console.log("Services mounted");
+    if (serviceDivsRef.current.length > 0) {
+      props.servicesDivs(serviceDivsRef.current);
+    }
   }, []);
+
+  const addToServiceRef = (el) => {
+    if (el && el !== undefined && !serviceDivsRef.current.includes(el)) {
+      serviceDivsRef.current.push(el);
+    }
+  };
 
   const serviceDivs = txtSerives.map((txt, index) => {
     // class 'animated' is connected with stylesheet file "anims.css"
@@ -42,7 +53,7 @@ const Services = React.forwardRef((props, ref) => {
         <div
           className="col-sm-4 box row-box animated NotInView fadeOutDown"
           key={index}
-          ref={ref}
+          ref={addToServiceRef}
         >
           <i className={iconNames[index]}></i>
           <div className="infotxt mt-1">
@@ -55,7 +66,7 @@ const Services = React.forwardRef((props, ref) => {
         <div
           className="col-sm-6 box row-box animated NotInView fadeOutDown"
           key={index}
-          ref={ref}
+          ref={addToServiceRef}
         >
           <i className={iconNames[index]}></i>
           <div className="infotxt mt-1">
@@ -68,13 +79,13 @@ const Services = React.forwardRef((props, ref) => {
   });
 
   return (
-    <section className="services section text-center" ref={props.refProp}>
+    <React.Fragment>
       <header className="title sec-title">SERVICES</header>
       <div className="container sec-cont py-3">
         <div className="row ">{serviceDivs}</div>
       </div>
-    </section>
+    </React.Fragment>
   );
-});
+};
 
 export default React.memo(Services);

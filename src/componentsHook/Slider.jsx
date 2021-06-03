@@ -78,7 +78,7 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
 
   useEffect(() => {
     console.log("CarouselSlider Rendered!");
-  });
+  }, []);
 
   useEffect(() => {
     const btnPrevC = secSliderRef.current.element.childNodes[2];
@@ -218,23 +218,25 @@ const Slider = React.forwardRef(({ windHeight, windWidth }, ref) => {
   });
 
   return (
-    <center>
-      <section className="section slider article-slider" ref={ref}>
-        <Carousel
-          style={{ position: "relative" }}
-          fade={true}
-          ref={secSliderRef}
-          onSlide={(ind) => {
-            handleNextSlide(ind);
-          }}
-          onSlid={(ind) => {
-            handlePrevSlide(ind);
-          }}
-        >
-          {carouselItemList}
-        </Carousel>
-      </section>
-    </center>
+    // <center>
+    // {/* <section className="section slider article-slider" ref={ref}> */}
+    <>
+      <Carousel
+        style={{ position: "relative" }}
+        fade={true}
+        ref={secSliderRef}
+        onSlide={(ind) => {
+          handleNextSlide(ind);
+        }}
+        onSlid={(ind) => {
+          handlePrevSlide(ind);
+        }}
+      >
+        {carouselItemList}
+      </Carousel>
+    </>
+    // {/* </section> */}
+    // </center>
   );
 });
 

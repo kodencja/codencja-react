@@ -1,11 +1,11 @@
 import React from "react";
 import "../css/contact.css";
 
-const Contact = React.forwardRef((props, ref) => {
+const Contact = () => {
   console.log("Contact Comp.");
 
   return (
-    <div className="contact sec-cont-h" ref={ref}>
+    <>
       <header className="title sec-title text-center">CONTACT</header>
       <div className="contact-info text-center">
         <p className="contact-please">
@@ -38,12 +38,22 @@ const Contact = React.forwardRef((props, ref) => {
           </div>
           <div className="contact-subtitle">
             <i className="icon-location" />
+            <div>Cracow, Poland</div>
           </div>
-          <span>Cracow, Poland</span>
+
+          <div>
+            <a
+              href="https://github.com/kodencja/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="icon-git-squared"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
-});
+};
 
 export default React.memo(Contact);

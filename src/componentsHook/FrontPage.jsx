@@ -3,18 +3,12 @@ import React, {
   useEffect,
   useRef,
   useCallback,
-  useMemo,
+  createRef,
+  lazy,
+  Suspense,
 } from "react";
-// import "bootstrap/dist/js/bootstrap.bundle.min";
 import $ from "jquery";
-// react components
-import Slider from "./Slider";
 import MenuIcon from "./MenuIcon";
-import About from "./About";
-import Services from "./Services";
-import Skills from "./Skills.jsx";
-import Projects from "./Projects";
-import Contact from "./Contact";
 
 // custom hooks
 import useAppear from "./customHooks/useAppear";
@@ -23,6 +17,13 @@ import useStateAsync from "./customHooks/useStateAsync";
 import useHide from "./customHooks/useHide";
 import useScrollTo from "./customHooks/useScrollTo";
 import useMoveFrontPage from "./customHooks/useMoveFrontPage";
+
+const Slider = lazy(() => import("./Slider"));
+const About = lazy(() => import("./About"));
+const Services = lazy(() => import("./Services"));
+const Skills = lazy(() => import("./Skills"));
+const Projects = lazy(() => import("./Projects"));
+const Contact = lazy(() => import("./Contact"));
 
 const animShow4 = ["fadeInLeft", "fadeInDown", "fadeInUp", "fadeInRight"];
 const animShow3 = ["fadeInLeft", "fadeInUp", "fadeInRight"];
@@ -37,26 +38,20 @@ const appearTimeScroll = 1000,
   appearTimeResizeAndHide = 5;
 
 function FrontPage(props) {
-  // useState, usereducer używam tylko wtedy gdy potrzebuję, aby zmiana danej wartości była widoczna przez JSX w częsci return() lub by coś uruchamiała jak 'dependecies' np. przy useEffect; w przeciwnym razie wystarczy użyć useRef()
   // DEFINE VARIABLES AND METHODS
   const [counter, setCounter] = useState(0);
-  //servicesRef.current = [] DEFINED WITHOUT CONSTRUCTOR
 
   const [windowWidth, setWindowWidth] = useStateAsync(window.innerWidth);
   const [windowHeight, setWindowHeight] = useStateAsync(window.innerHeight);
-  // const [resizeFlag, setResizeFlag] = useStateAsync(false);
 
-  const [name, setName] = useState("");
-  const [renderIndex, setRenderIndex] = useState(0);
   const [countedFlag, setCountedFlag] = useState({ div: "undefined", ind: 0 });
 
-  // pageFrontScrollVar = $(pageFrontRef.current).scrollTop();
-  const mainmenuRef = useRef();
+  const mainmenuRef = createRef();
   const frontMainRef = useRef();
   const pageFrontScrollVar = useRef(0);
   const pageFrontScrollVarBeforeTilt = useRef(0);
   const pageFrontRef = useRef();
-  const aboutRef = useRef();
+  const aboutSectRef = useRef();
 
   const sliderSectRef = useRef();
   const servicesSectRef = useRef();
@@ -67,7 +62,8 @@ function FrontPage(props) {
 
   const divsWithMovingBgrImage = useRef([]);
   const menuIconRef = useRef();
-  const menuUl = useRef();
+  // const menuUl = useRef();
+  const menuUl = createRef();
   const linkBtnInMenu = useRef([]);
 
   // elements of appearDivsRef
@@ -78,7 +74,7 @@ function FrontPage(props) {
   const [ifStartCount, setIfStartCount] = useState([]);
   const [aboutTxtStart, setAboutTxtStart] = useState(false);
 
-  // custom hook dealing with selected div's appearing - the divs to be appeared are passed as an argument to 'handleAppearing' function; useAppear at the beginning is given a serie of animations' array to show or hide the selected divs step by step in one row
+  // CUSTOM HOOK dealing with selected div's appearing - the divs to be appeared are passed as an argument to 'handleAppearing' function; useAppear at the beginning is given a serie of animations' array to show or hide the selected divs step by step in one row
   const { handleAppearing, divJustAppeared } = useAppear(
     animShow1,
     animShow2,
@@ -89,15 +85,19 @@ function FrontPage(props) {
     animHide3,
     animHide4
   );
+
+  // CUSTOM HOOK setting the right size and moving background image of divs with class "PARALLAX"
   const { handleParallaxBgrImg, setSizeParallaxBackgroundImage } =
     useParallaxBgrImage(windowHeight);
 
+  // CUSTOM HOOK - hiding divs after resize to re-order their layout
   const { handleHideAfterResize, resizeFlag = false } = useHide();
-  const { scrollLink } = useScrollTo();
-  const { moveFrontPage, allSectionsTopRef } = useMoveFrontPage();
-  // const renderCountRef = React.createRef(1);
 
-  const renderCountRef = React.createRef(1);
+  // CUSTOM HOOK - to scroll to the right section after clicking in the memu link
+  const { scrollLink } = useScrollTo();
+
+  // CUSTOM HOOK - handle FrontPage tilting and opening menu
+  const { moveFrontPage, allSectionsTopRef } = useMoveFrontPage();
 
   // USEEFFECT LISTENERS
   // check if start Counting in appeared divs
@@ -114,26 +114,18 @@ function FrontPage(props) {
   }, [divJustAppeared]);
 
   useEffect(() => {
-    console.log("useEffect-2");
+    // console.log("FRONTPAGE useEffect-2");
 
-    setRenderIndex((prevInd) => prevInd + 1);
-    return () => {
-      setRenderIndex();
-    };
-  }, [setRenderIndex]);
-
-  useEffect(() => {
-    // console.log("FRONTPAGE useEffect-3");
-    // renderCountRef.current = renderCountRef.current + 1;
-
-    if (appearDivsRef.current.length <= 0) {
-      appearDivsRef.current = [...servicesRef.current, ...skillsRef.current];
+    if (servicesRef.current !== null && servicesRef.current[0] !== undefined) {
+      if (appearDivsRef.current.length <= 0) {
+        appearDivsRef.current = [...servicesRef.current, ...skillsRef.current];
+      }
     }
 
     if (allSectionsRef.current.length <= 0) {
       allSectionsRef.current = [
         sliderSectRef.current,
-        aboutRef.current,
+        aboutSectRef.current,
         servicesSectRef.current,
         skillsSectRef.current,
         projectsSectRef.current,
@@ -143,7 +135,7 @@ function FrontPage(props) {
 
     if (divsWithMovingBgrImage.current.length <= 0) {
       divsWithMovingBgrImage.current = [
-        aboutRef.current,
+        aboutSectRef.current,
         skillsSectRef.current,
       ];
     }
@@ -151,24 +143,38 @@ function FrontPage(props) {
     for (let i = 0; i < skillsRef.current.length; i++) {
       setIfStartCount((prevTab) => [...prevTab, false]);
     }
+  }, [servicesRef.current]);
+
+  // SET EVENT LISTENERS
+  useEffect(() => {
+    // console.log("useEffect-3");
+    const pageFrCurrent = pageFrontRef.current;
+    // const menuIconRefer = menuIconRef.current;
+
+    window.addEventListener("resize", handleResize);
+    pageFrontRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      pageFrCurrent.removeEventListener("scroll", () => {
+        handleScroll();
+      });
+    };
   }, []);
 
   // SET EVENT LISTENERS
   useEffect(() => {
-    // console.log("useEffect-4");
-    const pageFrCurrent = pageFrontRef.current;
     const menuIconCurrent = menuIconRef.current;
     const pageFrontScrollValueBeforeTilt = pageFrontScrollVarBeforeTilt.current;
     const allSectionsRefer = allSectionsRef.current;
     const allSectionsTopRefer = allSectionsTopRef.current;
     const frontMainRefer = frontMainRef.current;
     const pageFrontRefer = pageFrontRef.current;
-    const menuIconRefer = menuIconRef.current;
+    const ulInMenu = menuUl.current;
 
     menuUl.current = $(mainmenuRef.current).find("ul");
-    linkBtnInMenu.current = $(menuUl.current).find("div.nav-link");
 
-    const ulInMenu = menuUl.current;
+    linkBtnInMenu.current = $(menuUl.current).find("div.nav-link");
 
     menuIconRef.current.addEventListener("click", () => {
       console.log("menuIcon clicked");
@@ -183,9 +189,6 @@ function FrontPage(props) {
         menuUl.current
       );
     });
-    window.addEventListener("resize", handleResize);
-
-    pageFrontRef.current.addEventListener("scroll", handleScroll);
 
     for (let i = 0; i < linkBtnInMenu.current.length; i++) {
       linkBtnInMenu.current[i].addEventListener("click", (event) => {
@@ -211,18 +214,13 @@ function FrontPage(props) {
     }
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      pageFrCurrent.removeEventListener("scroll", () => {
-        handleScroll();
-      });
       menuIconCurrent.removeEventListener("click", () => {
-        // console.log("menuIcon clicked");
         moveFrontPage(
           pageFrontScrollValueBeforeTilt,
           allSectionsRefer,
           frontMainRefer,
           pageFrontRefer,
-          menuIconRefer,
+          menuIconCurrent,
           ulInMenu
         );
       });
@@ -276,13 +274,6 @@ function FrontPage(props) {
     }
   }, [resizeFlag]);
 
-  const callSetName = useCallback(
-    (elTargetVal) => {
-      setName(elTargetVal);
-    },
-    [setName]
-  );
-
   const startCountFlag = (oneDiv, index) => {
     const objCount = { ...countedFlag };
     objCount.div = oneDiv;
@@ -313,35 +304,34 @@ function FrontPage(props) {
       // start to show text in 'About me' section or not
       if (
         aboutTxtStart === false &&
-        $(aboutRef.current).offset().top + windowHeight / 2 <= windowHeight
+        $(aboutSectRef.current).offset().top + windowHeight / 2 <= windowHeight
       ) {
         setAboutTxtStart(true);
       }
     }
   };
 
-  // catching divs to be passed to handleAppearing function
-  // 'ref' tiggering 'addToRefs' function pertains to relevant divs inside 'service' and 'skills' sections, not to the sections itself, since the 'ref' is being forwarded to these components and then used in the relevant divs which are to be appeared when they rich page view's area
-  const addToRefs = useCallback(
-    (el) => {
-      // console.log("add to Refs");
-      if (el && el !== null) {
-        const parentArr = $(el).parents();
-        [...parentArr].forEach((element) => {
-          if (element.classList.contains("services")) {
-            if (!servicesRef.current.includes(el)) {
-              servicesRef.current.push(el);
-            }
-          } else if (element.classList.contains("skills")) {
-            if (!skillsRef.current.includes(el)) {
-              skillsRef.current.push(el);
-            }
-          }
-        });
-      }
-    },
-    [servicesRef, skillsRef]
-  );
+  const addToServiceRefer = (array) => {
+    if (
+      array &&
+      array !== undefined &&
+      array !== null &&
+      !servicesRef.current.includes(array)
+    ) {
+      servicesRef.current = array;
+    }
+  };
+
+  const addToSkillsRefer = (array) => {
+    if (
+      array &&
+      array !== undefined &&
+      array !== null &&
+      !skillsRef.current.includes(array)
+    ) {
+      skillsRef.current = array;
+    }
+  };
 
   const handleResize = async () => {
     // console.log("handleResize Fn");
@@ -350,50 +340,87 @@ function FrontPage(props) {
     handleHideAfterResize(appearDivsRef, animShow1, animHide1);
   };
 
-  const sampleStyle = {
-    backgroundColor: "blue",
-    width: "auto",
-    height: "50px",
-    position: "fixed",
-    left: "100px",
-    top: "100px",
-    zIndex: "100",
-  };
-
   return (
     <div>
-      <div ref={mainmenuRef}>{props.children}</div>
+      <div ref={mainmenuRef}>
+        {props.children}
+        {/* <Suspense fallback={<p>Loading...</p>}>{props.children}</Suspense> */}
+      </div>
 
       <div className="frontMain body-frontMain" ref={frontMainRef}>
         <main className="pagefront frontMain-pagefront" ref={pageFrontRef}>
-          <MenuIcon ref={menuIconRef} />
-          <Slider
-            windHeight={windowHeight}
-            windWidth={windowWidth}
-            ref={sliderSectRef}
-          />
-          <About ref={aboutRef} textAppearStart={aboutTxtStart} />
-          <Services ref={addToRefs} refProp={servicesSectRef} />
-          <Skills
-            ref={addToRefs}
-            handleStartCount={ifStartCount}
-            refProp={skillsSectRef}
-          />
-          <Projects ref={projectsSectRef} />
-          <Contact ref={contactSectRef} />
-          <div>{counter}</div>
-          <button onClick={() => setCounter((c) => c + 1)}>
-            Click to incr counter value
-          </button>{" "}
-          <br />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => callSetName(e.target.value)}
-          />
-          <div>My name is {name} </div>
-          <div>This page has been rendered {renderCountRef.current} </div>
-          <div>Render index = {renderIndex} </div>
+          <div
+            className="hamburger mx-0 pagefront-hamburger transform-scale-sm"
+            ref={menuIconRef}
+          >
+            <MenuIcon />
+          </div>
+          <center>
+            <section
+              className="section slider article-slider"
+              ref={sliderSectRef}
+            >
+              <Suspense fallback={<p>Loading...</p>}>
+                <Slider
+                  windHeight={windowHeight}
+                  windWidth={windowWidth}
+                  // ref={sliderSectRef}
+                />
+              </Suspense>
+            </section>
+          </center>
+          <section
+            className="about section bgr-center text-center"
+            ref={aboutSectRef}
+          >
+            <Suspense fallback={<p>Loading...</p>}>
+              <About textAppearStart={aboutTxtStart} />
+              {/* <About ref={aboutSectRef} textAppearStart={aboutTxtStart} /> */}
+            </Suspense>
+          </section>
+          <section
+            className="services section text-center"
+            ref={servicesSectRef}
+          >
+            <Suspense fallback={<p>Loading...</p>}>
+              {/* <Services ref={addToRefs} servicesDivs={servicesRef.current} /> */}
+              {/* <Services ref={addToRefs} servicesDivs={addToServiceRefer} /> */}
+              <Services servicesDivs={addToServiceRefer} />
+            </Suspense>
+
+            {/* <Services ref={addToRefs} refProp={servicesSectRef} /> */}
+          </section>
+          <section
+            className="skills section bgr-cover-norepeat text-center pb-4"
+            ref={skillsSectRef}
+          >
+            <Suspense fallback={<p>Loading...</p>}>
+              <Skills
+                // ref={addToRefs}
+                handleStartCount={ifStartCount}
+                skillsDivs={addToSkillsRefer}
+                // refProp={skillsSectRef}
+              />
+            </Suspense>
+          </section>
+          <section
+            className="projects section text-center"
+            ref={projectsSectRef}
+          >
+            <Suspense fallback={<p>Loading...</p>}>
+              <Projects />
+              {/* <Projects ref={projectsSectRef} /> */}
+            </Suspense>
+          </section>
+          <section className="contact sec-cont-h" ref={contactSectRef}>
+            <Suspense fallback={<p>Loading...</p>}>
+              <Contact />
+              {/* <Contact ref={contactSectRef} /> */}
+            </Suspense>
+          </section>
+          <footer className="text-center mx-auto footer">
+            &copy; 2021 <i>by</i> Codencja
+          </footer>
         </main>
       </div>
     </div>

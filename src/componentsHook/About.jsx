@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import phI from "../img/ja_odb4-2.jpg";
+// import phI from "../img/ja_odb4-2.jpg";
 import WriteText from "./WriteText";
+import "../css/about.css";
 
 const aboutTitle = "ABOUT ME";
 const mainTitle = "Krzysztof Lalik";
@@ -15,36 +16,19 @@ const subTitles = [
   "Desktop, Tablet, Mobile",
 ];
 
-const About = React.forwardRef((props, ref) => {
-  const {
-    // scrollPageFrontValue,
-    textAppearStart,
-    // onAboutTxtAppear,
-    // windHeight,
-  } = props;
+const About = (props) => {
+  const { textAppearStart } = props;
 
   useEffect(() => {
-    console.log("About Me render every time");
-  });
-
-  const sectionStyle = {
-    // console.log("section style");
-    backgroundImage: "url(" + phI + ")",
-    backgroundPosition: "right",
-  };
+    // console.log("About Me render every time");
+    console.log("About Comp.");
+  }, []);
 
   return (
-    <section
-      className="section photo2 bgr-center text-center"
-      data-no="1"
-      data-ctrlnav="ScrollNav"
-      style={sectionStyle}
-      ref={ref}
-    >
+    <React.Fragment>
       <header className="title sec-title title-col-bright title-bgr-dark-bright-grad">
         {aboutTitle}
       </header>
-      {/* <img src={phI} alt="Me" className="photo2" /> */}
       <div className="container sec-cont">
         <WriteText
           textAppearStart={textAppearStart}
@@ -57,9 +41,8 @@ const About = React.forwardRef((props, ref) => {
           subTitles={subTitles}
         />
       </div>
-    </section>
+    </React.Fragment>
   );
-});
+};
 
-// export default React.forwardRef(About);
 export default React.memo(About);

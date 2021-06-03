@@ -1,0 +1,217 @@
+.menuback {
+  background-color: #696969;
+}
+
+.header-top-menuback {
+  position: relative;
+  height: 100vh;
+}
+
+.mainmenu-persp {
+  transform: perspective(500px);
+  -webkit-transform: perspective(500px);
+  -moz-transform: perspective(500px);
+  -o-transform: perspective(500px);
+  -ms-transform: perspective(500px);
+
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+}
+
+#mainmenu > ul {
+  list-style-type: none;
+  transform-origin: 50% 0;
+  visibility: hidden;
+}
+
+.mainmenu > ul > li {
+  padding-top: 0.25rem !important;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  transform-origin: 50% 0;
+}
+
+.swaying-in {
+  animation: swaying-in 1.2s linear;
+}
+
+.swaying-out {
+  animation: swaying-out 0.3s linear;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.notvisible {
+  visibility: hidden;
+}
+
+.nav-item {
+  /* border-top: 4px solid #696969; */
+  text-align: center;
+}
+
+.nav-link {
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.shadow-dark:hover {
+  -webkit-box-shadow: inset 0px 0px 2px 0px #696969;
+  -moz-box-shadow: inset 0px 0px 2px 0px #696969;
+  -ms-box-shadow: inset 0px 0px 2px 0px #696969;
+  -o-box-shadow: inset 0px 0px 2px 0px #696969;
+  box-shadow: inset 0px 0px 2px 0px #696969;
+}
+
+.transform-scale-sm:hover {
+  transform: scale(0.97, 0.97);
+  -webkit-transform: scale(0.97, 0.97);
+  -moz-transform: scale(0.97, 0.97);
+  -o-transform: scale(0.97, 0.97);
+  -ms-transform: scale(0.97, 0.97);
+}
+
+.transform-scale-sm {
+  transition: transform 0.15s ease-in-out;
+  -webkit-transition: transform 0.15s ease-in-out;
+  -moz-transition: transform 0.15s ease-in-out;
+  -o-transition: transform 0.15s ease-in-out;
+  -ms-transition: transform 0.15s ease-in-out;
+}
+
+.closes {
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #696969;
+}
+
+.icon-cancel-circled {
+  display: block;
+  text-shadow: 1px 1px 1px #7f7f7f4d;
+}
+
+.icon-menu-3 {
+  background-image: linear-gradient(
+    transparent -20%,
+    transparent 15%,
+    white 50%,
+    transparent 90%,
+    transparent 100%
+  );
+}
+
+.icon-cancel-circled-1 {
+  position: fixed;
+  font-weight: 400;
+  background-image: radial-gradient(circle, white 0%, transparent 80%);
+}
+
+.tilt {
+  transform: rotate(17deg) translateY(3rem) translateX(7.5rem);
+  -webkit-transform: rotate(17deg) translateY(3rem) translateX(7.5rem);
+  -o-transform: rotate(17deg) translateY(3rem) translateX(7.5rem);
+  -moz-transform: rotate(17deg) translateY(3rem) translateX(7.5rem);
+  -ms-transform: rotate(17deg) translateY(3rem) translateX(7.5rem);
+}
+
+.darker {
+  opacity: 0.3;
+}
+
+@keyframes swaying-in {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  5% {
+    transform: rotateX(-80deg);
+  }
+  10% {
+    transform: rotateX(-65deg);
+  }
+  15% {
+    transform: rotateX(-25deg);
+  }
+  25% {
+    transform: rotateX(25deg);
+  }
+  35% {
+    transform: rotateX(35deg);
+  }
+  45% {
+    transform: rotateX(-10deg);
+  }
+  55% {
+    transform: rotateX(-25deg);
+  }
+  65% {
+    transform: rotateX(5deg);
+  }
+  75% {
+    transform: rotateX(7deg);
+  }
+  85% {
+    transform: rotateX(-5deg);
+  }
+  95% {
+    transform: rotateX(3deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes swaying-out {
+  0% {
+    transform: rotateX(0deg);
+    visibility: visible;
+  }
+  100% {
+    transform: rotateX(-90deg); /* visibility: hidden; */
+  }
+}
+
+@media all and (min-height: 400px) and (max-height: 550px) {
+  .mainmenu > ul > li:not(:last-child) > div {
+    font-size: 1.25rem;
+    padding: 10px !important;
+  }
+
+  .icon-cancel-circled::before {
+    font-size: 2.6rem;
+  }
+}
+
+@media all and (max-height: 400px) {
+  .mainmenu > ul > li {
+    padding-top: 3px !important;
+  }
+
+  .mainmenu > ul > li:not(:last-child) > div {
+    font-size: 0.9rem;
+    padding: 8px !important;
+  }
+
+  .icon-cancel-circled::before {
+    font-size: 2.2rem;
+  }
+}
+
+@media all and (max-height: 279px) {
+  .mainmenu > ul > li:not(:last-child) > div {
+    font-size: 0.7rem;
+    padding: 6px !important;
+  }
+
+  .icon-cancel-circled::before {
+    font-size: 2rem;
+  }
+}

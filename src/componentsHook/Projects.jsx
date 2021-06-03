@@ -65,7 +65,7 @@ const projectsPhotos = [
   ],
 ];
 
-const Projects = React.forwardRef((props, ref) => {
+const Projects = () => {
   const projectsRef = useRef([]);
 
   console.log("Projects Comp.");
@@ -133,13 +133,13 @@ const Projects = React.forwardRef((props, ref) => {
   });
 
   return (
-    <section className="projects section text-center" ref={ref}>
+    <>
       <header className="title sec-title">MY PROJECTS</header>
       <div className="container py-4">
         <div className="row mx-auto projects-row px-2">{projects}</div>
       </div>
-    </section>
+    </>
   );
-});
+};
 
 export default React.memo(Projects);

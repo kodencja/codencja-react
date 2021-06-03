@@ -1,5 +1,8 @@
 import React from "react";
 import NavItem from "./NavItem";
+import("../css/navbar.css");
+
+// const NavItem = lazy(() => import("./NavItem"));
 
 const navItemsTab = [
   {
@@ -41,7 +44,10 @@ function Navbar() {
   return (
     <nav className="navbar nav-light">
       <div className="order-first mainmenu mainmenu-persp">
-        <ul className="navbar-nav nav h4 notvisible">{navItemList}</ul>
+        <ul className="navbar-nav nav h4 notvisible">
+          {navItemList}
+          {/* <Suspense fallback={<p>Loading...</p>}>{navItemList}</Suspense> */}
+        </ul>
       </div>
     </nav>
   );

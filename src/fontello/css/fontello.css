@@ -57,7 +57,7 @@
 }
 
 [class="icon-lightbulb"]:before,
-[class*="icon-sitemap"]:before {
+[class="icon-sitemap"]:before {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 4.5rem;
@@ -65,7 +65,7 @@
 }
 
 [class="icon-cancel-circled-1"]:before,
-[class*="icon-menu-3"]:before {
+[class="icon-menu-3"]:before {
   font-size: 2.7rem;
   color: #696969;
   margin-right: 5px;
@@ -97,6 +97,7 @@
 } /* '' */
 .icon-edit:before {
   content: "\e805";
+  font-size: 1.8rem;
 } /* '' */
 .icon-cancel-circled-1:before {
   content: "\e806";
@@ -109,12 +110,14 @@
 } /* '' */
 .icon-location:before {
   content: "\f031";
+  font-size: 1.8rem;
 } /* '' */
 .icon-sitemap:before {
   content: "\f0e8";
 } /* '' */
 .icon-git-squared:before {
   content: "\f1d2";
+  font-size: 1.8rem;
 } /* '' */
 .icon-linkedin-squared:before {
   content: "\f30c";

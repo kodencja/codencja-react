@@ -1,13 +1,13 @@
 .contact {
-  background-color: #eeeeee;
   font-family: "Open Sans", sans-serif;
 }
 
 .contact-info {
   margin: 1rem 1rem;
+  margin-bottom: 0;
   padding: 2rem 2rem;
   margin-left: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: rgb(68, 73, 78);
 }
@@ -26,8 +26,8 @@ a:hover {
   margin-bottom: 1.6rem;
 }
 
-.contact-address > div {
-  margin-bottom: 1.25rem;
+.contact-address > div:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 .contact-subtitle {
@@ -41,32 +41,38 @@ a:hover {
 
 .contact-address > div:nth-child(1) a:hover {
   color: rgb(32, 64, 160);
-  /* color: rgb(2, 68, 2); */
-  /* color: rgb(79, 99, 192); */
 }
 
 .contact-address > div:nth-child(1) a:hover i:before {
   color: rgb(32, 64, 160);
-  /* color: rgb(104, 85, 2); */
-  /* color: rgb(79, 99, 192); */
-}
-
-.contact-address > div:nth-child(2) {
-  /* margin-bottom: 1.5rem; */
 }
 
 .contact-subtitle:nth-child(3) {
   margin-bottom: 0.25rem;
 }
 
-.contact-address > div:nth-child(2) a {
+.contact-address > div:nth-child(2) a,
+.contact-address > div:nth-child(2) i {
   color: rgb(1, 100, 1);
 }
 
-.contact-address > div:nth-child(2) a:hover {
+.contact-address > div:nth-child(2) a:hover,
+.contact-address > div:nth-child(2) i:hover {
   color: rgb(2, 68, 2);
 }
 
 .contact-address > div:nth-child(3) {
+  color: rgb(41, 41, 41);
+}
+
+.contact-address > div:nth-child(3) i:hover {
   color: rgb(22, 22, 22);
+}
+
+.contact-address > div:last-child a {
+  color: #ff4013;
+}
+
+.contact-address > div:last-child a:hover {
+  color: rgb(207, 58, 24);
 }

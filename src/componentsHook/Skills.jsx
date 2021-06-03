@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import CountUp from "react-countup";
 import("../css/skills.css");
 
@@ -63,17 +63,33 @@ const hardQuotation = [
 
 const countingTime = 7;
 
-const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
+const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
+  const skillsRef = useRef([]);
+
+  // useEffect(() => {
+  //   console.log("Skills render");
+  // });
+
   useEffect(() => {
-    console.log("Skills render");
-  });
+    console.log("Services mounted");
+    if (skillsRef.current.length > 0) {
+      skillsDivs(skillsRef.current);
+    }
+  }, []);
+
+  const addToSkillsRef = (el) => {
+    if (el && el !== undefined && !skillsRef.current.includes(el)) {
+      skillsRef.current.push(el);
+    }
+  };
 
   const hardSkillsCircles = hardSkills.map((skill, index) => {
     return (
       <div
         className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 animated NotInView fadeOutDown"
         key={index}
-        ref={ref}
+        ref={addToSkillsRef}
+        // ref={ref}
       >
         <div className="flip-card-inner">
           <div className="flip-card-front">
@@ -120,7 +136,8 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
       <div
         className="flip-card col-md-4 mx-4 mb-4 mt-5 px-0 animated NotInView fadeOutDown"
         key={index}
-        ref={ref}
+        ref={addToSkillsRef}
+        // ref={ref}
       >
         <div className="flip-card-inner">
           <div className="flip-card-front">
@@ -145,10 +162,7 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
   });
 
   return (
-    <section
-      className="skills section bgr-cover-norepeat text-center pb-4"
-      ref={refProp}
-    >
+    <React.Fragment>
       <header className="title sec-title title-col-bright title-bgr-dark">
         TECHNICAL SKILLS
       </header>
@@ -164,8 +178,8 @@ const Skills = React.forwardRef(({ handleStartCount, refProp }, ref) => {
           </div>
         </div>
       </div>
-    </section>
+    </React.Fragment>
   );
-});
+};
 
 export default memo(Skills);
