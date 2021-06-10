@@ -32,11 +32,11 @@ const carouselItemsPhotos = [
   photo12,
 ];
 const carouselHead = [
-  ["Web-Developing & Designing", "Front & Back End Support"],
+  ["Web-Developing & Designing", "Frontend Programming"],
   ["Up to", sign50, "ideas / h", "in built-up area"],
   ["To make sens", "to make order"],
   ["from tangle", "of non-decimal numbers"],
-  ["Krzysztof Lalik", "Front-end developing", "Back-end supporting"],
+  ["Krzysztof Lalik", "Frontend developing", "Backend supporting"],
   [
     "Programming & designing websites",
     "Eye-catching & functional",

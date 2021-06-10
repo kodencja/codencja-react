@@ -8,10 +8,16 @@ import todoList from "../img/projects/todoList.jpg";
 import vpanels from "../img/projects/vpanels1.jpg";
 import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
+import calculator from "../img/projects/calcMVC.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
 const projectsPhotos = [
+  [
+    codencja,
+    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc.",
+    "https://github.com/kodencja/codencja-react",
+  ],
   [
     todoList,
     "Todo-list with axios - React, JS, CSS",
@@ -59,9 +65,9 @@ const projectsPhotos = [
     "https://github.com/kodencja/SPOJ-exercises",
   ],
   [
-    codencja,
-    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc.",
-    "https://github.com/kodencja/codencja-react",
+    calculator,
+    "Calculator - JS, SASS, HTML, MVC",
+    "https://kodencja.github.io/calc-mvc/",
   ],
 ];
 

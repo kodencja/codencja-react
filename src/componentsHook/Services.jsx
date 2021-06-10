@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import("../css/services.css");
 
 const txtSerives = [
-  "UI Designing Front-End Developing Back-End Support",
+  "UI Designing Frontend\u00A0Developing Backend\u00A0Support",
   "Modern Frameworks &\u00A0Technologies REACT\u00A0JS\u00A0HOOKS",
   "Coding Graphic Custom-made &\u00A0Standard",
   "Fully Responsive For\u00A0All Displays",

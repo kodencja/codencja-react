@@ -16,7 +16,7 @@ const hardSkills = [
   "mongoDB",
   "GIT",
 ];
-const hardSkillsPercent = [75, 75, 70, 70, 75, 75, 75, 75, 65, 70, 55, 70];
+const hardSkillsPercent = [75, 75, 70, 70, 75, 75, 75, 70, 65, 70, 55, 70];
 
 const softSkills = [
   "NPM",
@@ -26,19 +26,23 @@ const softSkills = [
   "C++",
   "PHP",
   "MySQL",
+  "MVC",
+  "BEM",
   "PhotoShop",
   "Illustrator",
   "Premiere",
 ];
 
 const softQuotation = [
-  "“First,",
+  "...",
+  "First,",
   "solve",
   "the",
   "problem.",
   "Then,",
   "write",
-  "the code",
+  "the",
+  "code",
   " - ",
   "John",
   "Johnson",

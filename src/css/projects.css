@@ -22,20 +22,17 @@
   filter: brightness(75%);
 }
 
-.project:hover {
-  -moz-filter: brightness(100%);
-  -webkit-filter: brightness(100%);
-  -webkit-filter: brightness(100%);
-  -webkit-filter: brightness(100%);
-  filter: brightness(100%);
-}
-
 .project {
+  box-sizing: border-box;
   position: relative;
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: 2.5rem;
   border-radius: 4px;
+  -webkit-box-shadow: 1px 1px 8px 4px #e8e8e8;
+  -ms-box-shadow: 1px 1px 8px 4px #e8e8e8;
+  -o-box-shadow: 1px 1px 8px 4px #e8e8e8;
+  box-shadow: 1px 1px 8px 4px #e8e8e8;
   -webkit-transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
   -moz-transition: all 0.5s ease-in;
@@ -43,6 +40,16 @@
   -o-transition: all 0.5s ease-in;
   -ms-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
+}
+
+.project:hover {
+  -moz-filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+  filter: brightness(100%);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .project a {

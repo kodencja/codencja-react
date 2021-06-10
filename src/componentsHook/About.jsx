@@ -6,8 +6,8 @@ import "../css/about.css";
 const aboutTitle = "ABOUT ME";
 const mainTitle = "Krzysztof Lalik";
 const subTitles = [
-  "Front-end Developing",
-  "Back-end Supporting",
+  "Frontend Developing",
+  "Backend Supporting",
   "Programming & designing websites",
   "Fully responsive & interactive",
   "Individuals & Companies",
