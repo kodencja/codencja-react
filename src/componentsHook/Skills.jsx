@@ -11,18 +11,18 @@ const hardSkills = [
   "HOOKS",
   "Bootstrap",
   "SASS",
+  "TypeScript",
   "NodeJS",
   "Express.js",
-  "mongoDB",
   "GIT",
 ];
-const hardSkillsPercent = [75, 75, 70, 70, 75, 75, 75, 70, 65, 70, 55, 70];
+const hardSkillsPercent = [75, 75, 75, 75, 75, 75, 75, 70, 65, 60, 65, 70];
 
 const softSkills = [
   "NPM",
-  "YARN",
-  "EJS View",
   "REST API",
+  "EJS View",
+  "mongoDB",
   "C++",
   "PHP",
   "MySQL",
