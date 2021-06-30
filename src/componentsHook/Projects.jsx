@@ -9,6 +9,7 @@ import vpanels from "../img/projects/vpanels1.jpg";
 import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
+import forms from "../img/projects/formsGen.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
@@ -68,6 +69,11 @@ const projectsPhotos = [
     calculator,
     "Calculator - JS, SASS, HTML, MVC",
     "https://kodencja.github.io/calc-mvc/",
+  ],
+  [
+    forms,
+    "Forms Generator - TypeScript, SASS, HTML",
+    "https://kodencja.github.io/forms-generator/index.html",
   ],
 ];
 

@@ -16,7 +16,7 @@ const hardSkills = [
   "Express.js",
   "GIT",
 ];
-const hardSkillsPercent = [75, 75, 75, 75, 75, 75, 75, 70, 65, 60, 65, 70];
+const hardSkillsPercent = [75, 75, 75, 75, 75, 75, 75, 70, 70, 60, 65, 70];
 
 const softSkills = [
   "NPM",
