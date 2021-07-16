@@ -3,8 +3,10 @@
 }
 
 .header-top-menuback {
-  position: relative;
+  /* position: relative; */
+  position: fixed;
   height: 100vh;
+  overflow: hidden;
 }
 
 .mainmenu-persp {

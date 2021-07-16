@@ -1,9 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // handle FrontPage tilting and opening menu
 function useMoveFrontPage() {
+// function useMoveFrontPage(isOpenVal) {
   const allSectionsTopRef = useRef([]);
-  const menuIsOpened = useRef(false);
+  const menuIsOpened = useRef(true);
+  // const menuIsOpened = useRef(isOpenVal);
+  // const [menuIsOpened, setMenuIsOpened ]= useState(isOpenVal);
+  const startOpen = useRef(true);
 
   // console.log("useMoveFrontPage Hook!");
 
@@ -28,7 +32,7 @@ function useMoveFrontPage() {
   ) => {
     // console.log("moveFrontPage Fn");
 
-    if (menuIsOpened.current === false) {
+    if (menuIsOpened.current === true) {
       getSectionsTop(pageFrontScrollVarBeforeTilt, allSectionsRef);
       frontMainRef.classList.add("tilt");
       pageFrontRef.classList.add("overflow-hidden");
@@ -37,15 +41,22 @@ function useMoveFrontPage() {
       menuIconRef.childNodes[1].classList.remove("d-none");
       setTimeout(() => {
         frontMainRef.classList.add("darker");
-      }, 320);
+      }, 420);
 
       setTimeout(() => {
         menuUl[0].classList.remove("swaying-out", "notvisible");
         menuUl[0].classList.add("visible", "swaying-in");
-      }, 300);
+      }, 400);
 
-      menuIsOpened.current = true;
+      menuIsOpened.current = false;
+      // setMenuIsOpened(false);
     } else {
+      
+      if(startOpen.current === true){
+        getSectionsTop(pageFrontScrollVarBeforeTilt, allSectionsRef);
+        startOpen.current = false;
+      }
+      
       menuUl[0].classList.remove("visible", "swaying-in");
       menuUl[0].classList.add("swaying-out", "notvisible");
 
@@ -54,9 +65,10 @@ function useMoveFrontPage() {
         pageFrontRef.classList.remove("overflow-hidden");
         menuIconRef.childNodes[0].classList.remove("d-none");
         menuIconRef.childNodes[1].classList.add("d-none");
-      }, 250);
+      }, 350);
 
-      menuIsOpened.current = false;
+      menuIsOpened.current = true;
+      // setMenuIsOpened(true);
     }
   };
 

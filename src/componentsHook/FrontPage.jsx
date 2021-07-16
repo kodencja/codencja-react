@@ -94,6 +94,7 @@ function FrontPage(props) {
 
   // CUSTOM HOOK - handle FrontPage tilting and opening menu
   const { moveFrontPage, allSectionsTopRef } = useMoveFrontPage();
+  // const { moveFrontPage, allSectionsTopRef } = useMoveFrontPage(transEnd);
 
   // USEEFFECT LISTENERS
   // check if start Counting in appeared divs
@@ -168,6 +169,17 @@ function FrontPage(props) {
     menuUl.current = $(mainmenuRef.current).find("ul");
 
     linkBtnInMenu.current = $(menuUl.current).find("div.nav-link");
+
+    pageFrontScrollVarBeforeTilt.current = pageFrontScrollVar.current;
+    // move frontPage to the right position - open or closed
+    moveFrontPage(
+      pageFrontScrollVarBeforeTilt.current,
+      allSectionsRef.current,
+      frontMainRef.current,
+      pageFrontRef.current,
+      menuIconRef.current,
+      menuUl.current
+    );
 
     menuIconRef.current.addEventListener("click", () => {
       pageFrontScrollVarBeforeTilt.current = pageFrontScrollVar.current;
