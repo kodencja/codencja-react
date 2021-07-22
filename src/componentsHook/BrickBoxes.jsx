@@ -4,7 +4,7 @@ import bgrStartPhoto from "../img/signs3code2.jpg";
 const titles = [
   ["import\u00A0", "\u00A0Knowledge", "\u00A0from\u00A0", "'learning'"],
   ["import\u00A0", "Success", "\u00A0from\u00A0", "'work'", ";"],
-  ["while", "(!Success", "(Knowledge)){"],
+  ["while", "(\u00A0!Success", "(Knowledge)", ")\u00A0{"],
   ["import\u00A0", "Creativity", "\u00A0from\u00A0", "'imagination'"],
   ["import\u00A0", "Coffee", "\u00A0from\u00A0", "'farmers'"],
   ["drink", "(Coffee);"],
@@ -284,7 +284,7 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
                   {e}
                 </span>
               );
-            } else if (j === 1) {
+            } else if (j === 2) {
               return (
                 <span key={"s" + rowN + ind + j} className="red">
                   {e}
@@ -302,6 +302,13 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           p = (
             <p key={"p" + rowN + ind} className="start-title">
               {spans}
+            </p>
+          );
+        } else if (ind === 4) {
+          word = titles[2][ind - 1];
+          p = (
+            <p key={"p" + rowN + ind} className="start-title white">
+              {word}
             </p>
           );
         }

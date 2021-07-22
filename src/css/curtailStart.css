@@ -42,14 +42,14 @@
 
 @-moz-document url-prefix() {
   .curtail {
-    --no-of-cols: 10;
-    --no-of-rows: 20;
+    --no-of-cols: 9;
+    --no-of-rows: 19;
   }
 }
 
 @media only screen and (hover: none) and (pointer: coarse) {
   .curtail {
-    --no-of-cols: 10;
-    --no-of-rows: 20;
+    --no-of-cols: 9;
+    --no-of-rows: 19;
   }
 }

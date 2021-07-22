@@ -77,8 +77,8 @@ function Curtail({ onTransEnd }) {
 
     if (window.orientation !== undefined) {
       console.log("mobile");
-      dispatch({ type: "noOfColsNo", value: 10 });
-      dispatch({ type: "noOfRowsNo", value: 20 });
+      dispatch({ type: "noOfColsNo", value: 9 });
+      dispatch({ type: "noOfRowsNo", value: 19 });
       dispatch({ type: "ifMobileOrMoz", value: true });
     } else {
       const noOfCols = window
