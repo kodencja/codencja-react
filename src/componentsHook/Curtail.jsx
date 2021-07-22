@@ -1,4 +1,11 @@
-import React, { useEffect, useRef, useState, useReducer, lazy, Suspense } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useReducer,
+  lazy,
+  Suspense,
+} from "react";
 import "../css/curtailStart.css";
 
 // const BrickBoxes = lazy(()=> import("./BrickBoxes"));
@@ -30,21 +37,19 @@ const reducer = (state, action) => {
 };
 
 function Curtail({ onTransEnd }) {
-
   // console.log("Curtail Comp. rendered!");
-  
-  const [state, dispatch] = useReducer(reducer, initState);
-    const curtailRef = useRef();
 
-  const { noOfColsNo, noOfRowsNo, boxAnimTimeNo, ifMobileOrMoz, boxesArrNo } =
-    state;
+  const [state, dispatch] = useReducer(reducer, initState);
+  const curtailRef = useRef();
+
+  const { noOfColsNo, noOfRowsNo, boxesArrNo } = state;
 
   useEffect(() => {
     getStyleVars();
   }, []);
 
-    useEffect(() => {
-        BrickBoxes = lazy(()=> import("./BrickBoxes"));
+  useEffect(() => {
+    BrickBoxes = lazy(() => import("./BrickBoxes"));
   }, [boxesArrNo]);
 
   useEffect(() => {
@@ -61,7 +66,6 @@ function Curtail({ onTransEnd }) {
   }, [noOfColsNo]);
 
   const getStyleVars = () => {
-
     const boxAnimTime = window
       .getComputedStyle(curtailRef.current)
       .getPropertyValue("--box-anim-time");
@@ -71,13 +75,11 @@ function Curtail({ onTransEnd }) {
       value: parseFloat(boxAnimTime) * 1000 + 250,
     });
 
-
     if (window.orientation !== undefined) {
       console.log("mobile");
       dispatch({ type: "noOfColsNo", value: 10 });
       dispatch({ type: "noOfRowsNo", value: 20 });
       dispatch({ type: "ifMobileOrMoz", value: true });
-
     } else {
       const noOfCols = window
         .getComputedStyle(curtailRef.current)
@@ -93,15 +95,25 @@ function Curtail({ onTransEnd }) {
 
   return (
     <>
-      <div className="curtail" ref={curtailRef}>
-      <Suspense fallback={<p>...</p>}>
-{state.boxesArrNo.length > 0 ? <BrickBoxes
-          onState={state}
-          onDispatch={dispatch}
-          onRef={curtailRef.current}
-          onTransEnd={onTransEnd}
-        /> : null}
-      </Suspense>
+      <div
+        className="curtail"
+        ref={curtailRef}
+        style={
+          noOfColsNo > 10
+            ? { backgroundColor: "#333738" }
+            : { backgroundColor: "whitesmoke" }
+        }
+      >
+        <Suspense fallback={<p>...</p>}>
+          {state.boxesArrNo.length > 0 ? (
+            <BrickBoxes
+              onState={state}
+              onDispatch={dispatch}
+              onRef={curtailRef.current}
+              onTransEnd={onTransEnd}
+            />
+          ) : null}
+        </Suspense>
       </div>
     </>
   );

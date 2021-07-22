@@ -17,7 +17,6 @@
   box-sizing: border-box;
   z-index: 1000;
   opacity: 1;
-  background-color: #333738;
   overflow: hidden;
   display: grid;
   display: -ms-grid;
