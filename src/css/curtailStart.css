@@ -1,0 +1,55 @@
+* {
+  margin: 0 0;
+  padding: 0 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.curtail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 0;
+  padding: 0 0;
+  box-sizing: border-box;
+  z-index: 1000;
+  opacity: 1;
+  overflow: hidden;
+   display: grid;
+  display: -ms-grid;
+  -ms-grid-columns: (1fr)[var];
+      grid-template-columns: repeat(var(--no-of-cols), 1fr);
+  -ms-grid-rows: (1fr)[var];
+      grid-template-rows: repeat(var(--no-of-rows), 1fr);
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.curtail {
+  --block-width: 30;
+  --block-height: 50;
+  --scale: 1.2;
+  --no-of-cols: 20;
+  --no-of-rows: 15;
+  --box-trans-time: 1.75;
+  --box-anim-time: 1.75;
+}
+
+@-moz-document url-prefix() {
+  .curtail {
+    --no-of-cols: 10;
+    --no-of-rows: 20;
+  }
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+  .curtail {
+    --no-of-cols: 10;
+    --no-of-rows: 20;
+  }
+}

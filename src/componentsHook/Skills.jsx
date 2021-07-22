@@ -7,8 +7,8 @@ const hardSkills = [
   "CSS3",
   "JS(ES6)",
   "jQUERY",
+  "REDUX",
   "REACT.JS",
-  "HOOKS",
   "Bootstrap",
   "SASS",
   "TypeScript",
@@ -16,7 +16,7 @@ const hardSkills = [
   "Express.js",
   "GIT",
 ];
-const hardSkillsPercent = [75, 75, 75, 75, 75, 75, 75, 70, 70, 60, 65, 70];
+const hardSkillsPercent = [75, 75, 75, 75, 70, 75, 75, 70, 70, 60, 65, 70];
 
 const softSkills = [
   "NPM",

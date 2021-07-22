@@ -5,10 +5,8 @@ import "./fontello/css/fontello.css";
 import "./icons/font/flaticon.css";
 import Curtail from "./componentsHook/Curtail";
 import Navbar from "./componentsHook/Navbar";
-// import FrontPage from "./componentsHook/FrontPage";
 
 let FrontPage;
-
 
 function App() {
   const [transEnd, setTransEnd] = useState(false);
@@ -19,11 +17,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <Curtail onTransEnd={setTransEnd} />
-      <Suspense fallback={<p>Loading...</p>}>
-        {transEnd ? (<FrontPage><div className="menuback col-12 header-top-menuback"><Navbar /></div></FrontPage>) :  <p>...</p>}
+    {
+    !transEnd ? <Curtail onTransEnd={setTransEnd} /> : 
+          <Suspense fallback={<p>Loading...</p>}>
+      <FrontPage><div className="menuback col-12 header-top-menuback">
+       <Navbar />
+      </div>
+      </FrontPage>
       </Suspense>
-    
+    }
     </React.Fragment>
   )
 }

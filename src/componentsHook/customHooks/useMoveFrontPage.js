@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 // handle FrontPage tilting and opening menu
 function useMoveFrontPage() {
