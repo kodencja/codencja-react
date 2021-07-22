@@ -30,7 +30,7 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
   const { noOfColsNo, noOfRowsNo, boxAnimTimeNo, ifMobileOrMoz, boxesArrNo } =
     onState;
 
-      //  console.log("BrickBoxes Comp. rendered!");
+  //  console.log("BrickBoxes Comp. rendered!");
 
   useEffect(() => {
     if (boxesArrNo.length > 0) {
@@ -39,12 +39,11 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           type: "boxAnimTimeNo",
           value: boxAnimTimeNo + 1500,
         });
-        // console.log("css/curtail.css");
+        console.log("css/curtail.css");
         require("../css/curtail.css");
       } else {
-        // console.log("css/curtailMoz.css");
+        console.log("css/curtailMoz.css");
         onDispatch({ type: "ifMobileOrMoz", value: true });
-        // intervalTime.current = 75;
         require("../css/curtailMoz.css");
       }
       noOfAllBoxes.current = noOfColsNo * noOfRowsNo;
@@ -124,7 +123,6 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           boxWidth * (number - 1 - noOfColsNo * (rowNo.current - 1))
         }px, -${boxHeight * (rowNo.current - 1)}px) scale(0.25, 0.35)`;
       }
-
     }
 
     // finally stop displaying "curtail" element and let FRONTpage to be displayed by setting 'onTransEnd' prop to 'true'
@@ -192,7 +190,7 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
     }, intervalTime.current / 3);
   };
 
-// chooseTitle - function dealing with putting words from "TITLES" array in the right box of curtail grid, with the right class adding a specific font color to each word or character
+  // chooseTitle - function dealing with putting words from "TITLES" array in the right box of curtail grid, with the right class adding a specific font color to each word or character
   const chooseTitle = (rowN, ind) => {
     let word, p;
     switch (rowN) {
@@ -423,7 +421,6 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
       default:
         break;
     }
-
   };
 
   const createBoxes = () => {
@@ -460,7 +457,7 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
       });
     }
     setTimeout(() => {
-    setBricks(brickBoxes);
+      setBricks(brickBoxes);
     }, 25);
   };
 

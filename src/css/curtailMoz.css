@@ -1,5 +1,5 @@
 .curtail {
-  background-color: cornsilk;
+  background-color: whitesmoke;
 }
 
 .brick-box-moz {
@@ -14,49 +14,51 @@
   color: white;
   font-weight: 900;
   font-size: 1.5rem;
-  -webkit-transition: -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
+  -webkit-transition: -webkit-transform calc(var(--box-trans-time) * 1.5s)
+    ease-in;
   transition: -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
   -o-transition: transform calc(var(--box-trans-time) * 1.5s) ease-in;
   transition: transform calc(var(--box-trans-time) * 1.5s) ease-in;
-  transition: transform calc(var(--box-trans-time) * 1.5s) ease-in, -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
+  transition: transform calc(var(--box-trans-time) * 1.5s) ease-in,
+    -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
 }
 
 .brick-box-moz p {
   -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
 }
 
 .start-title {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   text-align: center;
 }
 
 .boxAnimMoz {
-      -webkit-animation: animZ calc(var(--box-anim-time) * 0.75s) ease-in forwards;
-          animation: animZ calc(var(--box-anim-time) * 0.75s) ease-in forwards;
+  -webkit-animation: animZ calc(var(--box-anim-time) * 0.75s) ease-in forwards;
+  animation: animZ calc(var(--box-anim-time) * 0.75s) ease-in forwards;
 }
 
 .boxAnimRev {
-    -webkit-animation: animZRev calc((var(--box-anim-time) / 2) * 0.75s) ease-in forwards;
-          animation: animZRev calc((var(--box-anim-time) / 2) * 0.75s) ease-in forwards;
+  -webkit-animation: animZRev calc((var(--box-anim-time) / 2) * 0.75s) ease-in
+    forwards;
+  animation: animZRev calc((var(--box-anim-time) / 2) * 0.75s) ease-in forwards;
 }
-
 
 @-webkit-keyframes animZ {
   0% {
     opacity: 1;
     -webkit-transform: translateZ(2000px);
-            transform: translateZ(2000px);
+    transform: translateZ(2000px);
   }
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0px);
-            transform: translateZ(0px);
+    transform: translateZ(0px);
   }
 }
 
@@ -64,12 +66,12 @@
   0% {
     opacity: 1;
     -webkit-transform: translateZ(2000px);
-            transform: translateZ(2000px);
+    transform: translateZ(2000px);
   }
   100% {
     opacity: 1;
     -webkit-transform: translateZ(0px);
-            transform: translateZ(0px);
+    transform: translateZ(0px);
   }
 }
 
@@ -77,17 +79,17 @@
   0% {
     opacity: 1;
     -webkit-transform: translateZ(0px);
-            transform: translateZ(0px);
+    transform: translateZ(0px);
   }
   80% {
     opacity: 1;
     -webkit-transform: translateZ(1600px);
-            transform: translateZ(1600px);
+    transform: translateZ(1600px);
   }
   100% {
     opacity: 0;
     -webkit-transform: translateZ(2000px);
-            transform: translateZ(2000px);
+    transform: translateZ(2000px);
   }
 }
 
@@ -95,17 +97,17 @@
   0% {
     opacity: 1;
     -webkit-transform: translateZ(0px);
-            transform: translateZ(0px);
+    transform: translateZ(0px);
   }
   80% {
     opacity: 1;
     -webkit-transform: translateZ(1600px);
-            transform: translateZ(1600px);
+    transform: translateZ(1600px);
   }
   100% {
     opacity: 0;
     -webkit-transform: translateZ(2000px);
-            transform: translateZ(2000px);
+    transform: translateZ(2000px);
   }
 }
 
