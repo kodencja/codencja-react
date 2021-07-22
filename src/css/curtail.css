@@ -1,40 +1,42 @@
 .curtail {
-  background-color: rgb(51, 55, 56);
+  background-color: #333738;
 }
 .brick-box {
   width: 100%;
   height: 100%;
   opacity: 1;
   /* transition: all calc(var(--box-trans-time) * 1s) ease-in; */
-  -webkit-transition: -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
+  -webkit-transition: -webkit-transform calc(var(--box-trans-time) * 1.5s)
+    ease-in;
   transition: -webkit-transform calc(var(--box-trans-time) * 1.5s) ease-in;
   -o-transition: transform calc(var(--box-trans-time) * 1.5s) ease-in;
   transition: transform calc(var(--box-trans-time) * 1.5s) ease-in;
-  transition: transform calc(var(--box-trans-time) * 1.5s) ease-in, -webkit-transform calc(var(--box-trans-time) * 2s) ease-in;
+  transition: transform calc(var(--box-trans-time) * 1.5s) ease-in,
+    -webkit-transform calc(var(--box-trans-time) * 2s) ease-in;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   color: transparent;
   font-size: 0;
 }
 
 .boxAnim {
   -webkit-animation: anim1A calc(var(--box-anim-time) * 1s) ease-in forwards;
-          animation: anim1A calc(var(--box-anim-time) * 1s) ease-in forwards;
+  animation: anim1A calc(var(--box-anim-time) * 1s) ease-in forwards;
 }
 
 @-webkit-keyframes anim1A {
   0% {
     opacity: 0;
     -webkit-transform: scale(0) translateY(500px);
-            transform: scale(0) translateY(500px);
+    transform: scale(0) translateY(500px);
   }
   50% {
     opacity: 1;
@@ -50,7 +52,7 @@
   100% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px);
+    transform: scale(1) translateY(0px);
     background-image: url("../img/signs3code2.jpg");
     background-position: center;
     background-attachment: fixed;
@@ -66,7 +68,7 @@
   0% {
     opacity: 0;
     -webkit-transform: scale(0) translateY(500px);
-            transform: scale(0) translateY(500px);
+    transform: scale(0) translateY(500px);
   }
   50% {
     opacity: 1;
@@ -82,7 +84,7 @@
   100% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px);
+    transform: scale(1) translateY(0px);
     background-image: url("../img/signs3code2.jpg");
     background-position: center;
     background-attachment: fixed;
@@ -93,4 +95,3 @@
     -o-background-size: cover;
   }
 }
-

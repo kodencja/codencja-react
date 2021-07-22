@@ -14,6 +14,7 @@ const titles = [
 
 function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
   const bricksRef = useRef([]);
+  const cssImported = useRef(false);
   const arrLenght = useRef();
   const n = useRef(-1);
   const rowNo = useRef(0);
@@ -39,12 +40,19 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           type: "boxAnimTimeNo",
           value: boxAnimTimeNo + 1500,
         });
-        // console.log("css/curtail.css");
-        require("../css/curtail.css");
+        if (!cssImported.current) {
+          console.log("css/curtail.css");
+          require("../css/curtail.css");
+          cssImported.current = true;
+        }
       } else {
-        // console.log("css/curtailMoz.css");
         onDispatch({ type: "ifMobileOrMoz", value: true });
-        require("../css/curtailMoz.css");
+
+        if (!cssImported.current) {
+          console.log("css/curtailMoz.css");
+          require("../css/curtailMoz.css");
+          cssImported.current = true;
+        }
       }
       noOfAllBoxes.current = noOfColsNo * noOfRowsNo;
       setMobileMozSet(true);

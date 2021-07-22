@@ -153,24 +153,36 @@
 
 @media all and (max-width: 800px) {
   .brick-box-moz {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 }
 
 @media all and (max-width: 635px) {
   .brick-box-moz {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 }
 
 @media all and (max-width: 435px) {
   .brick-box-moz {
-    font-size: 0.6rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .brick-box-moz {
+    font-size: 0.9rem;
   }
 }
 
 @media all and (max-width: 270px) {
   .brick-box-moz {
-    font-size: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media all and (max-width: 245px) {
+  .brick-box-moz {
+    font-size: 0.65rem;
   }
 }
