@@ -2,7 +2,7 @@
   margin: 0 0;
   padding: 0 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .curtail {
@@ -17,17 +17,18 @@
   box-sizing: border-box;
   z-index: 1000;
   opacity: 1;
+  background-color: rgb(51, 55, 56);
   overflow: hidden;
-   display: grid;
+  display: grid;
   display: -ms-grid;
-  -ms-grid-columns: (1fr)[var];
-      grid-template-columns: repeat(var(--no-of-cols), 1fr);
-  -ms-grid-rows: (1fr)[var];
-      grid-template-rows: repeat(var(--no-of-rows), 1fr);
+  -ms-grid-columns: (1fr) [var];
+  grid-template-columns: repeat(var(--no-of-cols), 1fr);
+  -ms-grid-rows: (1fr) [var];
+  grid-template-rows: repeat(var(--no-of-rows), 1fr);
   perspective: 1200px;
   -webkit-perspective: 1200px;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .curtail {

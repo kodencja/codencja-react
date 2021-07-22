@@ -39,10 +39,10 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           type: "boxAnimTimeNo",
           value: boxAnimTimeNo + 1500,
         });
-        console.log("css/curtail.css");
+        // console.log("css/curtail.css");
         require("../css/curtail.css");
       } else {
-        console.log("css/curtailMoz.css");
+        // console.log("css/curtailMoz.css");
         onDispatch({ type: "ifMobileOrMoz", value: true });
         require("../css/curtailMoz.css");
       }
