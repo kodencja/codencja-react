@@ -80,7 +80,9 @@ const Services = (props) => {
 
   return (
     <React.Fragment>
-      <header className="title sec-title">SERVICES</header>
+      <header className="title sec-title">
+        {props.onTitleAnim("SERVICES")}
+      </header>
       <div className="container sec-cont py-3">
         <div className="row ">{serviceDivs}</div>
       </div>

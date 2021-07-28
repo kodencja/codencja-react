@@ -169,6 +169,126 @@
   padding: 0.4rem;
 }
 
+/* animation for letters */
+@-webkit-keyframes animLetters {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  10% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    opacity: 1;
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes animLetters {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  10% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    opacity: 1;
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+@-webkit-keyframes animTitle {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes animTitle {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.text-anim {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.letters-anim {
+  margin-right: 1.7px;
+  opacity: 0.9;
+  -webkit-animation: animLetters 8s ease-in-out forwards infinite;
+  animation: animLetters 8s ease-in-out forwards infinite;
+}
+
+.title-anim {
+  font-weight: 500;
+  font-size: 2.5rem;
+  margin-right: 3px;
+  opacity: 1;
+  -webkit-animation: animTitle 6s ease-in-out forwards infinite;
+  animation: animTitle 6s ease-in-out forwards infinite;
+}
+
 /* set root font-size according to window width */
 
 @media all and (max-width: 992px) {
@@ -220,5 +340,12 @@
 
   .sec-cont {
     min-height: 80vh;
+  }
+}
+
+@media all and (max-width: 359px) {
+  .title-anim {
+    font-size: 1.9rem;
+    margin-right: 2px;
   }
 }

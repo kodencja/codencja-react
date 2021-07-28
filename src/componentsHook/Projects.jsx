@@ -9,14 +9,14 @@ import vpanels from "../img/projects/vpanels1.jpg";
 import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
-import forms from "../img/projects/formsGen.jpg";
+import forms from "../img/projects/formsg1g.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
 const projectsPhotos = [
   [
     codencja,
-    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc.",
+    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc. Different start page for mobiles and mozilla",
     "https://github.com/kodencja/codencja-react",
   ],
   [
@@ -72,12 +72,12 @@ const projectsPhotos = [
   ],
   [
     forms,
-    "Forms Generator - TypeScript, SASS, HTML",
+    "Forms Generator - TypeScript, SASS, HTML. Each input is generated through class instance",
     "https://kodencja.github.io/forms-generator/index.html",
   ],
 ];
 
-const Projects = () => {
+const Projects = ({ onTitleAnim }) => {
   const projectsRef = useRef([]);
 
   useEffect(() => {
@@ -148,7 +148,9 @@ const Projects = () => {
 
   return (
     <>
-      <header className="title sec-title">MY PROJECTS</header>
+      <header className="title sec-title">
+        {onTitleAnim("MY\u00A0PROJECTS")}
+      </header>
       <div className="container py-4">
         <div className="row mx-auto projects-row px-2">{projects}</div>
       </div>

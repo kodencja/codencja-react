@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import WriteText from "./WriteText";
 import "../css/about.css";
 
-const aboutTitle = "ABOUT ME";
+const aboutTitle = "ABOUT\u00A0ME";
 const mainTitle = "Krzysztof Lalik";
 const subTitles = [
   "Frontend Developing",
@@ -17,7 +17,7 @@ const subTitles = [
 ];
 
 const About = (props) => {
-  const { textAppearStart } = props;
+  const { textAppearStart, onTitleAnim } = props;
 
   useEffect(() => {
     console.log("About Comp. mounted");
@@ -26,7 +26,7 @@ const About = (props) => {
   return (
     <React.Fragment>
       <header className="title sec-title title-col-bright title-bgr-dark-bright-grad">
-        {aboutTitle}
+        {onTitleAnim(aboutTitle)}
       </header>
       <div className="container sec-cont">
         <WriteText

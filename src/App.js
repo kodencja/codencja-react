@@ -3,7 +3,7 @@ import "./App.css";
 import "./css/anims.css";
 import "./fontello/css/fontello.css";
 import "./icons/font/flaticon.css";
-import Curtail from "./componentsHook/Curtail";
+import Curtain from "./componentsHook/Curtain";
 import Navbar from "./componentsHook/Navbar";
 
 let FrontPage;
@@ -18,7 +18,7 @@ function App() {
   return (
     <React.Fragment>
     {
-    !transEnd ? <Curtail onTransEnd={setTransEnd} /> : 
+    !transEnd ? <Curtain onTransEnd={setTransEnd} /> : 
           <Suspense fallback={<p>Loading...</p>}>
       <FrontPage><div className="menuback col-12 header-top-menuback">
        <Navbar />

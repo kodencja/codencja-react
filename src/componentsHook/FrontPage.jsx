@@ -1,6 +1,7 @@
 import React, {
   useState,
   useEffect,
+  useCallback,
   useRef,
   createRef,
   lazy,
@@ -344,6 +345,20 @@ function FrontPage(props) {
     handleHideAfterResize(appearDivsRef, animShow1, animHide1);
   };
 
+  const titleAnimation = useCallback((word) => {
+    // console.log("textAnimation Fn");
+    const divLetter = [...word].map((letter, ind) => (
+      <span
+        className="title-anim"
+        key={ind}
+        style={{ animationDelay: `${0.2 * ind}s` }}
+      >
+        {letter}
+      </span>
+    ));
+    return <div className="text-anim">{divLetter}</div>;
+  }, []);
+
   return (
     <div>
       <div ref={mainmenuRef}>{props.children}</div>
@@ -371,7 +386,10 @@ function FrontPage(props) {
             ref={aboutSectRef}
           >
             <Suspense fallback={<p>Loading...</p>}>
-              <About textAppearStart={aboutTxtStart} />
+              <About
+                textAppearStart={aboutTxtStart}
+                onTitleAnim={titleAnimation}
+              />
             </Suspense>
           </section>
           <section
@@ -379,7 +397,10 @@ function FrontPage(props) {
             ref={servicesSectRef}
           >
             <Suspense fallback={<p>Loading...</p>}>
-              <Services servicesDivs={addToServiceRefer} />
+              <Services
+                servicesDivs={addToServiceRefer}
+                onTitleAnim={titleAnimation}
+              />
             </Suspense>
           </section>
           <section
@@ -390,6 +411,7 @@ function FrontPage(props) {
               <Skills
                 handleStartCount={ifStartCount}
                 skillsDivs={addToSkillsRefer}
+                onTitleAnim={titleAnimation}
               />
             </Suspense>
           </section>
@@ -398,12 +420,12 @@ function FrontPage(props) {
             ref={projectsSectRef}
           >
             <Suspense fallback={<p>Loading...</p>}>
-              <Projects />
+              <Projects onTitleAnim={titleAnimation} />
             </Suspense>
           </section>
           <section className="contact sec-cont-h" ref={contactSectRef}>
             <Suspense fallback={<p>Loading...</p>}>
-              <Contact />
+              <Contact onTitleAnim={titleAnimation} />
             </Suspense>
           </section>
           <footer className="text-center mx-auto footer">

@@ -65,7 +65,7 @@ const hardQuotation = [
 
 const countingTime = 7;
 
-const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
+const Skills = ({ handleStartCount, skillsDivs, refProp, onTitleAnim }) => {
   const skillsRef = useRef([]);
 
   useEffect(() => {
@@ -162,7 +162,7 @@ const Skills = ({ handleStartCount, skillsDivs, refProp }) => {
   return (
     <React.Fragment>
       <header className="title sec-title title-col-bright title-bgr-dark">
-        TECHNICAL SKILLS
+        {onTitleAnim("TECHNICAL\u00A0SKILLS")}
       </header>
       <div className="container sec-cont">
         <div className="align-middle py-4">
