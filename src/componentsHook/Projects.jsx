@@ -16,7 +16,7 @@ import "../css/projects.css";
 const projectsPhotos = [
   [
     codencja,
-    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap-4, etc. Different start page for mobiles and mozilla",
+    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
     "https://github.com/kodencja/codencja-react",
   ],
   [

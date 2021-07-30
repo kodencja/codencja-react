@@ -40,11 +40,11 @@ function BrickBoxes({ onState, onDispatch, onRef, onTransEnd }) {
           value: boxAnimTimeNo + 1500,
         });
         // console.log("css/curtail.css");
-        require("../css/curtail.css");
+        require("../css/curtain.css");
       } else {
         // console.log("css/curtailMoz.css");
         onDispatch({ type: "ifMobileOrMoz", value: true });
-        require("../css/curtailMoz.css");
+        require("../css/curtainMoz.css");
       }
       noOfAllBoxes.current = noOfColsNo * noOfRowsNo;
       setMobileMozSet(true);

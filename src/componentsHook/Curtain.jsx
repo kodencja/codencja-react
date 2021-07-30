@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useReducer, lazy, Suspense } from "react";
-import "../css/curtailStart.css";
+import "../css/curtainStart.css";
 
 // const BrickBoxes = lazy(()=> import("./BrickBoxes"));
 let BrickBoxes;
