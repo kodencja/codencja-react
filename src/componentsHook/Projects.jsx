@@ -10,35 +10,58 @@ import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
 import forms from "../img/projects/formsg1g.jpg";
+import dishForm from "../img/projects/dish-form.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
 const projectsPhotos = [
   [
     codencja,
-    "Portfolio Page - React, JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
+    "Portfolio Page - REACT.JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
     "https://github.com/kodencja/codencja-react",
   ],
   [
-    todoList,
-    "Todo-list with axios - React, JS, CSS",
-    "https://kodencja.github.io/react-todo/",
+    memoryCards,
+    "Memory Cards Game - REACT.JS, CSS-GRID, SASS",
+    "https://kodencja.github.io/cards-memory/",
+  ],
+  [
+    forms,
+    "Forms Generator - TypeScript, SASS, HTML. Each input is generated through class instance",
+    "https://kodencja.github.io/forms-generator/index.html",
   ],
   [
     cssVariables,
-    "Change css variables by inputs - React, JS, CSS, Bootstrap-4",
+    "Change css variables by inputs - REACT.JS, CSS, Bootstrap-4",
     "https://kodencja.github.io/css-variables/",
   ],
   [
-    clockWall,
-    "Wall-clock animation - React, JS, CSS",
-    "https://kodencja.github.io/wall-clock/",
-  ],
-  [
     counterApp,
-    "Let's buy some products - React, JS, CSS, Bootstrap-4",
+    "Let's buy some products - REACT.JS, CSS, Bootstrap-4",
     "https://kodencja.github.io/counter-app/",
   ],
+  [
+    vpanels,
+    "Fun with flex - REACT.JS, SASS",
+    "https://kodencja.github.io/vpanels/",
+  ],
+  [
+    dishForm,
+    "Form to order a dish - REACT.JS, SASS, API POST",
+    "https://kodencja.github.io/dish-form/",
+  ],
+  [
+    calculator,
+    "Calculator - JS, SASS, HTML, MVC",
+    "https://kodencja.github.io/calc-mvc/",
+  ],
+
+  [
+    clockWall,
+    "Wall-clock animation - REACT.JS, CSS",
+    "https://kodencja.github.io/wall-clock/",
+  ],
+
   [
     exchange,
     "Currency exchange rate with validation - React.js, Node.js, JS, CSS",
@@ -49,31 +72,16 @@ const projectsPhotos = [
     "Contact Form Page with validation - React.js, Node.js, JS, CSS",
     "https://contactcodenc.herokuapp.com/",
   ],
-  [
-    vpanels,
-    "Fun with flex - React, JS, SASS",
-    "https://kodencja.github.io/vpanels/",
-  ],
 
   [
-    memoryCards,
-    "Memory Cards Game - React, JS, CSS-GRID, SASS",
-    "https://kodencja.github.io/cards-memory/",
+    todoList,
+    "Todo-list with axios - REACT.JS, CSS",
+    "https://kodencja.github.io/react-todo/",
   ],
   [
     SPOJ,
     "Exercises from Polish SPOJ - C++",
     "https://github.com/kodencja/SPOJ-exercises",
-  ],
-  [
-    calculator,
-    "Calculator - JS, SASS, HTML, MVC",
-    "https://kodencja.github.io/calc-mvc/",
-  ],
-  [
-    forms,
-    "Forms Generator - TypeScript, SASS, HTML. Each input is generated through class instance",
-    "https://kodencja.github.io/forms-generator/index.html",
   ],
 ];
 
