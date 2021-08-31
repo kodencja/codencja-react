@@ -11,6 +11,7 @@ import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
 import forms from "../img/projects/formsg1g.jpg";
 import dishForm from "../img/projects/dish-form.jpg";
+import dishReduxForm from "../img/projects/dishRdxForm.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
@@ -49,6 +50,11 @@ const projectsPhotos = [
     dishForm,
     "Form to order a dish - REACT.JS, SASS, API POST",
     "https://kodencja.github.io/dish-form/",
+  ],
+  [
+    dishReduxForm,
+    "Form to order a dish - REACT-REDUX, redux-form, SASS, API POST",
+    "https://kodencja.github.io/dish-redux-form/",
   ],
   [
     calculator,
