@@ -10,7 +10,7 @@ import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
 import forms from "../img/projects/formsg1g.jpg";
-import dishForm from "../img/projects/dish-form.jpg";
+import dishForm from "../img/projects/dishForm1.jpg";
 import dishReduxForm from "../img/projects/dishRdxForm.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
