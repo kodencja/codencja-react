@@ -10,16 +10,27 @@ import codencja from "../img/projects/codenc.jpg";
 import memoryCards from "../img/projects/memorycards.jpg";
 import calculator from "../img/projects/calcMVC.jpg";
 import forms from "../img/projects/formsg1g.jpg";
-import dishForm from "../img/projects/dishForm1.jpg";
+import php_get_xml from "../img/projects/php_get_xml_p.jpg";
+import react_table_json_db from "../img/projects/react-tab-json-mock-p.jpg";
 import dishReduxForm from "../img/projects/dishRdxForm.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
 const projectsPhotos = [
+  // [
+  //   codencja,
+  //   "Portfolio Page - REACT.JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
+  //   "https://github.com/kodencja/codencja-react",
+  // ],
   [
-    codencja,
-    "Portfolio Page - REACT.JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
-    "https://github.com/kodencja/codencja-react",
+    react_table_json_db,
+    "JSON database (books) in react table - react.js, react-table, json-sever, react-boostrap",
+    "https://kodencja.github.io/react-table-mocked-json/",
+  ],
+  [
+    php_get_xml,
+    "Get XML file to JSON - Get xml data from url or file and convert it to json format using PHP 8",
+    "https://github.com/kodencja/php-get-xml-data",
   ],
   [
     memoryCards,
@@ -46,11 +57,11 @@ const projectsPhotos = [
     "Fun with flex - REACT.JS, SASS",
     "https://kodencja.github.io/vpanels/",
   ],
-  [
-    dishForm,
-    "Form to order a dish - REACT.JS, SASS, API POST",
-    "https://kodencja.github.io/dish-form/",
-  ],
+  // [
+  //   dishForm,
+  //   "Form to order a dish - REACT.JS, SASS, API POST",
+  //   "https://kodencja.github.io/dish-form/",
+  // ],
   [
     dishReduxForm,
     "Form to order a dish - REACT-REDUX, redux-form, SASS, API POST",
@@ -73,17 +84,17 @@ const projectsPhotos = [
     "Currency exchange rate with validation - React.js, Node.js, JS, CSS",
     "https://exchange-codenc.herokuapp.com/",
   ],
-  [
-    contact,
-    "Contact Form Page with validation - React.js, Node.js, JS, CSS",
-    "https://contactcodenc.herokuapp.com/",
-  ],
+  // [
+  //   contact,
+  //   "Contact Form Page with validation - React.js, Node.js, JS, CSS",
+  //   "https://contactcodenc.herokuapp.com/",
+  // ],
 
-  [
-    todoList,
-    "Todo-list with axios - REACT.JS, CSS",
-    "https://kodencja.github.io/react-todo/",
-  ],
+  // [
+  //   todoList,
+  //   "Todo-list with axios - REACT.JS, CSS",
+  //   "https://kodencja.github.io/react-todo/",
+  // ],
   [
     SPOJ,
     "Exercises from Polish SPOJ - C++",

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, lazy, Suspense} from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import "./css/anims.css";
 import "./fontello/css/fontello.css";
@@ -12,22 +12,29 @@ function App() {
   const [transEnd, setTransEnd] = useState(false);
 
   useEffect(() => {
-    FrontPage = lazy(()=> import("./componentsHook/FrontPage"));
+    FrontPage = lazy(() => import("./componentsHook/FrontPage"));
   }, [transEnd]);
 
   return (
     <React.Fragment>
-    {
-    !transEnd ? <Curtain onTransEnd={setTransEnd} /> : 
-          <Suspense fallback={<p>Loading...</p>}>
-      <FrontPage><div className="menuback col-12 header-top-menuback">
-       <Navbar />
-      </div>
-      </FrontPage>
-      </Suspense>
-    }
+      {!transEnd ? (
+        <>
+          <button className="btn btn-sm skip" onClick={() => setTransEnd(true)}>
+            Skip intro
+          </button>
+          <Curtain onTransEnd={setTransEnd} />
+        </>
+      ) : (
+        <Suspense fallback={<p>Loading...</p>}>
+          <FrontPage>
+            <div className="menuback col-12 header-top-menuback">
+              <Navbar />
+            </div>
+          </FrontPage>
+        </Suspense>
+      )}
     </React.Fragment>
-  )
+  );
 }
 
 export default App;

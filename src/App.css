@@ -22,6 +22,21 @@
   color: #525252;
 }
 
+.skip {
+  position: absolute;
+  right: 1%;
+  bottom: 1%;
+  z-index: 1500;
+  color: #f0f0f0;
+  background-color: gray;
+  opacity: 0.8;
+}
+
+.skip:hover {
+  color: #e2e2e2;
+  background-color: rgb(117, 117, 117);
+}
+
 .pagefront-hamburger {
   position: fixed !important;
   top: 0px;
