@@ -24,7 +24,7 @@ const projectsPhotos = [
   // ],
   [
     react_table_json_db,
-    "JSON database (books) in react table - react.js, react-table, json-sever, react-boostrap",
+    "JSON database (books) in react table - react.js, react-table, react-boostrap",
     "https://kodencja.github.io/react-table-mocked-json/",
   ],
   [
