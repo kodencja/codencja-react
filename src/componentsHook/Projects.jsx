@@ -13,6 +13,7 @@ import forms from "../img/projects/formsg1g.jpg";
 import php_get_xml from "../img/projects/php_get_xml_p.jpg";
 import react_table_json_db from "../img/projects/react-tab-json-mock-p.jpg";
 import dishReduxForm from "../img/projects/dishRdxForm.jpg";
+import MuiDataGrid from "../img/projects/MuiDataGrid.jpg";
 import SPOJ from "../img/projects/SPOJEx.jpg";
 import "../css/projects.css";
 
@@ -22,6 +23,11 @@ const projectsPhotos = [
   //   "Portfolio Page - REACT.JS, CSS, Hooks, Bootstrap4, etc. Different start page for mobiles and moz",
   //   "https://github.com/kodencja/codencja-react",
   // ],
+  [
+    MuiDataGrid,
+    "JSON-SERVER database with Material UI dataGrid, React FINAL FORM, REDUX, AXIOS",
+    "https://kodencja.github.io/react-table-mocked-json/",
+  ],
   [
     react_table_json_db,
     "JSON database (books) in react table - react.js, react-table, react-boostrap",
