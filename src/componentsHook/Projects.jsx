@@ -26,7 +26,7 @@ const projectsPhotos = [
   [
     MuiDataGrid,
     "JSON-SERVER database with Material UI dataGrid, React FINAL FORM, REDUX, AXIOS",
-    "https://kodencja.github.io/react-table-mocked-json/",
+    "https://database-table-json-server-mui.herokuapp.com/",
   ],
   [
     react_table_json_db,
