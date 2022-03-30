@@ -10,10 +10,11 @@ const subTitles = [
   "Backend Supporting",
   "Programming & designing websites",
   "Fully responsive & interactive",
-  "Individuals & Companies",
+  "Teams & Individuals",
   "Sync & Async",
   "MVC Pattern",
   "Desktop, Tablet, Mobile",
+  "You are invited to cooperation",
 ];
 
 const About = (props) => {

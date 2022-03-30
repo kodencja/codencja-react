@@ -62,9 +62,6 @@ function WriteText(props) {
       spanMainTitleRef.current.push(el);
     }
   };
-  //   },
-  //   [spanMainTitleRef]
-  // );
 
   // spanTab - spanMainTitleRef or spanSubTitleRef
   // iSubTab - subTxtCurrentIndex

@@ -7,7 +7,7 @@ const txtSerives = [
   "Coding Graphic Custom-made &\u00A0Standard",
   "Fully Responsive For\u00A0All Displays",
   "Innovative Ideas Sync\u00A0/ Async",
-  "Projects for Individuals &\u00A0Companies",
+  "Projects for Teams  &\u00A0Individuals",
   "Clear, Interactive &\u00A0Animated",
   "Consultations Web Design &\u00A0Content",
 ];

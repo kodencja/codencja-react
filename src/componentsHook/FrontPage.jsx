@@ -429,7 +429,7 @@ function FrontPage(props) {
             </Suspense>
           </section>
           <footer className="text-center mx-auto footer">
-            &copy; 2022 <i>by</i> Codencja
+            &copy; {new Date().getFullYear()} <i>by</i> Codencja
           </footer>
         </main>
       </div>
