@@ -12,7 +12,7 @@ const subTitles = [
   "Fully responsive & interactive",
   "Teams & Individuals",
   "Sync & Async",
-  "MVC Pattern",
+  "Progressive coding patterns",
   "Desktop, Tablet, Mobile",
   "You are invited to cooperation",
 ];

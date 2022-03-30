@@ -39,8 +39,8 @@ const carouselHead = [
   ["Krzysztof Lalik", "Frontend developing", "Backend supporting"],
   [
     "Programming & designing websites",
-    "Eye-catching & functional",
-    "Fully Responsive",
+    "In pursuing Clean Code pattern",
+    "Fully Responsive & functional",
   ],
   ["Modern Framework", "REACT.JS", "Interactive & Animated"],
   [
