@@ -43,7 +43,7 @@ const Contact = ({ onTitleAnim }) => {
               </a>
             </span>
           </div>
-          <div>
+          {/* <div>
             <div>
               <i className="icon-edit"></i>
             </div>
@@ -57,7 +57,7 @@ const Contact = ({ onTitleAnim }) => {
                 CONTACT FORM
               </a>
             </span>
-          </div>
+          </div> */}
           <div className="contact-subtitle">
             <i className="icon-location" />
             <div>Cracow, Poland</div>

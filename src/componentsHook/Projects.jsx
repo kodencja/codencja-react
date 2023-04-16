@@ -85,11 +85,11 @@ const projectsPhotos = [
     "https://kodencja.github.io/wall-clock/",
   ],
 
-  [
-    exchange,
-    "Currency exchange rate with validation - React.js, Node.js, JS, CSS",
-    "https://exchange-codenc.herokuapp.com/",
-  ],
+  // [
+  //   exchange,
+  //   "Currency exchange rate with validation - React.js, Node.js, JS, CSS",
+  //   "https://exchange-codenc.herokuapp.com/",
+  // ],
   // [
   //   contact,
   //   "Contact Form Page with validation - React.js, Node.js, JS, CSS",
